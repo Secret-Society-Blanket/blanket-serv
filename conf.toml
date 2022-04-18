@@ -1,0 +1,8 @@
+[database]
+name = "blanket_db"
+hostname = "db"
+username = "root"
+password = "example"
+[site]
+name = "Secret Society Blanket"
+url = "https://ssb.camp"
