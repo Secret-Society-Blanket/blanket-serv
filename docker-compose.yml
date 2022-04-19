@@ -13,6 +13,8 @@ services:
     image: mariadb
     hostname: db
     restart: always
+    volumes:
+      - /var/lib/mysql
     environment:
       MARIADB_ROOT_PASSWORD: example
 

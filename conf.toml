@@ -6,3 +6,5 @@ password = "example"
 [site]
 name = "Secret Society Blanket"
 url = "https://ssb.camp"
+[storage]
+path="content/"

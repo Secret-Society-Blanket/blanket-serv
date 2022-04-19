@@ -1,17 +1,16 @@
 <?php
-if ($_POST && ($_POST["author-name"] && $_POST["image-link"] && $_POST["social-links"])) {
-    require __DIR__ . '/utils.php';
-    $config = getConfig();
+require __DIR__ . '/utils.php';
+if ($_POST) {
     $db = getSqli();
     $prep = mysqli_prepare(
         $db,
-        "INSERT INTO authors (name, links, avatar_link)
+        "INSERT INTO {$AUTHOR_TABLE} (name, links, avatar_link)
                             VALUES (?, ?, ?)"
     );
     mysqli_stmt_bind_param($prep, 'sss', $author, $links, $alink);
     $author = $_POST["author-name"];
     $links = $_POST["social-links"];
-    $alink = $_POST["image-link"];
+    $alink = saveFile($_FILES['image']);
     mysqli_stmt_execute($prep);
 }
 ?>
@@ -24,14 +23,14 @@ if ($_POST && ($_POST["author-name"] && $_POST["image-link"] && $_POST["social-l
 </head>
 
 <body>
-    <form action="<?php $_PHP_SELF ?>" method="POST">
+    <form action="<?php $_PHP_SELF ?>" method="POST" enctype="multipart/form-data">
         <label for="author-name"> Name: </label><br>
         <input type="text" id="author-name" name="author-name" /><br>
-        <label for="image-link"> Image (link): </label><br>
-        <input type="text" id="image-link" name="image-link" /><br>
+        <label for="image"> Avatar </label><br>
+        <input type="file" id="image" name="image" /><br>
         <label for="social-links"> Social Links (space-seperated): </label><br>
         <input type="text" id="social-links" name="social-links" /><br>
-        <input type="submit" value="Submit"/>
+        <input type="submit" value="Submit" />
     </form>
 </body>
 

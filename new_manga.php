@@ -1,14 +1,18 @@
 <?php
 require __DIR__ . '/utils.php';
+
 $config = getConfig();
 $db = getSqli();
 if ($_POST) {
     // If this is set, we're updating a manga, not creating a new one.
     if (isset($_POST["manga-id"])) {
+        $update_q = "UPDATE {$MANGA_TABLE} SET title = ?, original_title = ?, author_id = ? , description = ?, image_link = ?, num_chapters = ? WHERE id = ?";
+
         $prep = mysqli_prepare(
             $db,
-            "UPDATE manga SET title = ?, original_title = ?, author_id = ? , description = ?, image_link = ?, num_chapters = ? WHERE id = ?"
+            $update_q
         );
+
         mysqli_stmt_bind_param(
             $prep,
             'ssissii',
@@ -20,31 +24,33 @@ if ($_POST) {
             $chaps,
             $mangaid
         );
+
         $title = $_POST["manga-title"];
         $ogtitle = $_POST["manga-original-title"];
         $authorid = $_POST["authors"];
         $description = $_POST["description"];
-        $imageLink = $_POST["image-link"];
+        $imageLink = saveFile($_FILES['image']);
         $mangaid = $_POST["manga-id"];
+
         if (isset($_POST["is-oneshot"])) {
             $chaps = NULL;
         } else {
-            $nresults = mysqli_query($db, "SELECT * FROM manga WHERE id = '" . $_POST["manga-id"] . "'");
-            $nmanga = mysqli_fetch_array($nresults);
+            $nmanga = getSqlRowFromId($db, $MANGA_TABLE, $_POST["manga-id"]);
             $chaps = $nmanga["num_chapters"];
         }
         mysqli_stmt_execute($prep);
     } else {
+        $insert_q = "INSERT INTO {$MANGA_TABLE} (title, original_title, author_id, description, image_link, num_chapters) VALUES (?, ?, ?, ?, ?, ?)";
         $prep = mysqli_prepare(
             $db,
-            "INSERT INTO manga (title, original_title, author_id, description, image_link, num_chapters) VALUES (?, ?, ?, ?, ?, ?)"
+            $insert_q
         );
         mysqli_stmt_bind_param($prep, 'ssissi', $title, $ogtitle, $authorid, $description, $imageLink, $chaps);
         $title = $_POST["manga-title"];
         $ogtitle = $_POST["manga-original-title"];
         $authorid = $_POST["authors"];
         $description = $_POST["description"];
-        $imageLink = $_POST["image-link"];
+        $imageLink = saveFile($_FILES['image']);;
         if (isset($_POST["is-oneshot"])) {
             $chaps = NULL;
         } else {
@@ -55,8 +61,7 @@ if ($_POST) {
 }
 if (isset($_GET["manga-id"])) {
 
-    $results = mysqli_query($db, "SELECT * FROM manga WHERE id = '" . $_GET["manga-id"] . "'");
-    $manga = mysqli_fetch_array($results);
+    $manga = getSqlRowFromId($db, $MANGA_TABLE, $_GET["manga-id"]);
     $getTitle = $manga["title"];
     $getAuthor = $manga["author_id"];
     $getOriginalTitle = $manga["original_title"];
@@ -90,7 +95,7 @@ if (isset($_GET["manga-id"])) {
             <?php
             $config = getConfig();
             $db = getSqli();
-            $results = mysqli_query($db, "SELECT * FROM manga");
+            $results = mysqli_query($db, "SELECT * FROM {$MANGA_TABLE}");
             while ($manga = mysqli_fetch_array($results)) {
                 echo ("<option value=\"" . $manga['id'] . "\">");
                 echo ($manga['title']);
@@ -100,35 +105,33 @@ if (isset($_GET["manga-id"])) {
         </select>
         <input type="submit" value="Load Manga To Edit">
     </form>
-                          
+
     <form action="<?php $_PHP_SELF ?>" method="">
         <input type="submit" value="Make New Manga">
     </form>
-    <form action="<?php $_PHP_SELF ?>" method="POST">
+
+    <form action="<?php $_PHP_SELF ?>" method="POST" enctype="multipart/form-data">
         <?php
         if ($_GET) {
             echo ('<input type="hidden" id="manga-id" name="manga-id" value="' . $_GET["manga-id"] . '">');
         }
         ?>
         <label for="manga-title"> Title: </label><br>
-        <input type="text" id="manga-title" name="manga-title" value="<?php echo ($getTitle); ?>"><br>
+        <input type="text" id="manga-title" name="manga-title" value="<?= $getTitle ?>"><br>
         <label for="manga-original-title"> Original Title: </label><br>
-        <input type="text" id="manga-original-title" name="manga-original-title" value="<?php echo ($getOriginalTitle); ?>"><br>
-        <label for=" image-link"> Cover Image (link): </label><br>
-        <input type="text" id="image-link" name="image-link" value="<?php echo ($getImageLink); ?>"><br>
+        <input type="text" id="manga-original-title" name="manga-original-title" value="<?= $getOriginalTitle ?>"><br>
+        <label for="image"> Cover Image: </label><br>
+        <input type="file" id="image" name="image"><br>
         <label for=" authors"> Author: </label><br>
         <select id="authors" name="authors">
             <?php
-
-            $config = getConfig();
-            $db = getSqli();
-            $results = mysqli_query($db, "SELECT * FROM authors");
+            $results = getSqlRows($db, "authors");
             while ($author = mysqli_fetch_array($results)) {
                 $select = NULL;
                 if ($author['id'] == $getAuthor) {
                     $select = "selected";
                 }
-                echo ("<option value=\"" . $author['id'] . "\" selected=\"" . $select . "\">");
+                echo ("<option value='{$author['id']}' selected='{$select}'>");
                 echo ($author['name']);
                 echo ("</option>");
             }

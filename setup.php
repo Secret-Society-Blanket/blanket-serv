@@ -7,7 +7,7 @@
     <?php
 
 
-    require __DIR__ . 'utils.php';
+    require __DIR__ . '/utils.php';
 
     function initDatabase()
     {
