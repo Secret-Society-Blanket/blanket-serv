@@ -21,7 +21,7 @@ if ($_POST) {
         $credits = $_POST['credits'];
         $number = $_POST['number'];
 
-        if ($manga['num_chapters'] != NULL && $manga['num_chapters'] != 0) {
+        if (!$manga['is_oneshot']) {
             $insert_m_q = "UPDATE {$MANGA_TABLE} SET num_chapters = ? WHERE id = ?";
             $prepm = mysqli_prepare(
                 $db,

@@ -1,17 +1,18 @@
 <?php
 
-require __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 use Yosymfony\Toml\Toml;
 
 // Constants and things 
+
 $MANGA_TABLE = "manga";
 $CHAPTER_TABLE = "chapters";
 $AUTHOR_TABLE = "authors";
 
 function getConfig()
 {
-    $config_file = file_get_contents("conf.toml");
+    $config_file = file_get_contents("scripts/conf.toml");
     $array = Toml::Parse($config_file);
 
     return $array;
@@ -34,7 +35,7 @@ function getSqlRowFromId($db, string $table, int $id)
     mysqli_stmt_execute($stmt);
     $results = mysqli_stmt_get_result($stmt);
 
-    return(mysqli_fetch_array($results));
+    return (mysqli_fetch_array($results));
 }
 
 
@@ -49,7 +50,23 @@ function getSqli()
 function saveFile($file)
 {
     $config = getConfig();
-    $target_path = getcwd() . "/" . $config['storage']['path'] . $file['name'];;
+    $target_path = NULL;
+
+    // If the path we have in the config is an absolute path, don't add the cwd.
+
+    if ($config['storage']['path'][0] == "/") {
+        $target_path = $config['storage']['path'];
+    } else {
+        $target_path = getcwd() . "/" . $config['storage']['path'];
+    }
+
+    $name = $file['name'];
+    while (file_exists($target_path . $name)) {
+        $name = "new." . $name;
+    }
+    $target_path = $target_path . $name;
+
+
     move_uploaded_file($file['tmp_name'], $target_path);
-    return $file['name'];
+    return $name;
 }

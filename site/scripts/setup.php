@@ -19,7 +19,7 @@ function initDatabase()
     echo ("Loaded database " . $config['database']['name'] . "<br>");
 
     if (!mysqli_query($db, 'DESCRIBE manga')) {
-        $results = mysqli_query($db, 'CREATE TABLE manga (id MEDIUMINT AUTO_INCREMENT, title TEXT, original_title TEXT, author_id INT, description TEXT, image_link TEXT, num_chapters INT, PRIMARY KEY (id))');
+        $results = mysqli_query($db, 'CREATE TABLE manga (id MEDIUMINT AUTO_INCREMENT, title TEXT, original_title TEXT, author_id INT, description TEXT, image_link TEXT, num_chapters INT, is_oneshot BOOLEAN, PRIMARY KEY (id))');
         print_r($results);
         echo ("Created table manga.<br>");
     }
@@ -33,9 +33,8 @@ function initDatabase()
             'CREATE TABLE chapters (
                 id MEDIUMINT NOT NULL AUTO_INCREMENT,
                 manga_id INT,
-                author_id INT ,
                 path TEXT,
-                number INT,
+                number INT NOT NULL,
                 release_date DATE,
                 credits TEXT,
                 PRIMARY KEY (id))'

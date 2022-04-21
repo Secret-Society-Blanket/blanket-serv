@@ -1,18 +1,5 @@
 <?php
-require __DIR__ . '/utils.php';
-if ($_POST) {
-    $db = getSqli();
-    $prep = mysqli_prepare(
-        $db,
-        "INSERT INTO {$AUTHOR_TABLE} (name, links, avatar_link)
-                            VALUES (?, ?, ?)"
-    );
-    mysqli_stmt_bind_param($prep, 'sss', $author, $links, $alink);
-    $author = $_POST["author-name"];
-    $links = $_POST["social-links"];
-    $alink = saveFile($_FILES['image']);
-    mysqli_stmt_execute($prep);
-}
+require_once __DIR__ . '/scripts/new_author.php';
 ?>
 
 <html>
@@ -24,6 +11,8 @@ if ($_POST) {
 </head>
 
 <body>
+
+    // Try not to change any of the things here, CSS is fine.
     <form action="<?php $_PHP_SELF ?>" method="POST" enctype="multipart/form-data">
         <label for="author-name"> Name: </label><br>
         <input type="text" id="author-name" name="author-name" /><br>

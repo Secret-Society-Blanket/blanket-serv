@@ -2,12 +2,6 @@
 version: '3.1'
 
 services:
-  blanket:
-    build: .
-    ports:
-      - 8081:80
-    volumes:
-      - .:/var/www/html
 
   db:
     image: mariadb
@@ -23,3 +17,11 @@ services:
     restart: always
     ports:
       - 8080:8080
+
+  blanket:
+    build: .
+    ports:
+      - 8081:80
+    volumes:
+      - ./site:/var/www/html
+      - /var/blanket/content
