@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/utils.php';
+$TEST = "TELKASTJA";
 if ($_POST) {
     $db = getSqli();
     $prep = mysqli_prepare(
@@ -13,4 +14,3 @@ if ($_POST) {
     $alink = saveFile($_FILES['image']);
     mysqli_stmt_execute($prep);
 }
-?>

@@ -7,4 +7,4 @@ password = "example"
 name = "Secret Society Blanket"
 url = "https://ssb.camp"
 [storage]
-path="/var/blanket/content/"
+path="content/"

@@ -46,5 +46,4 @@ function initDatabase()
 }
 
 initDatabase();
-mkdir($config['storage']['path']);
 ?>

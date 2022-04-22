@@ -1,5 +1,6 @@
 <?php
-require_once __DIR__ . '/scripts/new_author.php';
+include __DIR__ . '/../scripts/new_author.php';
+
 ?>
 
 <html>
@@ -12,7 +13,7 @@ require_once __DIR__ . '/scripts/new_author.php';
 
 <body>
 
-    // Try not to change any of the things here, CSS is fine.
+    <!-- Try not to change any of the things here, CSS is fine. -->
     <form action="<?php $_PHP_SELF ?>" method="POST" enctype="multipart/form-data">
         <label for="author-name"> Name: </label><br>
         <input type="text" id="author-name" name="author-name" /><br>

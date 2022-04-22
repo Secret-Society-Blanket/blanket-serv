@@ -14,7 +14,7 @@
         <label for="manga-id"> Manga: </label>
         <select id="manga-id" name="manga-id" />
         <option value='-1'> Choose a Manga </option>
-        <?=$mangas?>
+        <?= $mangas ?>
         </select><br>
         <label for="number"> Chapter Number: </label>
         <input type="number" id="number" name="number" /><br>

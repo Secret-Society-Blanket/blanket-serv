@@ -12,7 +12,7 @@ $AUTHOR_TABLE = "authors";
 
 function getConfig()
 {
-    $config_file = file_get_contents("scripts/conf.toml");
+    $config_file = file_get_contents(__DIR__ . "/conf.toml");
     $array = Toml::Parse($config_file);
 
     return $array;
@@ -57,12 +57,15 @@ function saveFile($file)
     if ($config['storage']['path'][0] == "/") {
         $target_path = $config['storage']['path'];
     } else {
-        $target_path = getcwd() . "/" . $config['storage']['path'];
+        $target_path =  "/var/www/html/" . $config['storage']['path'];
     }
 
     $name = $file['name'];
     while (file_exists($target_path . $name)) {
         $name = "new." . $name;
+    }
+    if (!is_dir($target_path)) {
+        mkdir($target_path);
     }
     $target_path = $target_path . $name;
 
