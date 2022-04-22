@@ -7,8 +7,7 @@ $db = getSqli();
 if ($_POST) {
     $manga = getSqlRowFromId($db, $MANGA_TABLE, $_POST['manga-id']);
     $insert_c_q = "INSERT INTO {$CHAPTER_TABLE} (manga_id, path, number, release_date , credits) VALUES (?, ?, ?, ?, ?)";
-    $prep = mysqli_prepare(
-        $db,
+    $prep = mysqli_prepare($db,
         $insert_c_q
     );
     mysqli_stmt_bind_param($prep, 'isiss', $mangaid, $path, $number, $releasedate, $credits);
@@ -16,7 +15,7 @@ if ($_POST) {
         $out = 'No Manga Found';
     } else {
         $mangaid = $_POST['manga-id'];
-        $path = saveFile($_FILES['file']);
+        $path = saveChapter($_FILES['file']);
         $releasedate = $_POST["release-date"];
         $credits = $_POST['credits'];
         $number = $_POST['number'];

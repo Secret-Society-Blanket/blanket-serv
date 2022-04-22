@@ -1,4 +1,4 @@
-<?php include __DIR__ . '/scripts/new_chapter.php'
+<?php include __DIR__ . '/../scripts/new_chapter.php'
 ?>
 
 <html>
@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <form action="scripts/addChapter.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+    <form action="../scripts/addChapter.php" method="POST" enctype="multipart/form-data" autocomplete="off">
         <label for="manga-id"> Manga: </label>
         <select id="manga-id" name="manga-id" />
         <option value='-1'> Choose a Manga </option>
@@ -29,7 +29,7 @@
     <script>
         $('#manga-id').change(function() {
             if ($('#manga-id').val() != -1) {
-                $.get("getId.php", {
+                $.get("../scripts/getId.php", {
                     'manga-id': $("#manga-id").val()
                 }, function(data) {
                     console.log('FUUUUCK');

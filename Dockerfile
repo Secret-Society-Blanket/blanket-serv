@@ -1,5 +1,8 @@
 FROM php:8.0-apache
 RUN docker-php-ext-install mysqli
+RUN apt-get update
+RUN apt-get install -y libzip-dev zip
+RUN docker-php-ext-install zip
 
 COPY php.ini $PHP_INI_DIR/php.ini
 

@@ -46,6 +46,15 @@ function getSqli()
     $db = mysqli_connect($config['database']['hostname'], $config['database']['username'], $config['database']['password'], $config['database']['name']);
     return $db;
 }
+function getContentPath() {
+    $config = getConfig();
+
+    if ($config['storage']['path'][0] == "/") {
+        return $config['storage']['path'];
+    } else {
+        return "/var/www/html/" . $config['storage']['path'];
+    }
+}
 
 function saveFile($file)
 {
@@ -54,22 +63,43 @@ function saveFile($file)
 
     // If the path we have in the config is an absolute path, don't add the cwd.
 
-    if ($config['storage']['path'][0] == "/") {
-        $target_path = $config['storage']['path'];
-    } else {
-        $target_path =  "/var/www/html/" . $config['storage']['path'];
-    }
+    $target_path = getContentPath();
 
     $name = $file['name'];
     while (file_exists($target_path . $name)) {
         $name = "new." . $name;
     }
+
     if (!is_dir($target_path)) {
         mkdir($target_path);
     }
+
     $target_path = $target_path . $name;
 
 
     move_uploaded_file($file['tmp_name'], $target_path);
     return $name;
+}
+
+
+function saveChapter($file)
+{
+
+    $target_path = getContentPath();
+    $zippath = saveFile($file);
+    $zip = new ZipArchive;
+    $res = $zip->open($target_path . $zippath);
+
+    $filename = basename($zippath);
+    $dirname = substr($filename, 0, strrpos($filename, "."));
+    if ($res === TRUE) {
+        $zip->extractTo($target_path . $dirname );
+        $zip->close();
+        unlink($target_path . $zippath);
+    }
+    else {
+        echo ('We fucked up...');
+    }
+
+    return $dirname;
 }
