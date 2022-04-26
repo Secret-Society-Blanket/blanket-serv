@@ -3,6 +3,7 @@ require_once __DIR__ . '/utils.php';
 
 $config = getConfig();
 $db = getSqli();
+checkAdmin();
 if ($_POST) {
     // If this is set, we're updating a manga, not creating a new one.
     if (isset($_POST["manga-id"])) {

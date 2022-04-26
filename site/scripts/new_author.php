@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/utils.php';
-$TEST = "TELKASTJA";
+checkAdmin();
 if ($_POST) {
     $db = getSqli();
     $prep = mysqli_prepare(

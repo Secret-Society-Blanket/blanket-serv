@@ -3,6 +3,7 @@ require_once __DIR__ . '/utils.php';
 
 $config = getConfig();
 $db = getSqli();
+checkAdmin();
 
 $mangas = "";
 $results = mysqli_query($db, "SELECT * FROM manga");

@@ -4,6 +4,7 @@ require_once __DIR__ . '/utils.php';
 $out = "ERR";
 $config = getConfig();
 $db = getSqli();
+checkAdmin();
 if ($_POST) {
     $manga = getSqlRowFromId($db, $MANGA_TABLE, $_POST['manga-id']);
     $insert_c_q = "INSERT INTO {$CHAPTER_TABLE} (manga_id, path, number, release_date , credits) VALUES (?, ?, ?, ?, ?)";

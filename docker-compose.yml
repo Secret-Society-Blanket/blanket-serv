@@ -22,5 +22,3 @@ services:
     build: .
     ports:
       - 8081:80
-    volumes:
-      - ./site:/var/www/html

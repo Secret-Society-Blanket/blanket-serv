@@ -103,3 +103,10 @@ function saveChapter($file)
 
     return $dirname;
 }
+
+function checkAdmin() {
+    session_start();
+    if (!$_SESSION["admin"]) {
+        header("Location: /admin/login.php"); 
+    }
+}
