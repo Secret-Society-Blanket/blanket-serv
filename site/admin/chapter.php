@@ -2,7 +2,7 @@
 ?>
 
 <html>
-
+    
 <head>
     <title>
         Create Chapter </title>
@@ -32,7 +32,6 @@
                 $.get("/scripts/getId.php", {
                     'manga-id': $("#manga-id").val()
                 }, function(data) {
-                    console.log('FUUUUCK');
                     let row = data;
                     let maxNum;
                     let minNum = 0;
