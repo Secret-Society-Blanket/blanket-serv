@@ -24,7 +24,6 @@
 
         while ($manga = mysqli_fetch_array($mangas)) {
             $author = getSqlRowFromId($db, $AUTHOR_TABLE, $manga['author_id']);
-            // This should link to the author
         ?>
             <tr>
                 <td> <img src=content/<?= $manga['image_link'] ?>></img> </td>
