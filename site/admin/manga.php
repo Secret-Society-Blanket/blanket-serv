@@ -1,6 +1,5 @@
 <?php
 require __DIR__ . '/../scripts/new_manga.php';
-checkAdmin();
 ?>
 <html>
 

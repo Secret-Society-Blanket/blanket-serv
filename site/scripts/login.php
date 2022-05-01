@@ -26,10 +26,12 @@ if ($_POST) {
             $_SESSION['admin'] = true;
             $_SESSION['username'] = $user["username"];
             $result = "You've been succesfully verified.";
+            header("Location: /admin/index.php");
             $loggedIn = true;
         }
     }
     if (!$loggedIn) {
         $result = "Couldn't log you in...";
+        header("Location: /admin/login.php");
     }
 }
