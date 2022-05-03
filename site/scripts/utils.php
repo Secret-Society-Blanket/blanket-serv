@@ -5,11 +5,16 @@ require_once __DIR__ . '/vendor/autoload.php';
 use Yosymfony\Toml\Toml;
 
 // Constants and things 
+const MANGA_TABLE = "manga";
+const CHAPTER_TABLE = "chapters";
+const AUTHOR_TABLE = "authors";
 
-$MANGA_TABLE = "manga";
-$CHAPTER_TABLE = "chapters";
-$AUTHOR_TABLE = "authors";
+// Made for easier string insertion
+$MANGA_TABLE = MANGA_TABLE;
+$CHAPTER_TABLE = CHAPTER_TABLE;
+$AUTHOR_TABLE = AUTHOR_TABLE;
 
+// Returns the Config file as an array.
 function getConfig()
 {
     $config_file = file_get_contents(__DIR__ . "/conf.toml");
@@ -18,16 +23,18 @@ function getConfig()
     return $array;
 }
 
+// Gets all rows form a sql table, use mysqli_fetch_array to increment through them.
 function getSqlRows($db, $table)
 {
 
-    $stmt = new mysqli_stmt($db, "SELECT * FROM ${table}");
+    $stmt = new mysqli_stmt($db, "SELECT * FROM {$table}");
     mysqli_stmt_execute($stmt);
     $results = mysqli_stmt_get_result($stmt);
 
     return ($results);
 }
 
+// Returns the first Row from a SQL table matching the given id.
 function getSqlRowFromId($db, string $table, int $id)
 {
     $query = "SELECT * FROM ${table} WHERE id = ${id}";
@@ -39,6 +46,7 @@ function getSqlRowFromId($db, string $table, int $id)
 }
 
 
+// Returns the sqli database object.
 function getSqli()
 {
     $config = getConfig();
@@ -46,7 +54,9 @@ function getSqli()
     $db = mysqli_connect($config['database']['hostname'], $config['database']['username'], $config['database']['password'], $config['database']['name']);
     return $db;
 }
-function getContentPath() {
+// Gets the full path to all content.
+function getContentPath()
+{
     $config = getConfig();
 
     if ($config['storage']['path'][0] == "/") {
@@ -56,6 +66,7 @@ function getContentPath() {
     }
 }
 
+// Saves a file automatically, and returns the new name.
 function saveFile($file)
 {
     $config = getConfig();
@@ -65,6 +76,7 @@ function saveFile($file)
 
     $target_path = getContentPath();
 
+    log($target_path);
     $name = $file['name'];
     while (file_exists($target_path . $name)) {
         $name = "new." . $name;
@@ -82,6 +94,7 @@ function saveFile($file)
 }
 
 
+// Saves a chapter, unzipping it at the same time. Returns the directory in content/
 function saveChapter($file)
 {
 
@@ -93,20 +106,60 @@ function saveChapter($file)
     $filename = basename($zippath);
     $dirname = substr($filename, 0, strrpos($filename, "."));
     if ($res === TRUE) {
-        $zip->extractTo($target_path . $dirname );
+        $zip->extractTo($target_path . $dirname);
         $zip->close();
         unlink($target_path . $zippath);
-    }
-    else {
+    } else {
         echo ('We fucked up...');
     }
 
     return $dirname;
 }
 
-function checkAdmin() {
+
+// Gets all chapters from a given manga id, properly in order.
+function get_order_chapters($manga_id)
+{
+    $db = getSqli();
+    $chapters = mysqli_query($db, "SELECT * FROM ".CHAPTER_TABLE." where manga_id = {$manga_id}");
+    $ordered = array();
+    $unordered = array();
+    $order = array();
+    while ($chapter = mysqli_fetch_array($chapters)) {
+        array_push($unordered, $chapter);
+        array_push($order, $chapter['number']);
+    }
+    $i = 0;
+    foreach ($order as $num) {
+        $ordered[$num] = $unordered[$i];
+        $i++;
+    }
+    return $ordered;
+}
+
+// Get all the pages from a chapter as an array.
+function get_pages($chapter_id)
+{
+    $pages = array();
+    $db = getSqli();
+    $config = getConfig();
+    $content_directory = $config['storage']['path'];
+    $chapter = getSqlRowFromId($db, CHAPTER_TABLE, $chapter_id);
+    $d = dir("{$content_directory}{$chapter['path']}");
+    while (($file = $d->read()) !== false) {
+        if (!($file[0] == '.')) {
+            array_push($pages, $content_directory . $chapter['path'] . '/' . $file);
+        }
+    }
+    return $pages;
+}
+
+// Checks if the user is an admin, if not sends them to the login. Use this on
+// every page that only admins should access.
+function checkAdmin()
+{
     session_start();
     if (!$_SESSION["admin"]) {
-        header("Location: /admin/login.php"); 
+        header("Location: /admin/login.php");
     }
 }

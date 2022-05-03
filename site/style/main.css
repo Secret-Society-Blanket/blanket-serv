@@ -1,0 +1,11 @@
+.cover {
+    width: 200px;
+    padding: 0px 10px 0px 10px;
+}
+
+.cover-list {
+    width: 100px;
+}
+.details {
+    display: flex;
+}

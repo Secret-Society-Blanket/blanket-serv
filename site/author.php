@@ -28,10 +28,10 @@ include __DIR__ . '/scripts/show_author.php';
                 <td> <?= $manga['title'] ?> </td>
                 <td> <?= $manga['description'] ?> </td>
 
-            <?php
-            $html_table = $html_table . '</tr>';
+            </tr>
+        <?php
         }
-            ?>
+        ?>
     </table>
 
 </body>

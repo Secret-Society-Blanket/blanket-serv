@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <form action="scripts/addChapter.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+    <form action="/scripts/addChapter.php" method="POST" enctype="multipart/form-data" autocomplete="off">
         <label for="manga-id"> Manga: </label>
         <select id="manga-id" name="manga-id" />
         <option value='-1'> Choose a Manga </option>

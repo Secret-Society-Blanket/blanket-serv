@@ -1,7 +1,7 @@
 <?php
 
 
-require __DIR__ . '/utils.php';
+require_once __DIR__ . '/utils.php';
 
 function initDatabase()
 {
@@ -62,7 +62,7 @@ function makeInitUser($user, $pass)
 {
     $config = getConfig();
 
-    $db = getSqli(); 
+    $db = getSqli();
     $res = mysqli_query($db, 'SELECT COUNT(*) FROM users');
 
     $count = mysqli_fetch_array($res)[0];
@@ -85,4 +85,3 @@ if ($_POST) {
     $result = initDatabase();
     $result = $result . makeInitUser($_POST["username"], $_POST["password"]);
 }
-

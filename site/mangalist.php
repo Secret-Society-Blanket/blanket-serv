@@ -5,6 +5,7 @@
 
 <head>
     <title> Manga List</title>
+    <link rel="stylesheet" type="text/css" href="/style/main.css" />
 </head>
 
 <body>
@@ -26,17 +27,16 @@
             $author = getSqlRowFromId($db, $AUTHOR_TABLE, $manga['author_id']);
         ?>
             <tr>
-                <td> <img src=content/<?= $manga['image_link'] ?>></img> </td>
-                <td> <?= $manga['title'] ?> </td>
+                <td> <img class="cover-list" src=content/<?= $manga['image_link'] ?>></img> </td>
+                <td> <a href="manga.php?manga_id=<?= $manga['id'] ?>"> <?= $manga['title'] ?> <a /> </td>
                 <td> <?= $manga['original_title'] ?> </td>
-                <td> <a href="author.php?author_id=<?=$author['id']?>"> <?= $author['name'] ?> </a></td>
+                <td> <a href="author.php?author_id=<?= $author['id'] ?>"> <?= $author['name'] ?> </a></td>
                 <td> <?= $manga['description'] ?> </td>
                 <td> <?= $manga['num_chapters'] ?> </td>
-
-            <?php
-            $html_table = $html_table . '</tr>';
+            </tr>
+        <?php
         }
-            ?>
+        ?>
     </table>
 </body>
 

@@ -20,5 +20,7 @@ services:
 
   blanket:
     build: .
+    volumes:
+      - ./site:/var/www/html
     ports:
       - 8081:80
