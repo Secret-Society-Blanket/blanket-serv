@@ -1,6 +1,6 @@
 [database]
 name = "blanket_db"
-hostname = "db"
+hostname = "db  "
 username = "root"
 password = "example"
 [site]
