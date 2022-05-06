@@ -8,6 +8,8 @@ COPY php.ini $PHP_INI_DIR/php.ini
 
 COPY site /var/www/html/
 
+COPY conf.toml /var/blanketserv/
+
 run mkdir /var/www/html/content/ || true
 
 run chown 33:33 /var/www/html/content

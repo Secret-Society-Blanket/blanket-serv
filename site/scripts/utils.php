@@ -14,10 +14,12 @@ $MANGA_TABLE = MANGA_TABLE;
 $CHAPTER_TABLE = CHAPTER_TABLE;
 $AUTHOR_TABLE = AUTHOR_TABLE;
 
+const CONFIG_LOCATION = "/var/blanketserv/conf.toml";
+
 // Returns the Config file as an array.
 function getConfig()
 {
-    $config_file = file_get_contents(__DIR__ . "/conf.toml");
+    $config_file = file_get_contents(CONFIG_LOCATION);
     $array = Toml::Parse($config_file);
 
     return $array;
