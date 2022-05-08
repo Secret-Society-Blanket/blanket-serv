@@ -5,7 +5,7 @@ This is a simple php site built to list and display manga. This was specifically
 
 ## Dependencies 
 
-This site is build around using docker, so it's immediate dependencies are limited.
+This site is built around using docker, so its immediate dependencies are limited.
 
 * [docker](https://docs.docker.com/get-docker/)
 * [docker-compose](https://docs.docker.com/compose/install/)  (if you want to use the included docker-compose file)
@@ -32,7 +32,7 @@ services:
       MARIADB_ROOT_PASSWORD: example
 
   # Feel free to uncomment this if you want an easy way to access and edit the 
-  # database, it's reccomended you don't activate this if your users can access 
+  # database, it's recommended you don't activate this if your users can access 
   # it, though.
 
   # adminer:
@@ -55,7 +55,7 @@ Before you run this file, you will also have to change the password entry in
 
 ### Command 
 
-To start the site simply run the following.
+To start the site simply run the following:
 
 ```bash
 docker-compose up -d --build 
@@ -65,7 +65,7 @@ This will build the site as well as start it in the background.
 
 ### Production
 
-Since this site involves sending passwords, it is recommended you set up https.
+Since this site involves sending passwords, it is recommended you set up HTTPS.
 Personally I find it helpful to use a reverse proxy such as linuxserver.io's
 [swag](https://docs.linuxserver.io/general/swag) docker image.
 
