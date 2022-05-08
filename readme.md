@@ -73,7 +73,7 @@ Personally I find it helpful to use a reverse proxy such as linuxserver.io's
 
 For this section, we will assume your site is at ``example.site``.
 
-Before you do anything else you need to go to ``example.site/admin/setup.php``. 
+Before you do anything else you need to go to ``example.site/admin/start.php``. 
 This will ask you to create an admin username and password. Please make sure these are secure!
 
 From there you can add authors at ``example.site/admin/author.php``, manga at
