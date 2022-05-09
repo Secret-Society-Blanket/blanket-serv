@@ -8,6 +8,10 @@ COPY php.ini $PHP_INI_DIR/php.ini
 
 COPY site /var/www/html/
 
+WORKDIR /var/www/html/scripts/
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+RUN composer install
+
 COPY conf.toml /var/blanketserv/
 
 run mkdir /var/www/html/content/ || true
