@@ -23,7 +23,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use Yosymfony\Toml\Toml;
 
-// Constants and things 
+// Constants and things
 const MANGA_TABLE = "manga";
 const CHAPTER_TABLE = "chapters";
 const AUTHOR_TABLE = "authors";
@@ -40,7 +40,7 @@ function getConfig()
 {
     $config_file = file_get_contents(CONFIG_LOCATION);
     $array = Toml::Parse($config_file);
-    
+
     return $array;
 }
 
@@ -97,7 +97,6 @@ function saveFile($file)
 
     $target_path = getContentPath();
 
-    log($target_path);
     $name = $file['name'];
     while (file_exists($target_path . $name)) {
         $name = "new." . $name;
