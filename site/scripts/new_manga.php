@@ -27,6 +27,7 @@ if ($_POST) {
     if (isset($_POST["manga-id"])) {
         $update_q = "UPDATE {$MANGA_TABLE} SET title = ?, original_title = ?, author_id = ? , description = ?, image_link = ?, num_chapters = ?, is_oneshot = ? WHERE id = ?";
 
+        $manga = getSqlRowFromId($db, MANGA_TABLE, (int) $_POST["manga-id"]);
         $prep = mysqli_prepare(
             $db,
             $update_q
@@ -41,8 +42,8 @@ if ($_POST) {
             $description,
             $imageLink,
             $chaps,
-            $mangaid,
-            $oneShot
+            $oneShot,
+            $mangaid
         );
         $title = $_POST["manga-title"];
         $ogtitle = $_POST["manga-original-title"];
@@ -51,9 +52,11 @@ if ($_POST) {
         if (isset($_FILES['image'])) {
             $imageLink = saveFile($_FILES['image']);
         }
-        $mangaid = $_POST["manga-id"];
+        else {
+            $imageLink = $manga['image_link'];
+        }
         $oneShot = (int) isset($_POST["is-oneshot"]);
-        getSqlRowFromId($db, $MANGA_TABLE, $_POST["manga-id"]);
+        $mangaid = $_POST["manga-id"];
 
         mysqli_stmt_execute($prep);
     } else {
@@ -75,21 +78,22 @@ if ($_POST) {
 }
 $hidden = "";
 if (isset($_GET["manga-id"])) {
-    $hidden = '<input type="hidden" id="manga-id" name="manga-id" value="{$_GET["manga-id"]}">';
     $manga = getSqlRowFromId($db, $MANGA_TABLE, $_GET["manga-id"]);
+    $id = $manga['id'];
+    $hidden = '<input type="hidden" id="manga-id" name="manga-id" value='.$id.'>';
     $getTitle = $manga["title"];
     $getAuthor = $manga["author_id"];
     $getOriginalTitle = $manga["original_title"];
     $getDescription = $manga["description"];
     $getImageLink = $manga["image_link"];
-    $isOneShot = $manga["is_oneshot"];
+    $isOneshot = $manga["is_oneshot"];
 } else {
     $getTitle = NULL;
     $getAuthor = NULL;
     $getOriginalTitle = NULL;
     $getDescription = "";
     $getImageLink = NULL;
-    $isOneShot = NULL;
+    $isOneshot = false;
 }
 
 
