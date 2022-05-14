@@ -96,11 +96,11 @@ function saveFile($file)
     // If the path we have in the config is an absolute path, don't add the cwd.
 
     $target_path = getContentPath();
+    $name = "";
 
-    $name = $file['name'];
-    while (file_exists($target_path . $name)) {
-        $name = "new." . $name;
-    }
+    do {
+        $name = sha1(microtime()) . "." . pathinfo($file['name'], PATHINFO_EXTENSION);
+    } while  (file_exists($target_path . $name));
 
     if (!is_dir($target_path)) {
         mkdir($target_path);
