@@ -87,7 +87,7 @@ if (isset($_GET["manga-id"])) {
     $getTitle = NULL;
     $getAuthor = NULL;
     $getOriginalTitle = NULL;
-    $getDescription = NULL;
+    $getDescription = "";
     $getImageLink = NULL;
     $isOneShot = NULL;
 }

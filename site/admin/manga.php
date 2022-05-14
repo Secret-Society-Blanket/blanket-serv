@@ -9,8 +9,7 @@ require __DIR__ . '/../scripts/new_manga.php';
     </title>
 </head>
 
-<body>
-    <form action="<?php $_PHP_SELF ?>" method="GET">
+<body> <form action="<?php $_PHP_SELF ?>" method="GET">
         <select id="manga-id" name="manga-id">
             <?= $mangas ?>
         </select>
@@ -36,9 +35,7 @@ require __DIR__ . '/../scripts/new_manga.php';
         <input type="checkbox" id="is-oneshot" name="is-oneshot" value="<?= $isOneshot ?>">
         <label for="is-oneshot">Is a Oneshot?</label><br>
         <label for="description"> Description: </label><br>
-        <textarea id="description" name="description">
-                            <?= $getDescription ?>
-                           </textarea><br>
+        <textarea id="description" name="description"><?= $getDescription ?></textarea><br>
         <input type="submit" value="Submit" />
     </form>
 </body>
