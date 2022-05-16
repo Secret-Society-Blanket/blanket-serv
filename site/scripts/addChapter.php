@@ -37,7 +37,12 @@ if ($_POST) {
     } else {
         $mangaid = $_POST['manga-id'];
         $path = saveChapter($_FILES['file']);
-        $releasedate = $_POST["release-date"];
+        if ($_POST["release-date"] = "") {
+            $releasedate = $_POST["release-date"];
+        } else {
+            $cdate = new DateTime();
+            $releasedate = $cdate->format("Y-m-d H:i:s");
+        }
         $credits = $_POST['credits'];
         $number = $_POST['number'];
 
