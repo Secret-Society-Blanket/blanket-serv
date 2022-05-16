@@ -18,7 +18,7 @@
     <link rel="icon" type="image/png" sizes="180x180" href="../img/favicon-ios.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="../img/favicon-android.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="../img/favicon-android-splash.png" />
-    
+
     <style>
     html,
     body,
@@ -33,16 +33,18 @@
 
 <body class="ssb-bg">
     <div class="main-cont antialiased">
-    <div class="center-cont ssb-font">
-    <p style="font-size: 30px; padding-bottom: 0.5em;" class="ssb-font"><span class="rainbow">Admin Login</span></p>
-    <p style="margin: 0.2em"><?=$logged_in ?></p>
-    <p style="margin: 0.2em"><?= $result ?></p>
-    <form action="<?php $_PHP_SELF ?>" method="POST">
-        <input type="text" id="username" placeholder="Username" name="username" class="input"> <br>
-        <input type="password" id="password" placeholder="Password" name="password"> <br>
-        <input type="submit" value="Submit" class="submit"/>
-    </form>
-    </div>
+        <div class="center-cont ssb-font">
+            <div id="swup" class="transition-slide">
+                <p style="font-size: 30px; padding-bottom: 0.5em;" class="ssb-font"><span class="rainbow">Admin Login</span></p>
+                <p style="margin: 0.2em"><?=$logged_in ?></p>
+                <p style="margin: 0.2em"><?= $result ?></p>
+                <form action="<?php $_PHP_SELF ?>" method="POST">
+                    <input type="text" id="username" placeholder="Username" name="username" class="input"> <br>
+                    <input type="password" id="password" placeholder="Password" name="password"> <br>
+                    <input type="submit" value="Submit" class="submit transition" data-swup-transition="left"/>
+                </form>
+            </div>
+        </div>
     </div>
 </body>
 
