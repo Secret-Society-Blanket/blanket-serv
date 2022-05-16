@@ -130,7 +130,7 @@ function saveChapter($file)
         $zip->close();
         unlink($target_path . $zippath);
     } else {
-        echo ('Please upload a zip file.<br>');
+        return NULL;
     }
 
     return $dirname;
