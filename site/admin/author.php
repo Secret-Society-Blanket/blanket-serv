@@ -48,6 +48,7 @@ include __DIR__ . '/../scripts/new_author.php';
                 <input type="text" id="social-links" name="social-links" name="author-name" placeholder="Social links" class="input"/><br>
                 <input type="submit" value="Submit" class="submit"/>
             </form>
+            <a class="ssb-butt ssb-butt-sm ssb-blk" href="index.php">Back</a>
             <p> <?= $command_result ?></p>
         </div>
     </div>

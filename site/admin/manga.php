@@ -41,7 +41,7 @@ require __DIR__ . '/../scripts/new_manga.php';
             <p style="font-size: 30px; padding-bottom: 1em;" class="ssb-font"><span class="rainbow">Create/edit a manga</span></p>
             <form action="<?php $_PHP_SELF ?>" method="GET" style="margin: 0px">
                 <select id="manga-id" name="manga-id" class="selecter">
-                    <option value="" disabled selected>Select a manga...</option>
+                    <option value="" disabled selected>Select a manga</option>
                     <?= $mangas ?>
                 </select><br>
                 <p class="ssb-font" style="padding-bottom: 0.3em">then</p>
@@ -62,10 +62,11 @@ require __DIR__ . '/../scripts/new_manga.php';
                     <?= $authors ?>
                     <option value="" disabled selected>Select an author</option>
                 </select><br>
-                <input type="checkbox" id="is-oneshot" name="is-oneshot" class="checkbox ssb-font" value="<?= $isOneshot ?>"><br>
+                <input type="checkbox" id="is-oneshot" name="is-oneshot" class="checkbox-as ssb-font" value="<?= $isOneshot ?>"><br>
                 <textarea id="description" name="description" style="margin: 0.2rem" placeholder="Enter a description..."><?= $getDescription ?></textarea><br>
                 <input type="submit" value="Submit" class="submit" />
             </form>
+            <a class="ssb-butt ssb-butt-sm ssb-blk" href="index.php">Back</a>
             <p> <?= $command_result ?></p>
         </div>
     </div>
