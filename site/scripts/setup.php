@@ -93,9 +93,9 @@ function makeInitUser($user, $pass)
         $password = password_hash($pass, PASSWORD_BCRYPT);
         $username = $user;
         mysqli_stmt_execute($stmt);
-        return "Inserted user $user";
+        return "Created $user!";
     }
-    return "You seem to already have a user...";
+    return "You've already made an admin account, silly!";
 }
 
 $result = "";

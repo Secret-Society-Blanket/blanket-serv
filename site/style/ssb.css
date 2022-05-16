@@ -72,61 +72,61 @@ FONTS and COLOR VARIABLES -----------------------------------------------------
 .ssb-r {
   color: var(--ssb-r);
   background-color: var(--ssb-r);
-  --tw-ring-color: rgba(242, 108, 79, 0.5);
+  --hover-color: rgba(242, 108, 79, 0.5);
 }
 
 .ssb-o {
   color: var(--ssb-o);
   background-color: var(--ssb-o);
-  --tw-ring-color: rgba(251, 175, 93, 0.5);
+  --hover-color: rgba(251, 175, 93, 0.5);
 }
 
 .ssb-y {
   color: var(--ssb-y);
   background-color: var(--ssb-y);
-  --tw-ring-color: rgba(255, 245, 104, 0.5);
+  --hover-color: rgba(255, 245, 104, 0.5);
 }
 
 .ssb-g {
   color: var(--ssb-g);
   background-color: var(--ssb-g);
-  --tw-ring-color: rgba(172, 211, 115, 0.5);
+  --hover-color: rgba(172, 211, 115, 0.5);
 }
 
 .ssb-tq {
   color: var(--ssb-tq);
   background-color: var(--ssb-tq);
-  --tw-ring-color: rgba(28, 187, 180, 0.5);
+  --hover-color: rgba(28, 187, 180, 0.5);
 }
 
 .ssb-lb {
   color: var(--ssb-lb);
   background-color: var(--ssb-lb);
-  --tw-ring-color: rgba(0, 191, 243, 0.5);
+  --hover-color: rgba(0, 191, 243, 0.5);
 }
 
 .ssb-db {
   color: var(--ssb-db);
   background-color: var(--ssb-db);
-  --tw-ring-color: rgba(68, 140, 203, 0.5);
+  --hover-color: rgba(68, 140, 203, 0.5);
 }
 
 .ssb-dp {
   color: var(--ssb-dp);
   background-color: var(--ssb-dp);
-  --tw-ring-color: rgba(96, 92, 168, 0.5);
+  --hover-color: rgba(96, 92, 168, 0.5);
 }
 
 .ssb-lp {
   color: var(--ssb-lp);
   background-color: var(--ssb-lp);
-  --tw-ring-color: rgba(133, 96, 168, 0.5);
+  --hover-color: rgba(133, 96, 168, 0.5);
 }
 
 .ssb-p {
   color: var(--ssb-p);
   background-color: var(--ssb-p);
-  --tw-ring-color: rgba(216, 64, 128, 0.5);
+  --hover-color: rgba(216, 64, 128, 0.5);
 }
 
 /* 
@@ -328,11 +328,14 @@ BUTTONS -----------------------------------------------------------------------
   padding-bottom: 0.6em;
   vertical-align: center;
   text-align: center;
+  transition-timing-function: cubic-bezier(0.5, 0.1, 0.5, 0.9);
+  transition-property: box-shadow;
+  transition-duration: 0.15s;
+  outline: none;
 }
 
 :hover.ssb-butt {
-  box-shadow: var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-  transition-timing-function: cubic-bezier(0.5, 0.1, 0.5, 0.9);
+  box-shadow: 0 0 0 5px var(--hover-color);
 }
 
 .ssb-butt-sm {
@@ -340,8 +343,7 @@ BUTTONS -----------------------------------------------------------------------
 }
 
 :hover.ssb-butt-sm {
-  box-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-  transition-timing-function: cubic-bezier(0.5, 0.1, 0.5, 0.9);
+  box-shadow: 0 0 0 3px var(--hover-color);
 }
 
 /*
@@ -468,3 +470,38 @@ LIST WITH NO SCROLLBAR --------------------------------------------------------
 /*
 SCROLL DEPTH for sneaky lists -------------------------------------------------
 */
+
+
+
+/*
+INPUT FIELDS ------------------------------------------------------------------
+*/
+
+input {
+  font-family: "Orange Kid";
+  background-color: rgba(0, 0, 0, 0.5);
+  color: rgb(255, 255, 255);
+  border-radius: 0.5em;
+  display: inline-block;
+  padding: 0.5em 1em;
+  padding-bottom: 0.6em;
+  vertical-align: center;
+  transition-timing-function: cubic-bezier(0.5, 0.1, 0.5, 0.9);
+  transition-property: box-shadow;
+  transition-duration: 0.15s;
+  outline: none;
+  margin: 0.2em
+}
+
+input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0,0,0,0.25);
+}
+
+input.submit{
+  background-color: rgba(0,0,0,1);
+  cursor: pointer;
+}
+
+input.submit:hover{
+  box-shadow: 0 0 0 0.2rem rgba(0,0,0,0.25);
+}
