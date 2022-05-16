@@ -9,7 +9,8 @@ require __DIR__ . '/../scripts/new_manga.php';
     </title>
 </head>
 
-<body> <form action="<?php $_PHP_SELF ?>" method="GET">
+<body>
+    <form action="<?php $_PHP_SELF ?>" method="GET">
         <select id="manga-id" name="manga-id">
             <?= $mangas ?>
         </select>
@@ -38,6 +39,7 @@ require __DIR__ . '/../scripts/new_manga.php';
         <textarea id="description" name="description"><?= $getDescription ?></textarea><br>
         <input type="submit" value="Submit" />
     </form>
+    <p> <?= $command_result ?></p>
 </body>
 
 </html>

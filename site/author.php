@@ -5,6 +5,7 @@ include __DIR__ . '/scripts/show_author.php';
 
 <head>
     <title><?= $author['name'] ?></title>
+    <link rel="stylesheet" type="text/css" href="/style/main.css" />
 </head>
 
 <body>

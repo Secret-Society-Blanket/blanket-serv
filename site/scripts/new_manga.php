@@ -22,7 +22,9 @@ require_once __DIR__ . '/utils.php';
 $config = getConfig();
 $db = getSqli();
 checkAdmin();
+$command_result = "";
 if ($_POST) {
+    $command_result = "Couldn't successfully complete request.";
     // If this is set, we're updating a manga, not creating a new one.
     if (isset($_POST["manga-id"])) {
         $update_q = "UPDATE {$MANGA_TABLE} SET title = ?, original_title = ?, author_id = ? , description = ?, image_link = ?, num_chapters = ?, is_oneshot = ? WHERE id = ?";
@@ -70,11 +72,17 @@ if ($_POST) {
         $ogtitle = $_POST["manga-original-title"];
         $authorid = $_POST["authors"];
         $description = $_POST["description"];
-        $imageLink = saveFile($_FILES['image']);
+        if (isset($_FILES['image'])) {
+            $imageLink = saveFile($_FILES['image']);
+        } else {
+            $imageLink = "";
+        }
+
         $isOneshot = (int) isset($_POST["is-oneshot"]);
         $chaps = 0;
         mysqli_stmt_execute($prep);
     }
+    $command_result = "Complete!";
 }
 $hidden = "";
 if (isset($_GET["manga-id"])) {

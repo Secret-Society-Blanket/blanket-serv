@@ -19,7 +19,9 @@
 // See LICENSE in root of repository
 require_once __DIR__ . '/utils.php';
 checkAdmin();
+$command_result = "";
 if ($_POST) {
+    $command_result = "Error, something went wrong.";
     $db = getSqli();
     $prep = mysqli_prepare(
         $db,
@@ -31,4 +33,5 @@ if ($_POST) {
     $links = $_POST["social-links"];
     $alink = saveFile($_FILES['image']);
     mysqli_stmt_execute($prep);
+    $command_result = "Complete!";
 }

@@ -23,6 +23,7 @@ include __DIR__ . '/../scripts/new_author.php';
         <input type="text" id="social-links" name="social-links" /><br>
         <input type="submit" value="Submit" />
     </form>
+    <p> <?= $command_result ?></p>
 </body>
 
 </html>
