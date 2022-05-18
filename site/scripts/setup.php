@@ -22,28 +22,33 @@
 
 require_once __DIR__ . '/utils.php';
 
-function initDatabase()
+function initDatabase($reset)
 {
     $config = getConfig();
     $out = "";
 
     $db = mysqli_connect($config['database']['hostname'], $config['database']['username'], $config['database']['password'], '');
+    if ($reset == "Yes") {
+        checkAdmin();
+        mysqli_query($db, 'DROP DATABASE ' . $config['database']['name']);
+        $out .= "Reset databse<br>";
+    }
 
     if (!mysqli_select_db($db, $config['database']['name'])) {
         mysqli_query($db, 'CREATE DATABASE ' . $config['database']['name']);
         mysqli_select_db($db, $config['database']['name']);
-        $out = $out . ("Created database " . $config['database']['name'] . "<br>");
+        $out .= ("Created database " . $config['database']['name'] . "<br>");
     }
 
-    $out = $out . ("Loaded database " . $config['database']['name'] . "<br>");
+    $out .= ("Loaded database " . $config['database']['name'] . "<br>");
     if (!mysqli_query($db, 'DESCRIBE manga')) {
         $results = mysqli_query($db, 'CREATE TABLE manga (id MEDIUMINT AUTO_INCREMENT, title TEXT, original_title TEXT, author_id INT, description TEXT, image_link TEXT, num_chapters INT, is_oneshot BOOLEAN, PRIMARY KEY (id))');
         print_r($results);
-        $out = $out . "Created table manga.<br>";
+        $out .= "Created table manga.<br>";
     }
     if (!mysqli_query($db, 'DESCRIBE authors')) {
         mysqli_query($db, 'CREATE TABLE authors (id MEDIUMINT AUTO_INCREMENT, name TEXT, links TEXT, avatar_link TEXT, PRIMARY KEY (id))');
-        $out = $out . ("Created table authors.<br>");
+        $out .= ("Created table authors.<br>");
     }
     if (!mysqli_query($db, 'DESCRIBE chapters')) {
         mysqli_query(
@@ -51,13 +56,14 @@ function initDatabase()
             'CREATE TABLE chapters (
                 id MEDIUMINT NOT NULL AUTO_INCREMENT,
                 manga_id INT,
+                title TEXT,
                 path TEXT,
                 number INT NOT NULL,
                 release_date DATE,
                 credits TEXT,
                 PRIMARY KEY (id))'
         );
-        $out = $out . ("Created table chapters<br>");
+        $out .= ("Created table chapters<br>");
     }
 
     if (!mysqli_query($db, 'DESCRIBE users')) {
@@ -69,7 +75,7 @@ function initDatabase()
                 password VARCHAR(255) NOT NULL
             )'
         );
-        $out = $out . ("Created table users<br>");
+        $out .= ("Created table users<br>");
     }
     mysqli_query($db, 'FLUSH TABLES');
     return $out;
@@ -101,6 +107,6 @@ function makeInitUser($user, $pass)
 $result = "";
 
 if ($_POST) {
-    $result = initDatabase();
+    $result = initDatabase($_POST["reset"]);
     $result = $result . makeInitUser($_POST["username"], $_POST["password"]);
 }

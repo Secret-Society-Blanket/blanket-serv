@@ -6,6 +6,7 @@
 <head>
     <title> Manga List</title>
     <link rel="stylesheet" type="text/css" href="/style/main.css" />
+    <link rel="stylesheet" type="text/css" href="/style/main.css" />
 </head>
 
 <body>
@@ -24,6 +25,10 @@
         $mangas = (getSqlRows($db, $MANGA_TABLE));
 
         while ($manga = mysqli_fetch_array($mangas)) {
+            $num = $manga['num_chapters'];
+            if ($manga['is_oneshot']) {
+                $num = "oneshot";
+            }
             $author = getSqlRowFromId($db, $AUTHOR_TABLE, $manga['author_id']);
         ?>
             <tr>

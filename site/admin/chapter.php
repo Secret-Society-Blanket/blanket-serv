@@ -44,7 +44,9 @@
                 <option value="" disabled selected>Select a manga</option>
                 <?= $mangas ?>
                 </select><br>
+
                 <input type="number" id="number" name="number" placeholder="Chapter number" /><br>
+                <input type="text" id="chapter-title" name="chapter-title" placeholder="Chapter title" class="input" /><br>
                 <input type="file" id="file" name="file" class="file" />
                 <label for="file" class="file">Chapter ZIP</label><br>
                 <input type="date" id="release-date" name="release-date" style="margin: 0.2em" /><br>

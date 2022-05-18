@@ -38,6 +38,8 @@
             <form action="<?php $_PHP_SELF ?>" method="POST">
                 <input type="text" id="username" placeholder="Username" name="username" class="input"> <br>
                 <input type="password" id="password" placeholder="Password" name="password"> <br>
+          <label for="reset">Reset Database?</label> 
+          <input type="checkbox" id="reset" name="reset" value="Yes">
                 <input type="submit" value="Submit" class="submit"/>
             </form>
 

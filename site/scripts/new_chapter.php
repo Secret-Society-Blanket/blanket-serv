@@ -39,11 +39,11 @@ $command_result = "";
 if ($_POST) {
     $command_result = "Something went wrong...";
     $manga = getSqlRowFromId($db, $MANGA_TABLE, $_POST['manga-id']);
-    $insert_c_q = "INSERT INTO {$CHAPTER_TABLE} (manga_id, path, number, release_date , credits) VALUES (?, ?, ?, ?, ?)";
+    $insert_c_q = "INSERT INTO {$CHAPTER_TABLE} (manga_id, path, number, title, release_date , credits) VALUES (?, ?, ?, ?, ?)";
     $prep = mysqli_prepare($db,
         $insert_c_q
     );
-    mysqli_stmt_bind_param($prep, 'isiss', $mangaid, $path, $number, $releasedate, $credits);
+    mysqli_stmt_bind_param($prep, 'isiss', $mangaid, $path, $number, $title, $releasedate, $credits);
     if ($manga == NULL) {
         $command_result = 'No Manga Found';
     } else {
@@ -60,6 +60,10 @@ if ($_POST) {
             }
             $credits = $_POST['credits'];
             $number = $_POST['number'];
+            $title = $_POST['chapter-title'];
+            if ($title == "") {
+                $title = $manga['title'] . "-" . $number;
+            }
 
             if (!$manga['is_oneshot']) {
                 $insert_m_q = "UPDATE {$MANGA_TABLE} SET num_chapters = ? WHERE id = ?";

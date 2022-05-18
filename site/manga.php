@@ -29,7 +29,7 @@ include __DIR__ . '/scripts/show_manga.php';
                 <td>
                     <a href="reader.php?manga_id=<?= $manga['id'] ?>&num_chapter=<?= $chapter['number'] ?>">
                         <div>
-                            <?= $chapter['number'] ?>
+                            <?= $chapter['title'] ?>
                         </div>
                     </a>
                 </td>
