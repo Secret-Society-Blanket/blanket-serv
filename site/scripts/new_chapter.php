@@ -30,56 +30,72 @@ while ($manga = mysqli_fetch_array($results)) {
     if ((isset($_['manga-id'])) && $_GET['manga-id'] == $manga['id']) {
         echo ("selected='selected'");
     }
-    $mangas = $mangas.'>';
-    $mangas = $mangas. $manga['title'];
-    $mangas = $mangas."</option>";
+    $mangas = $mangas . '>';
+    $mangas = $mangas . $manga['title'];
+    $mangas = $mangas . "</option>";
 }
 
-$command_result = "";
-if ($_POST) {
+function newChapter($req)
+{
+    $config = getConfig();
+    $db = getSqli();
+    checkAdmin();
+    $MANGA_TABLE = MANGA_TABLE;
+    $CHAPTER_TABLE = CHAPTER_TABLE;
+
     $command_result = "Something went wrong...";
-    $manga = getSqlRowFromId($db, $MANGA_TABLE, $_POST['manga-id']);
+    $manga = getSqlRowFromId($db, MANGA_TABLE, $req['manga-id']);
     $insert_c_q = "INSERT INTO {$CHAPTER_TABLE} (manga_id, path, number, title, release_date , credits) VALUES (?, ?, ?, ?, ?)";
-    $prep = mysqli_prepare($db,
+    $prep = mysqli_prepare(
+        $db,
         $insert_c_q
     );
     mysqli_stmt_bind_param($prep, 'isiss', $mangaid, $path, $number, $title, $releasedate, $credits);
     if ($manga == NULL) {
         $command_result = 'No Manga Found';
-    } else {
-        $mangaid = $_POST['manga-id'];
-        $path = saveChapter($_FILES['file']);
-        if ($path == NULL) {
-            $command_result = "Please upload a zip file!";
-        } else {
-            if ($_POST["release-date"] = "") {
-                $releasedate = $_POST["release-date"];
-            } else {
-                $cdate = new DateTime();
-                $releasedate = $cdate->format("Y-m-d H:i:s");
-            }
-            $credits = $_POST['credits'];
-            $number = $_POST['number'];
-            $title = $_POST['chapter-title'];
-            if ($title == "") {
-                $title = $manga['title'] . "-" . $number;
-            }
-
-            if (!$manga['is_oneshot']) {
-                $insert_m_q = "UPDATE {$MANGA_TABLE} SET num_chapters = ? WHERE id = ?";
-                $prepm = mysqli_prepare(
-                    $db,
-                    $insert_m_q
-                );
-                mysqli_stmt_bind_param($prepm, 'ii', $m_num, $m_id);
-                $m_num = $number;
-                $m_id = $mangaid;
-                mysqli_stmt_execute($prepm);
-            }
-            if (mysqli_stmt_execute($prep)) {
-                $command_result = 'Complete!';
-            }
-        }
+        return $command_result;
     }
+    $mangaid = $req['manga-id'];
+    $path = saveChapter($_FILES['file']);
+    if ($path == NULL && !$req['external-only']) {
+        $command_result = "Please upload a zip file!";
+        return $command_result;
+    }
+    else if ($req['external-only']) {
+        $path = "!!external-only!!";
+    }
+    if ($req["release-date"] = "") {
+        $releasedate = $req["release-date"];
+    } else {
+        $cdate = new DateTime();
+        $releasedate = $cdate->format("Y-m-d H:i:s");
+    }
+    $credits = $req['credits'];
+    $number = $req['number'];
+    $title = $req['chapter-title'];
+    if ($title == "") {
+        $title = $manga['title'] . "-" . $number;
+    }
+
+    if (!$manga['is_oneshot']) {
+        $insert_m_q = "UPDATE {$MANGA_TABLE} SET num_chapters = ? WHERE id = ?";
+        $prepm = mysqli_prepare(
+            $db,
+            $insert_m_q
+        );
+        mysqli_stmt_bind_param($prepm, 'ii', $m_num, $m_id);
+        $m_num = $number;
+        $m_id = $mangaid;
+        mysqli_stmt_execute($prepm);
+    }
+    if (mysqli_stmt_execute($prep)) {
+        $command_result = 'Complete!';
+        return $command_result;
+    }
+    return "Failed to execute mysql command, maybe the server is down?";
 }
 
+$command_result = "";
+if ($_POST) {
+    $command_result = newChapter($_POST);
+}

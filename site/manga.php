@@ -15,19 +15,21 @@ include __DIR__ . '/scripts/show_manga.php';
         <img class="cover" src="content/<?= $manga['image_link'] ?>"></img>
     </div>
     <h2> Chapters </h2>
-    <table>
+    <a href="reader.php?manga_" <table>
         <tr>
             <th>Chapter Number</th>
             <th>Author</th>
             <th>Release</th>
             <th>Credits</th>
         </tr>
+
+        <a href=<?= buildMangaUrl($manga['id'], $lastChapter["num_chapter"]) ?>> Latest Release </a>
         <?php
         foreach ($chapters as $chapter) {
         ?>
             <tr>
                 <td>
-                    <a href="reader.php?manga_id=<?= $manga['id'] ?>&num_chapter=<?= $chapter['number'] ?>">
+                    <a href=<?= buildMangaUrl($manga['id'], $chapter["num_chapter"]) ?>>
                         <div>
                             <?= $chapter['title'] ?>
                         </div>
@@ -41,7 +43,7 @@ include __DIR__ . '/scripts/show_manga.php';
         <?php
         }
         ?>
-    </table>
+        </table>
 
 </body>
 
