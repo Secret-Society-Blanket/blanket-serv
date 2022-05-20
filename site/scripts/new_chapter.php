@@ -45,12 +45,15 @@ function newChapter($req)
 
     $command_result = "Something went wrong...";
     $manga = getSqlRowFromId($db, MANGA_TABLE, $req['manga-id']);
-    $insert_c_q = "INSERT INTO {$CHAPTER_TABLE} (manga_id, path, number, title, release_date , credits) VALUES (?, ?, ?, ?, ?)";
+    $insert_c_q = "INSERT INTO {$CHAPTER_TABLE} (manga_id, path, number, title, release_date , credits) VALUES (?, ?, ?, ?, ?, ?)";
     $prep = mysqli_prepare(
         $db,
         $insert_c_q
     );
-    mysqli_stmt_bind_param($prep, 'isiss', $mangaid, $path, $number, $title, $releasedate, $credits);
+    if (!$prep) {
+        return "Couldn't create request $insert_c_q";
+    }
+    mysqli_stmt_bind_param($prep, 'isdsss', $mangaid, $path, $number, $title, $releasedate, $credits);
     if ($manga == NULL) {
         $command_result = 'No Manga Found';
         return $command_result;

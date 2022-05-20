@@ -26,9 +26,9 @@ require_once __DIR__ . '/utils.php';
 const CHAPTER_TABLE_SCHEMA = "CREATE TABLE chapters (
 id MEDIUMINT NOT NULL AUTO_INCREMENT," .
 " manga_id INT," .
-"title TEXT," .
+" title TEXT," .
 " path TEXT," .
-" number INT NOT NULL," .
+" number DOUBLE NOT NULL," .
 " release_date DATE," .
 " credits TEXT," .
 " PRIMARY KEY (id))";

@@ -45,7 +45,7 @@
                 <?= $mangas ?>
                 </select><br>
 
-                <input type="number" id="number" name="number" placeholder="Chapter number" /><br>
+                <input type="number" id="number" name="number" step="any" placeholder="Chapter number" /><br>
                 <input type="text" id="chapter-title" name="chapter-title" placeholder="Chapter title" class="input" /><br>
                 <input type="file" id="file" name="file" class="file" />
                 <label for="file" class="file">Chapter ZIP</label><br>
