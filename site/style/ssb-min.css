@@ -15,7 +15,9 @@ TOP LEVEL STYLES
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 25rem;
+  width: 50vw;
+  min-width: 512px;
+  max-width: 960px;
   max-height: 90vh;
 }
 
@@ -72,61 +74,91 @@ FONTS and COLOR VARIABLES -----------------------------------------------------
 .ssb-r {
   color: var(--ssb-r);
   background-color: var(--ssb-r);
-  --tw-ring-color: rgba(242, 108, 79, 0.5);
+  --hover-color: rgba(242, 108, 79, 0.5);
 }
 
 .ssb-o {
   color: var(--ssb-o);
   background-color: var(--ssb-o);
-  --tw-ring-color: rgba(251, 175, 93, 0.5);
+  --hover-color: rgba(251, 175, 93, 0.5);
 }
 
 .ssb-y {
   color: var(--ssb-y);
   background-color: var(--ssb-y);
-  --tw-ring-color: rgba(255, 245, 104, 0.5);
+  --hover-color: rgba(255, 245, 104, 0.5);
 }
 
 .ssb-g {
   color: var(--ssb-g);
   background-color: var(--ssb-g);
-  --tw-ring-color: rgba(172, 211, 115, 0.5);
+  --hover-color: rgba(172, 211, 115, 0.5);
 }
 
 .ssb-tq {
   color: var(--ssb-tq);
   background-color: var(--ssb-tq);
-  --tw-ring-color: rgba(28, 187, 180, 0.5);
+  --hover-color: rgba(28, 187, 180, 0.5);
 }
 
 .ssb-lb {
   color: var(--ssb-lb);
   background-color: var(--ssb-lb);
-  --tw-ring-color: rgba(0, 191, 243, 0.5);
+  --hover-color: rgba(0, 191, 243, 0.5);
 }
 
 .ssb-db {
   color: var(--ssb-db);
   background-color: var(--ssb-db);
-  --tw-ring-color: rgba(68, 140, 203, 0.5);
+  --hover-color: rgba(68, 140, 203, 0.5);
 }
 
 .ssb-dp {
   color: var(--ssb-dp);
   background-color: var(--ssb-dp);
-  --tw-ring-color: rgba(96, 92, 168, 0.5);
+  --hover-color: rgba(96, 92, 168, 0.5);
 }
 
 .ssb-lp {
   color: var(--ssb-lp);
   background-color: var(--ssb-lp);
-  --tw-ring-color: rgba(133, 96, 168, 0.5);
+  --hover-color: rgba(133, 96, 168, 0.5);
 }
 
 .ssb-p {
   color: var(--ssb-p);
   background-color: var(--ssb-p);
-  --tw-ring-color: rgba(216, 64, 128, 0.5);
+  --hover-color: rgba(216, 64, 128, 0.5);
+}
+
+.ssb-blk {
+  color: rgb(0, 0, 0);
+  background-color: rgb(0, 0, 0);
+  --hover-color: rgba(0, 0, 0, 0.25);
+}
+
+.ssb-md {
+  color: rgb(255, 103, 64);
+  background-color: rgb(255, 103, 64);
+  --hover-color: rgba(255, 103, 64, 0.25);
+}
+
+.ssb-dy {
+  color: rgb(0, 41, 81);
+  background-color: rgb(0, 41, 82);
+  --hover-color: rgba(0, 41, 82, 0.25);
+}
+
+.ssb-tw {
+  color: rgb(29, 155, 240);
+  background-color: rgb(29, 155, 240);
+  --hover-color: rgba(29, 155, 240, 0.25);
+}
+
+.ssb-hm {
+  color: var(--ssb-p);
+  background-color: var(--ssb-p);
+  --hover-color: rgba(216, 64, 128, 0.5);
 }
 
 /* 
@@ -400,11 +432,14 @@ BUTTONS -----------------------------------------------------------------------
   padding-bottom: 0.6em;
   vertical-align: center;
   text-align: center;
+  transition-timing-function: cubic-bezier(0.5, 0.1, 0.5, 0.9);
+  transition-property: box-shadow;
+  transition-duration: 0.15s;
+  outline: none;
 }
 
 :hover.ssb-butt {
-  box-shadow: var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-  transition-timing-function: cubic-bezier(0.5, 0.1, 0.5, 0.9);
+  box-shadow: 0 0 0 5px var(--hover-color);
 }
 
 .ssb-butt-sm {
@@ -412,8 +447,7 @@ BUTTONS -----------------------------------------------------------------------
 }
 
 :hover.ssb-butt-sm {
-  box-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-  transition-timing-function: cubic-bezier(0.5, 0.1, 0.5, 0.9);
+  box-shadow: 0 0 0 3px var(--hover-color);
 }
 
 /*
@@ -542,3 +576,436 @@ LIST WITH NO SCROLLBAR --------------------------------------------------------
 /*
 SCROLL DEPTH for sneaky lists -------------------------------------------------
 */
+
+
+
+/*
+INPUT, SELECT, SUBMIT FIELDS --------------------------------------------------
+*/
+
+input {
+  font-family: "Orange Kid";
+  background-color: rgba(0, 0, 0, 0.5);
+  color: rgb(255, 255, 255);
+  border-radius: 0.5em;
+  display: inline-block;
+  padding: 0.5em 1em;
+  padding-bottom: 0.6em;
+  vertical-align: center;
+  transition-timing-function: cubic-bezier(0.5, 0.1, 0.5, 0.9);
+  transition-property: box-shadow;
+  transition-duration: 0.15s;
+  outline: none;
+  margin: 0.2em;
+}
+
+input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+}
+
+input.submit {
+  background-color: rgba(0, 0, 0, 1);
+  cursor: pointer;
+}
+
+input.submit:hover {
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+}
+
+input.file {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+input.checkbox-as {
+  -webkit-appearance: none;
+  background-color: var(--ssb-dp);
+  border-radius: 0.5em;
+  display: inline-block;
+  padding: 0.5em 0.7em;
+  vertical-align: center;
+  transition-timing-function: cubic-bezier(0.5, 0.1, 0.5, 0.9);
+  transition-property: box-shadow;
+  transition-duration: 0.15s;
+  outline: none;
+}
+
+.checkbox-as:hover,
+.checkbox-as:checked:hover {
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.checkbox-as:checked {
+  background-color: var(--ssb-g);
+}
+
+.checkbox-as:checked:after {
+  content: 'This is a oneshot';
+  font-size: 14px;
+  position: relative;
+}
+
+.checkbox-as:after {
+  content: 'This is a series';
+  font-size: 14px;
+  position: relative;
+}
+
+label.file {
+  font-family: "Orange Kid";
+  background-color: rgba(0, 0, 0, 0.5);
+  color: rgb(255, 255, 255);
+  border-radius: 0.5em;
+  display: inline-block;
+  padding: 0.5em 1em;
+  padding-bottom: 0.6em;
+  vertical-align: center;
+  transition-timing-function: cubic-bezier(0.5, 0.1, 0.5, 0.9);
+  transition-property: box-shadow;
+  transition-duration: 0.15s;
+  outline: none;
+  margin: 0.2em;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+label.file:hover {
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+}
+
+select {
+  position: relative;
+  font-family: "Orange Kid";
+  background-color: rgba(0, 0, 0, 0.5);
+  color: rgb(255, 255, 255);
+  border-radius: 0.5em;
+  display: inline-block;
+  padding: 0.5em 1em;
+  padding-bottom: 0.6em;
+  vertical-align: center;
+  transition-timing-function: cubic-bezier(0.5, 0.1, 0.5, 0.9);
+  transition-property: box-shadow;
+  transition-duration: 0.15s;
+  outline: none;
+  margin: 0.2em;
+  cursor: pointer;
+  font-size: 15px;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+select:hover {
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+}
+
+textarea {
+  position: relative;
+  font-family: "Orange Kid";
+  background-color: rgba(0, 0, 0, 0.5);
+  color: rgb(255, 255, 255);
+  border-radius: 0.5em;
+  display: inline-block;
+  padding: 0.5em 1em;
+  padding-bottom: 0.6em;
+  vertical-align: center;
+  transition-timing-function: cubic-bezier(0.5, 0.1, 0.5, 0.9);
+  transition-property: box-shadow;
+  transition-duration: 0.15s;
+  outline: none;
+  cursor: pointer;
+  font-size: 15px;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: scroll;
+  max-height: 60vh;
+}
+
+textarea::-webkit-scrollbar {
+  display: none;
+}
+
+textarea:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+}
+
+/*
+FROSTED GLASS effect ----------------------------------------------------------
+*/
+
+.glass {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+@supports not ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
+  .glass {
+    /*Firefox fallback*/
+    background: rgba(41, 89, 105, 0.5);
+  }
+}
+
+/*
+MANGA page --------------------------------------------------------------------
+*/
+
+.manga-main {
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5) inset;
+  border-radius: 8px;
+  padding: 1px;
+  max-height: 300px;
+}
+
+.manga-sub {
+  display: flex;
+  flex-direction: column;
+  font-size: 40px;
+}
+
+.manga-cover {
+  min-height: 100px;
+  max-height: 300px;
+  background: white;
+  margin-right: 5px;
+  border-radius: 7px 0px 0px 7px;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+
+.manga-disc {
+  text-align: justify;
+  margin-top: 5px;
+  padding: 0px 10px 5px 5px;
+  font-size: 20px;
+  line-height: 1em;
+  border-radius: 8px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.manga-author {
+  font-size: 20px;
+  text-align: left;
+  white-space: nowrap;
+  padding-left: 7px;
+  text-decoration: underline;
+}
+
+.manga-title {
+  display: flex;
+  flex-direction: row;
+}
+
+.title-en {
+  text-align: left;
+  display: flex;
+  align-items: center;
+  line-height: 1em;
+  border-radius: 8px;
+  padding: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  position: relative;
+  -webkit-text-decoration: underline dotted;
+  text-decoration: underline dotted;
+  text-underline-position: from-font;
+}
+
+.title-en .title-og {
+  position: absolute;
+  white-space: nowrap;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  top: -30px;
+  transition: all .2s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+
+  -webkit-transform: translateX(-50%);
+
+  transform: translateX(-50%);
+  left: 50%;
+  text-align: center;
+
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 0.5em;
+  padding-inline: 0.5em;
+
+  font-family: "JF Dot K14";
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  text-shadow: 0.2ch 0.2ch 0px rgba(0, 0, 0, 0.5);
+}
+
+.title-en:hover .title-og {
+  opacity: 1;
+  top: -40px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 1);
+  visibility: visible;
+}
+
+/*
+CHAPTER tables ----------------------------------------------------------------
+*/
+
+.manga-ch {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.manga-ch tr {
+  /*For some reason, this is required for Safari to show the table correctly*/
+  display: flex;
+
+  /*I have no idea why I have to put this again, since it should be inherited*/
+  width: 50vw;
+  min-width: 512px;
+  max-width: 960px;
+
+  padding: 10px;
+  margin: 1px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+
+  transition: background .2s ease-in-out;
+
+}
+
+.manga-ch tr:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.manga-ch tr:first-child {
+  border-radius: 8px 8px 0px 0px;
+}
+
+.manga-ch tr:last-child {
+  border-radius: 0px 0px 8px 8px;
+}
+
+.ch-title {
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 1.15em;
+  flex: 1;
+  padding-right: 8px;
+}
+
+.read-buttons {
+  align-self: flex-end;
+}
+
+.ssb-hm:hover,
+.ssb-md:hover,
+.ssb-tw:hover,
+.ssb-dy:hover {
+  box-shadow: 0 0 0 2px var(--hover-color);
+}
+
+.ssb-hm .wtr,
+.ssb-md .wtr,
+.ssb-tw .wtr,
+.ssb-dy .wtr {
+  position: absolute;
+  white-space: nowrap;
+  vertical-align: center;
+
+  -webkit-backdrop-filter: blur(10px);
+
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 0.5em;
+  padding-inline: 0.5em;
+
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  font-family: "Orange Kid";
+  text-shadow: 0.2ch 0.2ch 0px rgba(0, 0, 0, 0.5);
+  text-align: center;
+
+  transition: all .2s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  bottom: 105%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  left: 50%;
+}
+
+.ssb-hm:hover .wtr,
+.ssb-md:hover .wtr,
+.ssb-tw:hover .wtr,
+.ssb-dy:hover .wtr {
+  opacity: 1;
+  visibility: visible;
+  bottom: 125%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 1);
+}
+
+.date {
+  text-align: right;
+  padding-left: 8px;
+  width: 4.1em;
+}
+
+.heart {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  text-align: right;
+  top: 1px;
+  position: relative;
+  padding-left: 8px;
+}
+
+.heart .credits {
+  position: absolute;
+  white-space: nowrap;
+  vertical-align: center;
+
+  -webkit-backdrop-filter: blur(10px);
+
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 0.5em;
+  padding-inline: 0.5em;
+
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  font-family: "Orange Kid";
+  text-shadow: 0.2ch 0.2ch 0px rgba(0, 0, 0, 0.5);
+  text-align: center;
+
+  transition: all .2s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  bottom: 90%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  left: 50%;
+}
+
+.heart:hover .credits {
+  opacity: 1;
+  visibility: visible;
+  bottom: 110%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 1);
+}
+
+
+
+/*<td> <a href=author.php?author_id=<?= $author['id'] ?>><?= $author['name'] ?></a> </td>*/
+/*content/<?= $manga['image_link'] ?>*/

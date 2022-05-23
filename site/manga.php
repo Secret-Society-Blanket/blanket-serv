@@ -9,7 +9,7 @@ include __DIR__ . '/scripts/show_manga.php';
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style/normalize.css">
-        <link rel="stylesheet" href="style/tw-snippets.css">
+        <link rel="stylesheet" href="style/tw-snippets-min.css">
         <link rel="stylesheet" href="style/ssb-min.css">
         <script src="https://unpkg.com/swup@latest/dist/swup.min.js"></script>
         <script defer src="js/swup.js"></script>
