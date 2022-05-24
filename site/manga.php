@@ -43,10 +43,13 @@ include __DIR__ . '/scripts/show_manga.php';
                     <div class="manga-main glass">
                         <img class="manga-cover" src="content/<?= $manga['image_link'] ?>"></img>
                         <div class="manga-sub">
-                            <p style="text-align: left;"><span class="title-en" style="display: inline-block;"><?= $manga['title'] ?><span class="title-og">[Original title]</span><span class="manga-author"><a href=author.php?author_id=<?= $author['id'] ?>>by&nbsp;[author name]<?= $author['name'] ?></a></span></span></p>
+                            <p style="text-align: left;"><span class="title-en" style="display: inline-block;"><?= $manga['title'] ?><span class="tip title-og">[Original title]</span><span class="manga-author"><a href=author.php?author_id=<?= $author['id'] ?>>by&nbsp;[author name]<?= $author['name'] ?></a></span></span></p>
 
                             <p class="manga-disc"> <?= $manga['description'] ?></p>
                         </div>
+                    </div>
+                    <div>
+                        <p><span class="missing-op">Why are options missing?<span class="tip">We respect when authors choose to <span style="color: var(--ssb-r)">limit their releases</span> to certain platforms. If an option is missing, it is likely we <span style="color: var(--ssb-r)">do not have permission</span> to release it on that platform.</span></span></p>
                     </div>
                     <table class="ssb-font manga-ch">
                         <?php
@@ -55,11 +58,14 @@ include __DIR__ . '/scripts/show_manga.php';
                         <tr class="glass">
                             <td class="ch-title"><?= $chapter['number'] ?>.&nbsp;[Chapter name here]</td>
                             <td class="read-buttons">
-                                <a class="ssb-butt ssb-butt-sm ssb-hm" style="position: relative;" href="reader.php?manga_id=<?= $manga['id'] ?>&num_chapter=<?= $chapter['number'] ?>"><span class=wtr>Read here</span></a>
-                                <a class="ssb-butt ssb-butt-sm ssb-tw" style="position: relative;" href="author.php"><span class=wtr>Read on Twitter</span></a>
-                                <a class="ssb-butt ssb-butt-sm ssb-md" style="position: relative;" href="author.php"><span class=wtr>Read on MangaDex</span></a>
-                                <a class="ssb-butt ssb-butt-sm ssb-dy" style="position: relative;" href="author.php"><span class=wtr>Read on Dynasty Scans</span></a>
+                                <a class="ssb-butt ssb-butt-sm ssb-hm" style="position: relative;" href="reader.php?manga_id=<?= $manga['id'] ?>&num_chapter=<?= $chapter['number'] ?>"><span class="tip read-hint">Read here</span></a>
+                                <a class="ssb-butt ssb-butt-sm ssb-tw" style="position: relative;" href="author.php"><span class="tip read-hint">Read on Twitter</span></a>
+                                <a class="ssb-butt ssb-butt-sm ssb-md" style="position: relative;" href="author.php"><span class="tip read-hint">Read on MangaDex</span></a>
+                                <a class="ssb-butt ssb-butt-sm ssb-dy" style="position: relative;" href="author.php"><span class="tip read-hint">Read on Dynasty Scans</span></a>
                             </td>
+                            <td class="date"> <?= $chapter['release_date'] ?> </td>
+                            <td class="heart" style="font-family: 'JF Dot K14';">♥<span class="tip credits"><?= $chapter['credits'] ?></span></td>
+                        </tr>
 
                         <?php
         }

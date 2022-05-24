@@ -555,6 +555,41 @@ TOOLTIPS ----------------------------------------------------------------------
   }
 }
 
+.tip {
+  position: absolute;
+  vertical-align: center;
+  width: 14em;
+
+  -webkit-backdrop-filter: blur(10px);
+
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 0.5em;
+  padding-inline: 0.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  font-family: "Orange Kid";
+  text-shadow: 0.2ch 0.2ch 0px rgba(0, 0, 0, 0.5);
+  text-align: justify;
+
+  transition: all .2s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  bottom: 90%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  left: 50%;
+}
+
+@supports not ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
+  .tip {
+    background: rgba(0, 0, 0, 0.8);
+  }
+}
+
 /*
 LIST WITH NO SCROLLBAR --------------------------------------------------------
 */
@@ -762,6 +797,7 @@ MANGA page --------------------------------------------------------------------
   border-radius: 8px;
   padding: 1px;
   max-height: 300px;
+  margin-bottom: 5px;
 }
 
 .manga-sub {
@@ -798,6 +834,8 @@ MANGA page --------------------------------------------------------------------
   white-space: nowrap;
   padding-left: 7px;
   text-decoration: underline;
+  text-underline-position: from-font;
+  text-decoration-thickness: 0.04em;
 }
 
 .manga-title {
@@ -818,50 +856,54 @@ MANGA page --------------------------------------------------------------------
   -webkit-text-decoration: underline dotted;
   text-decoration: underline dotted;
   text-underline-position: from-font;
+  text-decoration-thickness: 0.04em;
 }
 
-.title-en .title-og {
-  position: absolute;
-  white-space: nowrap;
+.title-og {
+  text-align: center;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  top: -30px;
-  transition: all .2s ease-in-out;
-  opacity: 0;
-  visibility: hidden;
+  white-space: nowrap;
+  padding-top: 0;
+  padding-bottom: 0;
+  height: auto;
+  font-family: "JF Dot K14";
+  bottom: initial;
+  top: -65%;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-
-  -webkit-transform: translateX(-50%);
-
-  transform: translateX(-50%);
-  left: 50%;
-  text-align: center;
-
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 0.5em;
-  padding-inline: 0.5em;
-
-  font-family: "JF Dot K14";
-  color: rgb(255, 255, 255);
-  font-size: 15px;
-  text-shadow: 0.2ch 0.2ch 0px rgba(0, 0, 0, 0.5);
 }
 
-.title-en:hover .title-og {
+.title-en:hover .tip {
   opacity: 1;
-  top: -40px;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 1);
   visibility: visible;
+  top: -85%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 1);
 }
 
 /*
 CHAPTER tables ----------------------------------------------------------------
 */
 
+.missing-op {
+  font-size: 12px;
+  -webkit-text-decoration: underline dotted;
+  text-decoration: underline dotted;
+  text-decoration-thickness: 0.08em;
+  text-underline-position: from-font;
+  position: relative;
+}
+
+.missing-op:hover .tip {
+  opacity: 1;
+  visibility: visible;
+  bottom: 125%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 1);
+}
+
 .manga-ch {
-  margin-top: 10px;
+  margin-top: 2px;
   font-size: 20px;
 }
 
@@ -915,40 +957,20 @@ CHAPTER tables ----------------------------------------------------------------
   box-shadow: 0 0 0 2px var(--hover-color);
 }
 
-.ssb-hm .wtr,
-.ssb-md .wtr,
-.ssb-tw .wtr,
-.ssb-dy .wtr {
-  position: absolute;
-  white-space: nowrap;
-  vertical-align: center;
-
-  -webkit-backdrop-filter: blur(10px);
-
-  backdrop-filter: blur(10px);
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 0.5em;
-  padding-inline: 0.5em;
-
-  color: rgb(255, 255, 255);
-  font-size: 15px;
-  font-family: "Orange Kid";
-  text-shadow: 0.2ch 0.2ch 0px rgba(0, 0, 0, 0.5);
+.read-hint {
   text-align: center;
-
-  transition: all .2s ease-in-out;
-  opacity: 0;
-  visibility: hidden;
-  bottom: 105%;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
-  left: 50%;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  white-space: nowrap;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
-.ssb-hm:hover .wtr,
-.ssb-md:hover .wtr,
-.ssb-tw:hover .wtr,
-.ssb-dy:hover .wtr {
+.ssb-hm:hover .tip,
+.ssb-md:hover .tip,
+.ssb-tw:hover .tip,
+.ssb-dy:hover .tip {
   opacity: 1;
   visibility: visible;
   bottom: 125%;
@@ -971,34 +993,18 @@ CHAPTER tables ----------------------------------------------------------------
   padding-left: 8px;
 }
 
-.heart .credits {
-  position: absolute;
-  white-space: nowrap;
-  vertical-align: center;
-
-  -webkit-backdrop-filter: blur(10px);
-
-  backdrop-filter: blur(10px);
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 0.5em;
-  padding-inline: 0.5em;
-
-  color: rgb(255, 255, 255);
-  font-size: 15px;
-  font-family: "Orange Kid";
-  text-shadow: 0.2ch 0.2ch 0px rgba(0, 0, 0, 0.5);
+.credits {
   text-align: center;
-
-  transition: all .2s ease-in-out;
-  opacity: 0;
-  visibility: hidden;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  white-space: nowrap;
+  padding-top: 0;
+  padding-bottom: 0;
   bottom: 90%;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
-  left: 50%;
 }
 
-.heart:hover .credits {
+.heart:hover .tip {
   opacity: 1;
   visibility: visible;
   bottom: 110%;
