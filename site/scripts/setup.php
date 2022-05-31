@@ -25,30 +25,32 @@ require_once __DIR__ . '/utils.php';
 
 const CHAPTER_TABLE_SCHEMA = "CREATE TABLE chapters (
 id MEDIUMINT NOT NULL AUTO_INCREMENT," .
-" manga_id INT," .
-" title TEXT," .
-" path TEXT," .
-" number DOUBLE NOT NULL," .
-" release_date DATE," .
-" credits TEXT," .
-" PRIMARY KEY (id))";
+    " manga_id INT," .
+    " title TEXT," .
+    " path TEXT," .
+    " number DOUBLE NOT NULL," .
+    " release_date DATE," .
+    " externals TEXT," .
+    " external_only BOOLEAN," .
+    " credits TEXT," .
+    " PRIMARY KEY (id))";
 const AUTHOR_TABLE_SCHEMA =
 "CREATE TABLE authors (" .
-" id MEDIUMINT AUTO_INCREMENT," .
-" name TEXT," .
-" links TEXT," .
-" avatar_link TEXT," .
-" PRIMARY KEY (id))";
+    " id MEDIUMINT AUTO_INCREMENT," .
+    " name TEXT," .
+    " links TEXT," .
+    " avatar_link TEXT," .
+    " PRIMARY KEY (id))";
 const MANGA_TABLE_SCHEMA = "CREATE TABLE manga (" .
-"id MEDIUMINT AUTO_INCREMENT," .
-" title TEXT," .
-" original_title TEXT," .
-" author_id INT," .
-" description TEXT," .
-" image_link TEXT," .
-" num_chapters INT," .
-" is_oneshot BOOLEAN," .
-" PRIMARY KEY (id))";
+    "id MEDIUMINT AUTO_INCREMENT," .
+    " title TEXT," .
+    " original_title TEXT," .
+    " author_id INT," .
+    " description TEXT," .
+    " image_link TEXT," .
+    " num_chapters INT," .
+    " is_oneshot BOOLEAN," .
+    " PRIMARY KEY (id))";
 
 function initDatabase($reset)
 {
@@ -62,6 +64,15 @@ function initDatabase($reset)
         mysqli_query($db, 'DROP DATABASE ' . $config['database']['name']);
         $out .= "Reset databse<br>";
     }
+    if (!mysqli_select_db($db, 'template_db')) {
+        mysqli_query($db, 'CREATE DATABASE template_db');
+        mysqli_select_db($db, 'template_db');
+        mysqli_query($db, MANGA_TABLE_SCHEMA);
+        mysqli_query($db, CHAPTER_TABLE_SCHEMA);
+        mysqli_query($db, AUTHOR_TABLE_SCHEMA);
+    }
+
+    $templatedb = mysqli_connect($config['database']['hostname'], $config['database']['username'], $config['database']['password'], 'template_db');
 
     if (!mysqli_select_db($db, $config['database']['name'])) {
         mysqli_query($db, 'CREATE DATABASE ' . $config['database']['name']);
@@ -72,12 +83,15 @@ function initDatabase($reset)
     $out .= ("Loaded database " . $config['database']['name'] . "<br>");
     if (!mysqli_query($db, 'DESCRIBE manga')) {
         $results = mysqli_query($db, MANGA_TABLE_SCHEMA);
-        print_r($results);
         $out .= "Created table manga.<br>";
+    } else {
+        $out .= matchTableToTemplate($db, $templatedb, MANGA_TABLE) . '<br>';
     }
     if (!mysqli_query($db, 'DESCRIBE authors')) {
         mysqli_query($db, AUTHOR_TABLE_SCHEMA);
         $out .= ("Created table authors.<br>");
+    } else {
+        $out .= matchTableToTemplate($db, $templatedb, AUTHOR_TABLE) . '<br>';
     }
     if (!mysqli_query($db, 'DESCRIBE chapters')) {
         mysqli_query(
@@ -85,6 +99,8 @@ function initDatabase($reset)
             CHAPTER_TABLE_SCHEMA
         );
         $out .= ("Created table chapters<br>");
+    } else {
+        $out .= matchTableToTemplate($db, $templatedb, AUTHOR_TABLE) . '<br>';
     }
 
     if (!mysqli_query($db, 'DESCRIBE users')) {
@@ -98,7 +114,64 @@ function initDatabase($reset)
         );
         $out .= ("Created table users<br>");
     }
+
+    mysqli_query($db, 'DROP DATABASE template_db');
     mysqli_query($db, 'FLUSH TABLES');
+    return $out;
+}
+
+function matchTableToTemplate($db, $templatedb, $tablename)
+{
+
+    $out = "";
+    $ttarget = mysqli_fetch_all(mysqli_query($db, "DESCRIBE {$tablename}"));
+    $ttemplate = mysqli_fetch_all(mysqli_query($templatedb, "DESCRIBE {$tablename}"));
+    if ($ttarget == $ttemplate) {
+        return "$tablename is correct";
+    }
+    $num = 0;
+    foreach ($ttemplate as $templaterow) {
+        $found = false;
+        foreach ($ttarget as $targetrow) {
+            if ($templaterow[0] == $targetrow[0]) {
+                $found = true;
+                break;
+            }
+        }
+        if (!$found) {
+            $name = $templaterow[0];
+            $type = $templaterow[1];
+            $cannull = "NOT NULL";
+            if ($cannull == "YES") {
+                $cannull = "";
+            }
+            $primary = "";
+            if ($templaterow[3] == "PRI") {
+                $primary = "PRIMARY KEY";
+            }
+            $default = "";
+            if ($templaterow[4] != "") {
+                $default = "DEFAULT " . $templaterow[4];
+            }
+            $extra = $templaterow[5];
+
+            $position = "FIRST";
+            if ($num != 0) {
+                $position = "AFTER " . $ttemplate[$num-1][0];
+            }
+
+            $res = mysqli_query($db, "ALTER TABLE $tablename ADD $name $type $cannull $primary $default $extra $position");
+            if ($res) {
+                $out .= "Successfully added $name to $tablename";
+            } else {
+                $out .= "Ran into an error while adding $name to $tablename: " . mysqli_error($db);
+            }
+        }
+        $num++;
+    }
+    if ($out == "") {
+        return "$tablename is correct";
+    }
     return $out;
 }
 
@@ -125,7 +198,6 @@ function makeInitUser($user, $pass)
     return "You've already made an admin account, silly!";
 }
 
-$result = "";
 
 if ($_POST) {
     $result = initDatabase($_POST["reset"]);
