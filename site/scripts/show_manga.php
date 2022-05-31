@@ -11,13 +11,11 @@ function buildMangaUrl($mangaId, $chapterNumber) {
     return $out;
 }
 
-if ($_GET) {
-    if (isset($_GET['manga_id'])) {
-        $manga = getSqlRowFromId($db, $MANGA_TABLE, $_GET['manga_id']);
-        $author = getSqlRowFromId($db, $MANGA_TABLE, $manga['author_id']);
-        $chapters = get_order_chapters($manga['id']);
-        $lastChapter = end($chapters);
-    }
+if (isset($_GET['manga_id'])) {
+    $manga = getSqlRowFromId($db, $MANGA_TABLE, $_GET['manga_id']);
+    $author = getSqlRowFromId($db, $MANGA_TABLE, $manga['author_id']);
+    $chapters = get_order_chapters($manga['id']);
+    $lastChapter = end($chapters);
 } else {
-    header("/mangalist.php");
+    header("Location: /mangalist.php");
 }

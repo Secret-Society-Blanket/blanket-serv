@@ -45,7 +45,7 @@ function newChapter($req)
 
     $command_result = "Something went wrong...";
     $manga = getSqlRowFromId($db, MANGA_TABLE, $req['manga-id']);
-    $insert_c_q = "INSERT INTO {$CHAPTER_TABLE} (manga_id, path, number, title, release_date , credits) VALUES (?, ?, ?, ?, ?, ?)";
+    $insert_c_q = "INSERT INTO {$CHAPTER_TABLE} (manga_id, path, number, title, release_date , credits, local, twitter, dynasty, mangadex) VALUES (?, ?, ?, ?, ?, ?)";
     $prep = mysqli_prepare(
         $db,
         $insert_c_q
@@ -53,19 +53,22 @@ function newChapter($req)
     if (!$prep) {
         return "Couldn't create request $insert_c_q";
     }
-    mysqli_stmt_bind_param($prep, 'isdsss', $mangaid, $path, $number, $title, $releasedate, $credits);
+    mysqli_stmt_bind_param($prep, 'isdsssisss', $mangaid, $path, $number, $title, $releasedate, $credits, $local, $twitter, $dynasty, $mangadex);
     if ($manga == NULL) {
         $command_result = 'No Manga Found';
         return $command_result;
     }
     $mangaid = $req['manga-id'];
+    $mangaid = $req['manga-id'];
     $path = saveChapter($_FILES['file']);
+    $local = false;
     if ($path == NULL && !$req['external-only']) {
         $command_result = "Please upload a zip file!";
         return $command_result;
     }
     else if ($req['external-only']) {
         $path = "!!external-only!!";
+        $local = true;
     }
     if ($req["release-date"] = "") {
         $releasedate = $req["release-date"];
@@ -75,6 +78,9 @@ function newChapter($req)
     }
     $credits = $req['credits'];
     $number = $req['number'];
+    $twitter = $req['twitter-link'];
+    $dynasty = $req['dynasty-link'];
+    $mangadex = $req['mangadex-link'];
     $title = $req['chapter-title'];
     if ($title == "") {
         $title = $manga['title'] . "-" . $number;
@@ -91,6 +97,7 @@ function newChapter($req)
         $m_id = $mangaid;
         mysqli_stmt_execute($prepm);
     }
+
     if (mysqli_stmt_execute($prep)) {
         $command_result = 'Complete!';
         return $command_result;

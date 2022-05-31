@@ -30,8 +30,10 @@ id MEDIUMINT NOT NULL AUTO_INCREMENT," .
     " path TEXT," .
     " number DOUBLE NOT NULL," .
     " release_date DATE," .
-    " externals TEXT," .
-    " external_only BOOLEAN," .
+    " local BOOLEAN," .
+    " twitter TEXT," .
+    " dynasty TEXT," .
+    " mangadex TEXT," .
     " credits TEXT," .
     " PRIMARY KEY (id))";
 const AUTHOR_TABLE_SCHEMA =
@@ -64,6 +66,7 @@ function initDatabase($reset)
         mysqli_query($db, 'DROP DATABASE ' . $config['database']['name']);
         $out .= "Reset databse<br>";
     }
+    mysqli_query($db, 'DROP DATABASE template_db');
     if (!mysqli_select_db($db, 'template_db')) {
         mysqli_query($db, 'CREATE DATABASE template_db');
         mysqli_select_db($db, 'template_db');
@@ -100,7 +103,7 @@ function initDatabase($reset)
         );
         $out .= ("Created table chapters<br>");
     } else {
-        $out .= matchTableToTemplate($db, $templatedb, AUTHOR_TABLE) . '<br>';
+        $out .= matchTableToTemplate($db, $templatedb, CHAPTER_TABLE) . '<br>';
     }
 
     if (!mysqli_query($db, 'DESCRIBE users')) {
