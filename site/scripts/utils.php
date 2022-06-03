@@ -124,9 +124,15 @@ function saveChapter($file)
     $res = $zip->open($target_path . $zippath);
 
     $filename = basename($zippath);
-    $dirname = substr($filename, 0, strrpos($filename, "."));
+    $dirname = sha1(microtime());
+    mkdir($target_path . $dirname);
     if ($res === TRUE) {
-        $zip->extractTo($target_path . $dirname);
+        for ($i = 0; $i < $zip->numFiles; $i++) {
+            $filename = $zip->getNameIndex($i);
+            $fileinfo = pathinfo($filename);
+            $safe = preg_replace('/^-+|-+$/', '', strtolower(preg_replace('/[^a-zA-Z0-9.]+/', '-', $fileinfo['basename'])));
+            copy("zip://". $target_path . $zippath . "#" . $filename , $target_path . $dirname . '/' . $safe);
+        }
         $zip->close();
         unlink($target_path . $zippath);
     } else {

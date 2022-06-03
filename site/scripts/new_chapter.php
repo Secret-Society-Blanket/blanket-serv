@@ -45,7 +45,7 @@ function newChapter($req)
 
     $command_result = "Something went wrong...";
     $manga = getSqlRowFromId($db, MANGA_TABLE, $req['manga-id']);
-    $insert_c_q = "INSERT INTO {$CHAPTER_TABLE} (manga_id, path, number, title, release_date , credits, local, twitter, dynasty, mangadex) VALUES (?, ?, ?, ?, ?, ?)";
+    $insert_c_q = "INSERT INTO {$CHAPTER_TABLE} (manga_id, path, number, title, release_date , credits, local, twitter, dynasty, mangadex) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $prep = mysqli_prepare(
         $db,
         $insert_c_q

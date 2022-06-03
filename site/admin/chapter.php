@@ -39,7 +39,7 @@
         <div class="center-cont ssb-font">
             <p style="font-size: 30px; padding-bottom: 1em;" class="ssb-font"><span class="rainbow">Upload chapter</span></p>
 
-            <form action="<?= $_PHP_SELF ?>" method="POST" enctype="multipart/form-data" autocomplete="off">
+            <form action="<?php $_PHP_SELF ?>" method="POST" enctype="multipart/form-data" autocomplete="off">
                 <select id="manga-id" name="manga-id" />
                 <option value="" disabled selected>Select a manga</option>
                 <?= $mangas ?>

@@ -48,7 +48,7 @@ require __DIR__ . '/../scripts/new_manga.php';
                 <input type="submit" value="Load manga to edit" class="submit">
             </form><br>
             <p class="ssb-font" style="padding-bottom: 0.3em">Or click</p>
-            <form action="<?php $_PHP_SELF ?>" method="" style="margin: 0px;">
+            <form action="<?php $_PHP_SELF ?>" method="GET" style="margin: 0px;">
                 <input type="submit" value="Make new manga" class="submit">
             </form>
             <p class="ssb-font" style="padding-bottom: 0.3em">and fill out</p>

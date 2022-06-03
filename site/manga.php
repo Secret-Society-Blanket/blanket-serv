@@ -29,8 +29,9 @@ include __DIR__ . '/scripts/show_manga.php';
         foreach ($chapters as $chapter) {
             // This will contain each active link.
             $links = "";
-            if ($chapter["local"]) {
-                $links .= "<a href='{$buildMangaUrl($manga['id'],$chapter['number'])}'> Local </a>";
+            if (!$chapter["local"]) {
+                $lnk = buildMangaUrl($manga['id'], $chapter['number']);
+                $links .= "<a href='{$lnk}'> Local </a>";
             }
             if ($chapter["twitter"] != "") {
                 $links .= "<a href='{$chapter['twitter']}'> Twitter </a>";

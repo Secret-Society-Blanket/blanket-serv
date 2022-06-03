@@ -7,7 +7,6 @@ $db = getSqli();
 
 function buildMangaUrl($mangaId, $chapterNumber) {
     $out ="reader.php?manga_id=$mangaId&num_chapter={$chapterNumber}";
-    echo ($out);
     return $out;
 }
 

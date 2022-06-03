@@ -19,6 +19,7 @@
 // See LICENSE in root of repository
 require_once __DIR__ . '/utils.php';
 
+session_start();
 $config = getConfig();
 $db = getSqli();
 checkAdmin();
