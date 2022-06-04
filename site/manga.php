@@ -53,10 +53,14 @@ include __DIR__ . '/scripts/show_manga.php';
                     <?= $chapter['title'] ?>
                 </td>
 
-                <td> <a href=author.php?author_id=<?= $author['id'] ?>><?= $author['name'] ?></a> </td>
+                <td>
+                    <a href="author.php?author_id=<?= $author['id'] ?>">
+                        <?= $author['name'] ?>
+                    </a>
+                </td>
 
                 <td>
-                                                <?= $links ?>
+                    <?= $links ?>
                 </td>
                 <td> <?= $chapter['release_date'] ?> </td>
                 <td> <?= $chapter['credits'] ?> </td>
