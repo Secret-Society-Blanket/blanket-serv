@@ -2,6 +2,34 @@
 TOP LEVEL STYLES
 */
 
+.arrow{
+  font-family: "JF Dot K14";
+  line-height: 1em;
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+  text-shadow: 0.2ch 0.2ch 0px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  position: absolute;
+  text-align: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  transition-timing-function: cubic-bezier(0.5, 0.1, 0.5, 0.9);
+  transition-property: opacity;
+  transition-duration: 0.25s;
+}
+
+.arrow-up {
+  top: 0%;
+  margin-top: 5px;
+}
+
+.arrow-down {
+  top: calc(100% - 1em);
+  margin-top: -5px;
+}
+
+
 .main-cont {
   display: flex;
   flex-direction: row;
@@ -9,16 +37,48 @@ TOP LEVEL STYLES
   place-items: center;
   overflow: hidden;
   height: 100%;
+  position: relative;
+}
+
+.fade {
+  --fade-height: 15px;
+  padding-bottom: calc(var(--fade-height) + 10px);
+  padding-top: calc(var(--fade-height) + 10px);
+  --mask-img-content: linear-gradient(to bottom, transparent, black var(--fade-height), black calc(100% - var(--fade-height)), transparent);
+
+  -webkit-mask-image: var(--mask-img-content);
+
+  mask-image: var(--mask-img-content);
+  -webkit-mask-position: 0 0, 100% 0;
+  mask-position: 0 0, 100% 0;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
 .center-cont {
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: scroll;
+  overflow-x: hidden;
   width: 50vw;
-  min-width: 512px;
-  max-width: 960px;
+  min-width: 615px;
+  max-width: 800px;
   max-height: 90vh;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+@media screen and (max-width: 625px) {
+  .center-cont {
+    width: calc(100vw - 10px);
+    max-width: initial;
+    min-width: initial;
+  }
 }
 
 .gap-3 {
@@ -28,6 +88,16 @@ TOP LEVEL STYLES
 .antialiased {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.fc {
+  display: flex;
+  flex-direction: column;
+}
+
+.fr {
+  display: flex;
+  flex-direction: row;
 }
 
 
@@ -141,24 +211,28 @@ FONTS and COLOR VARIABLES -----------------------------------------------------
   color: rgb(255, 103, 64);
   background-color: rgb(255, 103, 64);
   --hover-color: rgba(255, 103, 64, 0.25);
+  --outline: rgb(255, 103, 64);
 }
 
 .ssb-dy {
   color: rgb(0, 41, 81);
   background-color: rgb(0, 41, 82);
   --hover-color: rgba(0, 41, 82, 0.25);
+  --outline: rgb(0, 41, 81);
 }
 
 .ssb-tw {
   color: rgb(29, 155, 240);
   background-color: rgb(29, 155, 240);
   --hover-color: rgba(29, 155, 240, 0.25);
+  --outline: rgb(29, 155, 240);
 }
 
 .ssb-hm {
   color: var(--ssb-p);
   background-color: var(--ssb-p);
   --hover-color: rgba(216, 64, 128, 0.5);
+  --outline: var(--ssb-p);
 }
 
 /* 
@@ -436,6 +510,33 @@ BUTTONS -----------------------------------------------------------------------
   transition-property: box-shadow;
   transition-duration: 0.15s;
   outline: none;
+}
+
+.ssb-butt-disabled {
+  font-family: "Orange Kid";
+  font-size: 22px;
+  color: rgb(255, 255, 255);
+  text-shadow: 0.2ch 0.2ch 0px rgba(0, 0, 0, 0.5);
+  text-decoration: line-through;
+  border-radius: 0.5em;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: inline-block;
+  padding: 0.5em 1em;
+  padding-bottom: 0.6em;
+  vertical-align: center;
+  text-align: center;
+  transition-timing-function: cubic-bezier(0.5, 0.1, 0.5, 0.9);
+  transition-property: box-shadow;
+  transition-duration: 0.15s;
+  box-shadow: 0px 0px 0px 2px inset var(--outline);
+  background-color: initial;
+  position: relative;
+}
+
+:hover.ssb-butt-disabled {
+  box-shadow: 0px 0px 0px 2px inset var(--hover-color);
 }
 
 :hover.ssb-butt {
@@ -790,14 +891,61 @@ FROSTED GLASS effect ----------------------------------------------------------
 MANGA page --------------------------------------------------------------------
 */
 
+.b-r {
+  margin: 5px;
+  border-radius: 7px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+}
+
+.info-align {
+  text-align: left;
+}
+
+.latest-butt {
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+}
+
+.no-permissions{
+  position: absolute;
+  text-align: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 500px) {
+  .info-align {
+    text-align: center;
+    align-items: center;
+  }
+}
+
 .manga-main {
   display: flex;
   flex-direction: row;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5) inset;
+  justify-content: center;
   border-radius: 8px;
   padding: 1px;
-  max-height: 300px;
   margin-bottom: 5px;
+}
+
+.card-width {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+@media screen and (max-width: 500px) {
+  .manga-main {
+    flex-wrap: wrap;
+  }
+
+  .card-width {
+    width: 100%;
+  }
 }
 
 .manga-sub {
@@ -808,18 +956,18 @@ MANGA page --------------------------------------------------------------------
 
 .manga-cover {
   min-height: 100px;
-  max-height: 300px;
+  max-height: 322px;
   background: white;
-  margin-right: 5px;
-  border-radius: 7px 0px 0px 7px;
+  margin: 5px;
+  border-radius: 7px;
   -o-object-fit: contain;
   object-fit: contain;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
 }
 
 .manga-disc {
   text-align: justify;
-  margin-top: 5px;
-  padding: 0px 10px 5px 5px;
+  padding: 5px 7px 7px 7px;
   font-size: 20px;
   line-height: 1em;
   border-radius: 8px;
@@ -828,14 +976,19 @@ MANGA page --------------------------------------------------------------------
   height: fit-content;
 }
 
+@media screen and (max-width: 500px) {
+  .manga-disc {
+    margin: 5px 0px 0px 0px;
+  }
+}
+
 .manga-author {
-  font-size: 20px;
+  font-size: 25px;
   text-align: left;
-  white-space: nowrap;
-  padding-left: 7px;
   text-decoration: underline;
   text-underline-position: from-font;
   text-decoration-thickness: 0.04em;
+  line-height: 1em;
 }
 
 .manga-title {
@@ -844,84 +997,78 @@ MANGA page --------------------------------------------------------------------
 }
 
 .title-en {
-  text-align: left;
-  display: flex;
-  align-items: center;
   line-height: 1em;
   border-radius: 8px;
-  padding: 5px;
-  padding-top: 0px;
-  padding-bottom: 0px;
+  margin-top: -8px;
   position: relative;
-  -webkit-text-decoration: underline dotted;
-  text-decoration: underline dotted;
-  text-underline-position: from-font;
-  text-decoration-thickness: 0.04em;
 }
 
 .title-og {
-  text-align: center;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  white-space: nowrap;
-  padding-top: 0;
-  padding-bottom: 0;
-  height: auto;
   font-family: "JF Dot K14";
-  bottom: initial;
-  top: -65%;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-}
-
-.title-en:hover .tip {
-  opacity: 1;
-  visibility: visible;
-  top: -85%;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 1);
+  padding-top: 10px;
 }
 
 /*
 CHAPTER tables ----------------------------------------------------------------
 */
 
-.missing-op {
-  font-size: 12px;
-  -webkit-text-decoration: underline dotted;
-  text-decoration: underline dotted;
-  text-decoration-thickness: 0.08em;
-  text-underline-position: from-font;
-  position: relative;
-}
-
-.missing-op:hover .tip {
-  opacity: 1;
-  visibility: visible;
-  bottom: 125%;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 1);
-}
-
 .manga-ch {
-  margin-top: 2px;
+  margin: 5px;
+  margin-top: 15px;
   font-size: 20px;
+  width: 100%;
+}
+
+.manga-ch tbody{
+  /*I have no idea why I have to put this again, since it should be inherited*/
+  width: 50vw;
+  min-width: 480px;
+  /*This is very slightly different to account for the weirdness of the table*/
+  max-width: 788px;
+}
+
+.ch-title {
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 1.15em;
+  flex: 1;
+  padding-right: 8px;
 }
 
 .manga-ch tr {
   /*For some reason, this is required for Safari to show the table correctly*/
   display: flex;
+  flex-wrap: nowrap;
 
-  /*I have no idea why I have to put this again, since it should be inherited*/
-  width: 50vw;
-  min-width: 512px;
-  max-width: 960px;
+  
 
   padding: 10px;
   margin: 1px;
+  margin-left: 6px;
+  margin-right: 6px;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
 
   transition: background .2s ease-in-out;
 
+}
+
+/*Same thing as above*/
+@media screen and (max-width: 500px) {
+  .manga-ch tr {
+    width: calc(100vw - 12px);
+    max-width: initial;
+    min-width: initial;
+    flex-wrap: wrap !important;
+  }
+  
+  .ch-title{
+    width: 100%;
+    flex-basis: 1;
+    flex: initial;
+    margin-bottom: 5px;
+  }
 }
 
 .manga-ch tr:hover {
@@ -936,16 +1083,6 @@ CHAPTER tables ----------------------------------------------------------------
   border-radius: 0px 0px 8px 8px;
 }
 
-.ch-title {
-  text-align: left;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  height: 1.15em;
-  flex: 1;
-  padding-right: 8px;
-}
-
 .read-buttons {
   align-self: flex-end;
 }
@@ -955,6 +1092,13 @@ CHAPTER tables ----------------------------------------------------------------
 .ssb-tw:hover,
 .ssb-dy:hover {
   box-shadow: 0 0 0 2px var(--hover-color);
+}
+
+.ssb-hm:hover.ssb-butt-disabled,
+.ssb-md:hover.ssb-butt-disabled,
+.ssb-tw:hover.ssb-butt-disabled,
+.ssb-dy:hover.ssb-butt-disabled {
+  box-shadow: 0 0 0 2px inset var(--hover-color);
 }
 
 .read-hint {
@@ -991,14 +1135,15 @@ CHAPTER tables ----------------------------------------------------------------
   top: 1px;
   position: relative;
   padding-left: 8px;
+  margin-right: -3px;
 }
 
 .credits {
   text-align: center;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  white-space: nowrap;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  max-width: 5em;
   padding-top: 0;
   padding-bottom: 0;
   bottom: 90%;
