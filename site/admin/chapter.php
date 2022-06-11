@@ -36,7 +36,7 @@
 
 <body class="ssb-bg">
     <div class="main-cont antialiased">
-        <div class="center-cont ssb-font">
+        <div id="fade-enabled" class="center-cont ssb-font fade">
             <p style="font-size: 30px; padding-bottom: 1em;" class="ssb-font"><span class="rainbow">Upload chapter</span></p>
 
             <form action="<?php $_PHP_SELF ?>" method="POST" enctype="multipart/form-data" autocomplete="off">
@@ -82,7 +82,10 @@
                 });
             </script>
         </div>
+        <div class="arrow arrow-up" id="arrow-up"><span class="rainbow">△</span></div>
+        <div class="arrow arrow-down" id="arrow-down"><span class="rainbow">▽</span></div>
     </div>
+    <script defer src="../js/scroll-arrow-min.js"></script>
 </body>
 
 </html>

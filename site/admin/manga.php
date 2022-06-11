@@ -37,7 +37,7 @@ require __DIR__ . '/../scripts/new_manga.php';
 
 <body class="ssb-bg">
     <div class="main-cont antialiased">
-        <div class="center-cont ssb-font">
+        <div id="fade-enabled" class="center-cont ssb-font fade">
             <p style="font-size: 30px; padding-bottom: 1em;" class="ssb-font"><span class="rainbow">Create/edit a manga</span></p>
             <form action="<?php $_PHP_SELF ?>" method="GET" style="margin: 0px">
                 <select id="manga-id" name="manga-id" class="selecter">
@@ -69,7 +69,10 @@ require __DIR__ . '/../scripts/new_manga.php';
             <a class="ssb-butt ssb-butt-sm ssb-blk" href="index.php">Back</a>
             <p> <?= $command_result ?></p>
         </div>
+        <div class="arrow arrow-up" id="arrow-up"><span class="rainbow">△</span></div>
+        <div class="arrow arrow-down" id="arrow-down"><span class="rainbow">▽</span></div>
     </div>
+    <script defer src="../js/scroll-arrow-min.js"></script>
 </body>
 
 </html>
