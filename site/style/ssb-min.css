@@ -81,10 +81,6 @@ TOP LEVEL STYLES
   }
 }
 
-.gap-3 {
-  gap: 0.75rem;
-}
-
 .antialiased {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -664,7 +660,7 @@ TOOLTIPS ----------------------------------------------------------------------
   -webkit-backdrop-filter: blur(10px);
 
   backdrop-filter: blur(10px);
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.8);
   border-radius: 0.5em;
   padding-inline: 0.5em;
   padding-top: 0.5em;
@@ -685,9 +681,9 @@ TOOLTIPS ----------------------------------------------------------------------
   left: 50%;
 }
 
-@supports not ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
+@supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
   .tip {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -876,14 +872,14 @@ FROSTED GLASS effect ----------------------------------------------------------
 */
 
 .glass {
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  background: rgba(41, 89, 105, 0.5);
 }
 
-@supports not ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
+@supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
   .glass {
-    /*Firefox fallback*/
-    background: rgba(41, 89, 105, 0.5);
+    /*Safari and Chrome(?) get the blur*/
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
   }
 }
 
@@ -1156,7 +1152,47 @@ CHAPTER tables ----------------------------------------------------------------
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 1);
 }
 
+/*MANGA LIST*/
 
+.mangalist{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 
-/*<td> <a href=author.php?author_id=<?= $author['id'] ?>><?= $author['name'] ?></a> </td>*/
-/*content/<?= $manga['image_link'] ?>*/
+.manga-card{
+  margin: 5px;
+  width: calc(25% - 10px);
+  max-height: 450px;
+}
+
+@media screen and (max-width: 625px){
+  .manga-card{
+    width: calc(33.333333% - 10px)
+  }
+}
+
+@media screen and (max-width: 450px){
+  .manga-card{
+    width: calc(50% - 10px)
+  }
+}
+
+.manga-image{
+  width: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+  border-radius: 7px 7px 0px 0px;
+  margin-bottom: 5px;
+}
+
+.mini-disc{
+  text-align: justify;
+  overflow: scroll;
+  padding: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 8px;
+  font-size: 15px;
+  height: 100%;
+}

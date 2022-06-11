@@ -13,6 +13,7 @@
     <script src="https://unpkg.com/swup@latest/dist/swup.min.js"></script>
     <script defer src="js/swup.js"></script>
     <script src="js/rainbowify.js"></script>
+    <script defer src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="img/favicon-ios.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png" />
@@ -36,16 +37,8 @@
 <body class="ssb-bg">
     <div id="swup" class="transition-slide">
         <div class="main-cont antialiased">
-            <div class="center-cont">
-                <table>
-                    <tr>
-                        <th>Image</th>
-                        <th>Title</th>
-                        <th>Original Title</th>
-                        <th>Author</th>
-                        <th>Description</th>
-                        <th>Number Chapters</th>
-                    </tr>
+            <div id="fade-enabled" class="center-cont ssb-font fade">
+                <div class="mangalist">
                     <?php
 
         $mangas = (getSqlRows($db, $MANGA_TABLE));
@@ -53,21 +46,41 @@
         while ($manga = mysqli_fetch_array($mangas)) {
             $author = getSqlRowFromId($db, $AUTHOR_TABLE, $manga['author_id']);
         ?>
-                    <tr>
-                        <td> <img class="cover-list" src=content/<?= $manga['image_link'] ?>></img> </td>
-                        <td> <a href="manga.php?manga_id=<?= $manga['id'] ?>"> <?= $manga['title'] ?> <a /> </td>
-                        <td> <?= $manga['original_title'] ?> </td>
-                        <td> <a href="author.php?author_id=<?= $author['id'] ?>"> <?= $author['name'] ?> </a></td>
-                        <td> <?= $manga['description'] ?> </td>
-                        <td> <?= $manga['num_chapters'] ?> </td>
-                    </tr>
+                    <div class="fc b-r manga-card glass">
+                        <a href="manga.php?manga_id=<?= $manga['id'] ?>"><img class="manga-image" style="background: white;" src=content/<?= $manga['image_link'] ?>></img></a>
+                        <a style="font-size: 30px; line-height: 0.8em; margin-bottom: 5px;" href="manga.php?manga_id=<?= $manga['id'] ?>"> <?= $manga['title'] ?><a/>
+                            <a style="font-size: 20px; text-decoration: underline; margin: 5px; margin-top: 0px; line-height: 0.9em;" href="author.php?author_id=<?= $author['id'] ?>"> by&nbsp;<?= $author['name'] ?> nom on the bomb</a>
+                            <p>Last updated 2020-04-18</p>
+                            <p><?= $manga['num_chapters'] ?> chapters</p>
+                            <p class="mini-disc fade"><?= $manga['description'] ?></p>
+                    </div>
+
+                    <div class="fc b-r manga-card glass">
+                        <img class="manga-image" style="background: white;" src=content/<?= $manga['image_link'] ?>></img>
+                        <a style="font-size: 30px; line-height: 0.8em; margin-bottom: 5px;" href="manga.php?manga_id=<?= $manga['id'] ?>"> <?= $manga['title'] ?><a/>
+                            <a style="font-size: 20px; text-decoration: underline; margin-bottom: 5px;" href="author.php?author_id=<?= $author['id'] ?>"> By&nbsp;<?= $author['name'] ?></a>
+                            <p>Last updated 2020-04-18</p>
+                            <p><?= $manga['num_chapters'] ?> chapters</p>
+                            <p class="mini-disc"><?= $manga['description'] ?></p>
+                    </div>
+                    
+                    <div class="fc b-r manga-card glass">
+                        <img class="manga-image" style="background: white;" src=content/<?= $manga['image_link'] ?>></img>
+                        <a style="font-size: 30px; line-height: 0.8em; margin-bottom: 5px;" href="manga.php?manga_id=<?= $manga['id'] ?>"> <?= $manga['title'] ?><a/>
+                            <a style="font-size: 20px; text-decoration: underline; margin-bottom: 5px;" href="author.php?author_id=<?= $author['id'] ?>"> By&nbsp;<?= $author['name'] ?></a>
+                            <p>Last updated 2020-04-18</p>
+                            <p><?= $manga['num_chapters'] ?> chapters</p>
+                            <p class="mini-disc"><?= $manga['description'] ?></p>
+                    </div>
                     <?php
         }
         ?>
-                </table>
+                </div>
             </div>
+            <div class="arrow arrow-up" id="arrow-up"><span class="rainbow">△</span></div>
+            <div class="arrow arrow-down" id="arrow-down"><span class="rainbow">▽</span></div>
         </div>
-    </div>
+        <script defer src="../js/scroll-arrow-min.js"></script>
 </body>
 
 </html>
