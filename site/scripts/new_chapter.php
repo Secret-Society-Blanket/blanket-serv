@@ -70,7 +70,7 @@ function newChapter($req)
         $path = "!!external-only!!";
         $local = true;
     }
-    if ($req["release-date"] = "") {
+    if ($req["release-date"]) {
         $releasedate = $req["release-date"];
     } else {
         $cdate = new DateTime();

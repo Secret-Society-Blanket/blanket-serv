@@ -22,13 +22,13 @@
     <link rel="icon" type="image/png" sizes="512x512" href="img/favicon-android-splash.png" />
 
     <style>
-    html,
-    body,
-    div#swup {
-        overflow: hidden;
-        position: relative;
-        height: 100%;
-    }
+        html,
+        body,
+        div#swup {
+            overflow: hidden;
+            position: relative;
+            height: 100%;
+        }
     </style>
     <title> Manga List</title>
     <link rel="stylesheet" type="text/css" href="/style/main.css" />
@@ -41,40 +41,31 @@
                 <div class="mangalist">
                     <?php
 
-        $mangas = (getSqlRows($db, $MANGA_TABLE));
+                    $mangas = mysqli_fetch_all(getSqlRows($db, $MANGA_TABLE), MYSQLI_BOTH);
+                    usort($mangas, function ($one, $two) { return comparebyDate($one, $two); });
+                    $mangas = array_reverse($mangas);
 
-        while ($manga = mysqli_fetch_array($mangas)) {
-            $author = getSqlRowFromId($db, $AUTHOR_TABLE, $manga['author_id']);
-        ?>
-                    <div class="fc b-r manga-card glass">
-                        <a href="manga.php?manga_id=<?= $manga['id'] ?>"><img class="manga-image" style="background: white;" src=content/<?= $manga['image_link'] ?>></img></a>
-                        <a style="font-size: 30px; line-height: 0.8em; margin-bottom: 5px;" href="manga.php?manga_id=<?= $manga['id'] ?>"> <?= $manga['title'] ?><a/>
-                            <a style="font-size: 20px; text-decoration: underline; margin: 5px; margin-top: 0px; line-height: 0.9em;" href="author.php?author_id=<?= $author['id'] ?>"> by&nbsp;<?= $author['name'] ?> nom on the bomb</a>
-                            <p>Last updated 2020-04-18</p>
-                            <p><?= $manga['num_chapters'] ?> chapters</p>
-                            <p class="mini-disc fade"><?= $manga['description'] ?></p>
-                    </div>
+                    foreach ($mangas as $manga) {
+                        $author = getSqlRowFromId($db, $AUTHOR_TABLE, $manga['author_id']);
+                        $num = $manga['num_chapters'] . " chapters";
+                        if ($manga['is_oneshot']) {
+                            $num = "Oneshot";
+                        }
+                        
+                        $date = end(get_order_chapters($manga['id']))['release_date'];
 
+                    ?>
                     <div class="fc b-r manga-card glass">
                         <img class="manga-image" style="background: white;" src=content/<?= $manga['image_link'] ?>></img>
-                        <a style="font-size: 30px; line-height: 0.8em; margin-bottom: 5px;" href="manga.php?manga_id=<?= $manga['id'] ?>"> <?= $manga['title'] ?><a/>
+                        <a style="font-size: 30px; line-height: 0.8em; margin-bottom: 5px;" href="manga.php?manga_id=<?= $manga['id'] ?>"> <?= $manga['title'] ?><a />
                             <a style="font-size: 20px; text-decoration: underline; margin-bottom: 5px;" href="author.php?author_id=<?= $author['id'] ?>"> By&nbsp;<?= $author['name'] ?></a>
-                            <p>Last updated 2020-04-18</p>
-                            <p><?= $manga['num_chapters'] ?> chapters</p>
-                            <p class="mini-disc"><?= $manga['description'] ?></p>
-                    </div>
-                    
-                    <div class="fc b-r manga-card glass">
-                        <img class="manga-image" style="background: white;" src=content/<?= $manga['image_link'] ?>></img>
-                        <a style="font-size: 30px; line-height: 0.8em; margin-bottom: 5px;" href="manga.php?manga_id=<?= $manga['id'] ?>"> <?= $manga['title'] ?><a/>
-                            <a style="font-size: 20px; text-decoration: underline; margin-bottom: 5px;" href="author.php?author_id=<?= $author['id'] ?>"> By&nbsp;<?= $author['name'] ?></a>
-                            <p>Last updated 2020-04-18</p>
-                            <p><?= $manga['num_chapters'] ?> chapters</p>
+                            <p>Last updated <?=$date?></p>
+                            <p><?= $num ?></p>
                             <p class="mini-disc"><?= $manga['description'] ?></p>
                     </div>
                     <?php
-        }
-        ?>
+                    }
+                    ?>
                 </div>
             </div>
             <div class="arrow arrow-up" id="arrow-up"><span class="rainbow">△</span></div>

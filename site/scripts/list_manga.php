@@ -21,5 +21,48 @@ require_once __DIR__ . '/utils.php';
 
 $db = getSqli();
 
+// Takes two manga arrays and compares their latest chapter's release dates.
+function compareByDate($one, $two) {
+    $lastChapDateOne = getLatestChapterDate($one);
+    $lastChapDateTwo = getLatestChapterDate($two);
+    return $lastChapDateOne->getTimestamp() -  $lastChapDateTwo->getTimestamp;
+}
 
 
+function getLatestChapterDate($manga) {
+
+    if ($manga == NULL ) {
+        return NULL;
+    }
+    $manga_id = $manga['id'];
+    $db = getSqli();
+    $chapter = end(mysqli_fetch_all(mysqli_query($db, "SELECT * FROM ".CHAPTER_TABLE." where manga_id = {$manga_id}"), MYSQLI_ASSOC));
+    return new DateTime($chapter['release_date']);
+}
+
+function orderMangaByDate($mangas) {
+    $unordered = $mangas;
+    $ordered = array();
+
+    while (sizeof($unordered) != 0) {
+
+        $oldest = NULL;
+        $i = 0;
+        foreach ($unordered as $manga) {
+            $lastdate = NULL;
+            $date = getLatestChapterDate($manga);
+            print_r ($date );
+            if ($oldest != NULL) {
+                $lastdate = getLatestChapterDate($mangas[$oldest]);
+            }
+            if ($oldest == NULL || $date < $lastdate) {
+                $oldest = $i;
+            }
+            $i++;
+        }
+        $ordered[] = $unordered[$oldest];
+
+        unset($unordered[$oldest]);
+    }
+    return $ordered;
+}
