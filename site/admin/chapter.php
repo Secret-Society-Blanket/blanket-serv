@@ -45,14 +45,14 @@
                 <?= $mangas ?>
                 </select><br>
 
-                <input type="number" id="number" name="number" step="any placeholder=" Chapter number" /><br>
+                <input type="number" id="number" name="number" step="any" placeholder="Chapter number" /><br>
                 <input type="text" id="chapter-title" name="chapter-title" placeholder="Chapter title" class="input" /><br>
                 <input type="text" id="twitter-link" name="twitter-link" placeholder="Twitter Link" class="input" /><br>
                 <input type="text" id="dynasty-link" name="dynasty-link" placeholder="Dynasty Link" class="input" /><br>
                 <input type="text" id="mangadex-link" name="mangadex-link" placeholder="Mangadex Link" class="input" /><br>
                 <input type="file" id="file" name="file" class="file" />
                 <label for="file" class="file">Chapter ZIP</label><br>
-                <input type="checkbox" id="external-only" name="external-only" class="checkbox-as ssb-font" value="Yes"><br>
+                <input type="checkbox" id="external-only" name="external-only" class="checkbox-ex ssb-font" value="Yes"><br>
                 <input type="date" id="release-date" name="release-date" style="margin: 0.2em" /><br>
                 <textarea id="credits" name="credits" placeholder="Add credits..." style="margin: 0.2rem"></textarea><br>
                 <input type="submit" id="submit" value="Submit" class="submit"/><br>
