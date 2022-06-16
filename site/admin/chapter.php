@@ -75,7 +75,7 @@
                                 minNum = 1;
                             }
                             $("#number").val(maxNum);
-                            $("#number").attr('max', maxNum);
+                            /* $("#number").attr('max', maxNum); */
                             $("#number").attr('min', minNum);
                         }, 'json').done();
                     }
