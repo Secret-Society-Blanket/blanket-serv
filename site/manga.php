@@ -71,7 +71,7 @@ include __DIR__ . '/scripts/show_manga.php';
                             {
 
                                 if (!$available) {
-                                    $out = "<a class=\"ssb-butt-disabled ssb-butt-sm $style\" style=\"border-radius: 4px;\">$title<span class=\"tip no-permissions\">this title is<br>not available<br>on $title.</span></a>";
+                                    $out = "<a class=\"ssb-butt-disabled ssb-butt-sm $style\" style=\"border-radius: 4px;\">$title<span class=\"tip no-permissions\">This title is<br>not available<br>on $title.</span></a>";
                                 } else {
                                     $out = "<a href=\"$link\" class=\"ssb-butt ssb-butt-sm $style\" style=\"border-radius: 4px;\">$title</a>";
                                 }

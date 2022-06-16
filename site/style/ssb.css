@@ -598,12 +598,6 @@ TOOLTIPS ----------------------------------------------------------------------
   left: 50%;
 }
 
-@supports (backdrop-filter: blur(10px)) {
-  .tip {
-    background: rgba(0, 0, 0, 0.5);
-  }
-}
-
 /*
 LIST WITH NO SCROLLBAR --------------------------------------------------------
 */
@@ -1024,6 +1018,10 @@ CHAPTER tables ----------------------------------------------------------------
 
 .manga-ch tr:last-child {
   border-radius: 0px 0px 8px 8px;
+}
+
+.manga-ch tr:only-child {
+  border-radius: 8px 8px 8px 8px;
 }
 
 .read-buttons {
