@@ -1110,7 +1110,9 @@ CHAPTER tables ----------------------------------------------------------------
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 1);
 }
 
-/*MANGA LIST*/
+/*
+LISTS -------------------------------------------------------------------------
+*/
 
 .card-list{
   display: flex;
@@ -1131,7 +1133,7 @@ CHAPTER tables ----------------------------------------------------------------
 }
 
 @media screen and (max-width: 450px){
-  .card-image{
+  .card{
     width: calc(50% - 10px)
   }
 }
@@ -1153,4 +1155,10 @@ CHAPTER tables ----------------------------------------------------------------
   margin-top: 8px;
   font-size: 15px;
   height: 100%;
+}
+
+.author-card-image{
+  width: 400px;
+  -o-object-fit: revert;
+  object-fit: revert;
 }
