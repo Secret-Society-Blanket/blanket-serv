@@ -3,38 +3,36 @@ include __DIR__ . '/scripts/show_manga.php';
 ?> <html>
 
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="style/normalize.css">
+    <link rel="stylesheet" href="style/tw-snippets-min.css">
+    <link rel="stylesheet" href="style/ssb-min.css">
+    <script src="https://unpkg.com/swup@latest/dist/swup.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script defer src="js/swup.js"></script>
+    <script src="js/rainbowify.js"></script>
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <link rel="stylesheet" href="style/normalize.css">
-        <link rel="stylesheet" href="style/tw-snippets-min.css">
-        <link rel="stylesheet" href="style/ssb-min.css">
-        <script src="https://unpkg.com/swup@latest/dist/swup.min.js"></script>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
-        <script defer src="js/swup.js"></script>
-        <script src="js/rainbowify.js"></script>
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="img/favicon-ios.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="180x180" href="img/favicon-ios.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="img/favicon-android.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="img/favicon-android-splash.png" />
 
-        <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="img/favicon-ios.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png" />
-        <link rel="icon" type="image/png" sizes="180x180" href="img/favicon-ios.png" />
-        <link rel="icon" type="image/png" sizes="192x192" href="img/favicon-android.png" />
-        <link rel="icon" type="image/png" sizes="512x512" href="img/favicon-android-splash.png" />
-
-        <style>
-            html,
-            body,
-            div#swup {
-                overflow: hidden;
-                position: relative;
-                height: 100%;
-            }
-        </style>
-        <title><?= $manga['title'] ?></title>
-        <link rel="stylesheet" type="text/css" href="/style/main.css" />
-    </head <body>
+    <style>
+    html,
+    body,
+    div#swup {
+        overflow: hidden;
+        position: relative;
+        height: 100%;
+    }
+    </style>
+    <title><?= $manga['title'] ?></title>
+    <link rel="stylesheet" type="text/css" href="/style/main.css" />
+</head>
 
 <body class="ssb-bg">
     <div id="swup" class="transition-slide">
@@ -52,12 +50,12 @@ include __DIR__ . '/scripts/show_manga.php';
                             <?php
                             if (!$manga['is_oneshot']) {
                             ?>
-                                <p><?= $manga['num_chapters'] ?> chapters</p>
+                            <p><?= $manga['num_chapters'] ?> chapters</p>
                             <?php
                                     } else {
                                     ?>
-                                <p>Oneshot</p>
-                                    <?php
+                            <p>Oneshot</p>
+                            <?php
                             }
                             ?>
                         </div>
@@ -100,18 +98,18 @@ include __DIR__ . '/scripts/show_manga.php';
                         $dy = $chapter['dynasty'] ? "" : $nodisplay;
                         $chapnum = $manga['is_oneshot'] ? "" : $chapter['number'] . ". ";
                     ?>
-                        <tr class="glass">
-                            <td class="ch-title"><?= $chapnum ?><?= $chapter['title'] ?></td>
-                            <td class="read-buttons">
-                                <a class="ssb-butt ssb-butt-sm ssb-hm" style="position: relative; <?= $lc ?>" href="<?= buildMangaUrl($manga['id'], $chapter['number']) ?>"><span class="tip read-hint">Read here</span></a>
-                                <a class="ssb-butt ssb-butt-sm ssb-tw" style="position: relative; <?= $tw ?>" href="<?= $chapter['twitter'] ?>"><span class="tip read-hint">Read on Twitter</span></a>
-                                <a class="ssb-butt ssb-butt-sm ssb-md" style="position: relative; <?= $md ?>" href="<?= $chapter['mangadex'] ?>"><span class="tip read-hint">Read on MangaDex</span></a>
-                                <a class="ssb-butt ssb-butt-sm ssb-dy" style="position: relative; <?= $dy ?>" href="<?= $chapter['dynasty'] ?>"><span class="tip read-hint">Read on Dynasty Scans</span></a>
-                            </td>
-                            <td class="heart" style="font-family: 'JF Dot K14';">♥<span class="tip credits"><?= $chapter['credits'] ?></span></td>
-                            <td class="date"><?= $chapter['release_date'] ?></td>
+                    <tr class="glass">
+                        <td class="ch-title"><?= $chapnum ?><?= $chapter['title'] ?></td>
+                        <td class="read-buttons">
+                            <a class="ssb-butt ssb-butt-sm ssb-hm" style="position: relative; <?= $lc ?>" href="<?= buildMangaUrl($manga['id'], $chapter['number']) ?>"><span class="tip read-hint">Read here</span></a>
+                            <a class="ssb-butt ssb-butt-sm ssb-tw" style="position: relative; <?= $tw ?>" href="<?= $chapter['twitter'] ?>"><span class="tip read-hint">Read on Twitter</span></a>
+                            <a class="ssb-butt ssb-butt-sm ssb-md" style="position: relative; <?= $md ?>" href="<?= $chapter['mangadex'] ?>"><span class="tip read-hint">Read on MangaDex</span></a>
+                            <a class="ssb-butt ssb-butt-sm ssb-dy" style="position: relative; <?= $dy ?>" href="<?= $chapter['dynasty'] ?>"><span class="tip read-hint">Read on Dynasty Scans</span></a>
+                        </td>
+                        <td class="heart" style="font-family: 'JF Dot K14';">♥<span class="tip credits"><?= $chapter['credits'] ?></span></td>
+                        <td class="date"><?= $chapter['release_date'] ?></td>
 
-                        </tr>
+                    </tr>
 
                     <?php
                     }
