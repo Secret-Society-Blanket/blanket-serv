@@ -38,19 +38,26 @@ include __DIR__ . '/../scripts/new_author.php';
 
 <body class="ssb-bg">
     <div class="main-cont antialiased">
-        <div class="center-cont ssb-font">
+        <div id="fade-enabled" class="center-cont ssb-font fade">
             <p style="font-size: 30px; padding-bottom: 1em;" class="ssb-font"><span class="rainbow">Create an author</span></p>
             <!-- Try not to change any of the things here, CSS is fine. -->
             <form action="<?php $_PHP_SELF ?>" method="POST" enctype="multipart/form-data">
-                <input type="file" id="image" name="image" class="file"/>
+                <input type="file" id="image" name="image" class="file" />
                 <label for="image" class="file">Author image</label><br>
                 <input type="text" id="author-name" name="author-name" placeholder="Author name" class="input" /><br>
-                <input type="text" id="social-links" name="social-links" name="author-name" placeholder="Social links" class="input"/><br>
-                <input type="submit" value="Submit" class="submit"/>
+                <input type="text" id="[author-name-jp]" name="[author-name-jp]" placeholder="Japanese name" class="input" /><br>
+                <input type="text" id="[twitter]" name="[twitter]" name="[twitter]" placeholder="Twitter" class="input" /><br>
+                <input type="text" id="[pixiv]" name="[pixiv]" name="[pixiv]" placeholder="Pixiv" class="input" /><br>
+                <textarea id="[author description]" name="[author description]" style="margin: 0.2rem" placeholder="Enter a description..."></textarea><br>
+                <input type="checkbox" id="[is-nsfw]" name="[is-nsfw]" class="checkbox-nsfw ssb-font" value="[value]"><br>
+                <input type="submit" value="Submit" class="submit" />
             </form>
             <a class="ssb-butt ssb-butt-sm ssb-blk" href="index.php">Back</a>
-            <p> <?= $command_result ?></p>
+            <p><?= $command_result ?></p>
         </div>
+        <div class="arrow arrow-up" id="arrow-up"><span class="rainbow">△</span></div>
+        <div class="arrow arrow-down" id="arrow-down"><span class="rainbow">▽</span></div>
+        <script defer src="../js/scroll-arrow-min.js"></script>
     </div>
 </body>
 
