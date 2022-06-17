@@ -64,7 +64,7 @@ include __DIR__ . '/scripts/show_manga.php';
 
 
                         <div class="glass b-r fc card-width" style="padding: 5px; align-items: center;">
-                            <p style="padding: 0px 0px 5px 0px">read the latest chapter</p>
+                            <p style="padding: 0px 0px 5px 0px">Read the latest chapter</p>
                             <?php
 
                             function buildButton($available, $title, $link, $style)
@@ -104,7 +104,7 @@ include __DIR__ . '/scripts/show_manga.php';
                             <td class="ch-title"><?= $chapnum ?><?= $chapter['title'] ?></td>
                             <td class="read-buttons">
                                 <a class="ssb-butt ssb-butt-sm ssb-hm" style="position: relative; <?= $lc ?>" href="<?= buildMangaUrl($manga['id'], $chapter['number']) ?>"><span class="tip read-hint">Read here</span></a>
-                                <a class="ssb-butt ssb-butt-sm ssb-tw" style="position: relative; <?= $tw ?>" href="<?= $chapter['twitter'] ?>"><span class="tip read-hint">Read on twitter</span></a>
+                                <a class="ssb-butt ssb-butt-sm ssb-tw" style="position: relative; <?= $tw ?>" href="<?= $chapter['twitter'] ?>"><span class="tip read-hint">Read on Twitter</span></a>
                                 <a class="ssb-butt ssb-butt-sm ssb-md" style="position: relative; <?= $md ?>" href="<?= $chapter['mangadex'] ?>"><span class="tip read-hint">Read on MangaDex</span></a>
                                 <a class="ssb-butt ssb-butt-sm ssb-dy" style="position: relative; <?= $dy ?>" href="<?= $chapter['dynasty'] ?>"><span class="tip read-hint">Read on Dynasty Scans</span></a>
                             </td>

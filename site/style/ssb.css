@@ -61,8 +61,8 @@ TOP LEVEL STYLES
   max-height: 90vh;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 ::-webkit-scrollbar {
@@ -515,63 +515,6 @@ ul.breadcrumb li+li:before {
 TOOLTIPS ----------------------------------------------------------------------
 */
 
-.tooltip {
-  position: relative;
-}
-
-.tooltip:before {
-  pointer-events: none;
-  position: absolute;
-  background-color: inherit;
-  content: attr(data-tip);
-  white-space: nowrap;
-  width: fit-content;
-  vertical-align: center;
-  left: 100%;
-  top: 0.55rem;
-  transition: all .15s ease-in-out;
-  opacity: 0;
-
-  border-radius: 0.5em;
-  padding-inline: 0.5em;
-  padding: 0.5em 1em;
-  padding-bottom: 0.6em;
-
-  font-family: "Orange Kid";
-  color: rgb(255, 255, 255);
-  font-size: 15px;
-  text-shadow: 0.2ch 0.2ch 0px rgba(0, 0, 0, 0.5);
-}
-
-.tooltip.ssb-butt-sm:before {
-  top: 0rem;
-}
-
-.tooltip:hover:before {
-  opacity: 1;
-  left: 105%;
-}
-
-@media only screen and (max-width: 25rem) {
-  .tooltip:before {
-    left: 25%;
-    top: -75%;
-  }
-
-  .tooltip:hover:before {
-    left: 25%;
-    top: -80%;
-  }
-
-  .tooltip.ssb-butt-sm:before {
-    top: -100%;
-  }
-
-  .tooltip.ssb-butt-sm:hover:before {
-    top: -105%
-  }
-}
-
 .tip {
   position: absolute;
   vertical-align: center;
@@ -597,30 +540,6 @@ TOOLTIPS ----------------------------------------------------------------------
   transform: translateX(-50%);
   left: 50%;
 }
-
-/*
-LIST WITH NO SCROLLBAR --------------------------------------------------------
-*/
-
-.sneaky-list {
-  -ms-overflow-style: none;
-  /* for Internet Explorer, Edge */
-  scrollbar-width: none;
-  /* for Firefox */
-  overflow-y: scroll;
-  max-height: 60vh;
-}
-
-.sneaky-list::-webkit-scrollbar {
-  display: none;
-  /* for Chrome, Safari, and Opera */
-}
-
-/*
-SCROLL DEPTH for sneaky lists -------------------------------------------------
-*/
-
-
 
 /*
 INPUT, SELECT, SUBMIT FIELDS --------------------------------------------------
@@ -998,6 +917,7 @@ CHAPTER tables ----------------------------------------------------------------
     max-width: initial;
     min-width: initial;
     flex-wrap: wrap !important;
+    align-content: center
   }
   
   .ch-title{
@@ -1026,6 +946,12 @@ CHAPTER tables ----------------------------------------------------------------
 
 .read-buttons {
   align-self: flex-end;
+}
+
+@media (max-width: 500px) {
+  .read-buttons > .ssb-butt:first-child > .tip {
+    left: 150%;
+  }
 }
 
 .ssb-hm:hover,
@@ -1077,8 +1003,7 @@ CHAPTER tables ----------------------------------------------------------------
 
 .credits {
   text-align: center;
-  width: max-content;
-  max-width: 5em;
+  width: fit-content;
   padding-top: 0;
   padding-bottom: 0;
   bottom: 90%;
