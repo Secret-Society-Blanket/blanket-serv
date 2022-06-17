@@ -42,10 +42,10 @@ include __DIR__ . '/scripts/show_manga.php';
                     <img class="manga-cover" style="" src="content/<?= $manga['image_link'] ?>"></img>
                     <div class="fc info-align">
                         <div class="glass b-r fc card-width" style="padding: 5px 7px 7px 7px;">
-                            <p style="font-size: 45px;"><span class="title-en" style="display: inline-block;"><?= $manga['title'] ?> </span></p>
+                            <p style="font-size: 45px;"><span class="title-en" style="display: inline-block;"><?= $manga['title'] ?></span></p>
                             <p class="title-og"><?= $manga['original_title'] ?></p>
                             <p style="padding: 3px 0px 10px 0px"><span class="manga-author">
-                                    <a href=author.php?author_id=<?= $author['id'] ?>>by&nbsp<?= $author['name'] ?></a></span></p>
+                                    <a href="/author.php?author_id=<?= $author['id'] ?>" data-swup-transition="left" class="transition">by&nbsp<?= $author['name'] ?></a></span></p>
                             <p>Last updated <?= $lastChapter['release_date'] ?></p>
                             <?php
                             if (!$manga['is_oneshot']) {
@@ -71,7 +71,7 @@ include __DIR__ . '/scripts/show_manga.php';
                                 if (!$available) {
                                     $out = "<a class=\"ssb-butt-disabled ssb-butt-sm $style\" style=\"border-radius: 4px;\">$title<span class=\"tip no-permissions\">This title is<br>not available<br>on $title.</span></a>";
                                 } else {
-                                    $out = "<a href=\"$link\" class=\"ssb-butt ssb-butt-sm $style\" style=\"border-radius: 4px;\">$title</a>";
+                                    $out = "<a href=\"$link\" class=\"ssb-butt ssb-butt-sm transition $style\" style=\"border-radius: 4px;\">$title</a>";
                                 }
                                 return $out;
                             }
@@ -98,7 +98,7 @@ include __DIR__ . '/scripts/show_manga.php';
                         $dy = $chapter['dynasty'] ? "" : $nodisplay;
                         $chapnum = $manga['is_oneshot'] ? "" : $chapter['number'] . ". ";
                     ?>
-                    <tr class="glass">
+                    <tr class="glass" style="align-items: center;">
                         <td class="ch-title"><?= $chapnum ?><?= $chapter['title'] ?></td>
                         <td class="read-buttons">
                             <a class="ssb-butt ssb-butt-sm ssb-hm" style="position: relative; <?= $lc ?>" href="<?= buildMangaUrl($manga['id'], $chapter['number']) ?>"><span class="tip read-hint">Read here</span></a>
@@ -120,7 +120,15 @@ include __DIR__ . '/scripts/show_manga.php';
             <div class="arrow arrow-up" id="arrow-up"><span class="rainbow">△</span></div>
             <div class="arrow arrow-down" id="arrow-down"><span class="rainbow">▽</span></div>
         </div>
-    </div>
+        <div class="footer-main antialiased">
+            <div class="footer-content">
+                <ul id="breadcrumb" class="breadcrumb ssb-font" style="padding: 0.2em;">
+                    <li><a data-swup-transition="right" href="/index.html">Home</a></li>
+                    <li><a data-swup-transition="right" href="/mangalist.php">Manga List</a></li>
+                    <li><a><?= $manga['title'] ?></a></li>
+                </ul>
+            </div>
+        </div>
     </div>
     <script defer src="js/scroll-arrow-min.js"></script>
 </body>

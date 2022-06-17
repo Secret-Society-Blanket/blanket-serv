@@ -22,13 +22,13 @@
     <link rel="icon" type="image/png" sizes="512x512" href="img/favicon-android-splash.png" />
 
     <style>
-        html,
-        body,
-        div#swup {
-            overflow: hidden;
-            position: relative;
-            height: 100%;
-        }
+    html,
+    body,
+    div#swup {
+        overflow: hidden;
+        position: relative;
+        height: 100%;
+    }
     </style>
     <title> Manga List</title>
     <link rel="stylesheet" type="text/css" href="/style/main.css" />
@@ -56,9 +56,9 @@
 
                     ?>
                     <div class="fc b-r card glass">
-                        <a href="manga.php?manga_id=<?= $manga['id'] ?>"><img class="card-image" style="background: white;" src=content/<?= $manga['image_link'] ?>></img></a>
-                        <a style="font-size: 30px; line-height: 0.8em; margin-bottom: 5px;" href="manga.php?manga_id=<?= $manga['id'] ?>"> <?= $manga['title'] ?><a />
-                            <a style="font-size: 20px; text-decoration: underline; margin-bottom: 5px;" href="author.php?author_id=<?= $author['id'] ?>"> By&nbsp;<?= $author['name'] ?></a>
+                        <a href="/manga.php?manga_id=<?= $manga['id'] ?>"><img class="card-image transition" data-swup-transition="left" style="background: white;" src=content/<?= $manga['image_link'] ?>></img></a>
+                        <a style="font-size: 30px; line-height: 0.8em; margin-bottom: 5px;" href="/manga.php?manga_id=<?= $manga['id'] ?>" data-swup-transition="left" class="transition"> <?= $manga['title'] ?><a />
+                            <a style="font-size: 20px; text-decoration: underline; margin-bottom: 5px;" href="/author.php?author_id=<?= $author['id'] ?>" data-swup-transition="left" class="transition"> By&nbsp;<?= $author['name'] ?></a>
                             <p>Last updated <?=$date?></p>
                             <p><?= $num ?></p>
                             <p class="mini-disc"><?= $manga['description'] ?></p>
@@ -71,7 +71,16 @@
             <div class="arrow arrow-up" id="arrow-up"><span class="rainbow">△</span></div>
             <div class="arrow arrow-down" id="arrow-down"><span class="rainbow">▽</span></div>
         </div>
-        <script defer src="../js/scroll-arrow-min.js"></script>
+        <div class="footer-main antialiased">
+            <div class="footer-content">
+                <ul id="breadcrumb" class="breadcrumb ssb-font" style="padding: 0.2em;">
+                    <li><a data-swup-transition="right" href="/index.html">Home</a></li>
+                    <li><a>Manga List</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script defer src="js/scroll-arrow-min.js"></script>
 </body>
 
 </html>

@@ -931,6 +931,17 @@ MANGA page --------------------------------------------------------------------
   margin-bottom: 5px;
 }
 
+.manga-main .ssb-butt {
+  padding: 0.5em 1em;
+  padding-bottom: 0.6em;
+}
+
+.read-buttons > .ssb-butt {
+  padding: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
 .card-width {
   width: -webkit-fit-content;
   width: -moz-fit-content;

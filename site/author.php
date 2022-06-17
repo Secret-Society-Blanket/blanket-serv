@@ -68,9 +68,9 @@ include __DIR__ . '/scripts/show_author.php';
                     <div class="fc b-r card glass">
                         <a href="manga.php?manga_id=<?= $manga['id'] ?>"><img class="card-image" style="background: white;" src=content/<?= $manga['image_link'] ?>></img></a>
                         <a style="font-size: 30px; line-height: 0.8em; margin-bottom: 5px;" href="manga.php?manga_id=<?= $manga['id'] ?>"> <?= $manga['title'] ?></a>
-                            <p>Last updated <?=$date?></p>
-                            <p><?= $num ?></p>
-                            <p class="mini-disc"><?= $manga['description'] ?></p>
+                        <p>Last updated <?=$date?></p>
+                        <p><?= $num ?></p>
+                        <p class="mini-disc"><?= $manga['description'] ?></p>
                     </div>
                     <?php
         }
@@ -81,7 +81,17 @@ include __DIR__ . '/scripts/show_author.php';
             <div class="arrow arrow-up" id="arrow-up"><span class="rainbow">△</span></div>
             <div class="arrow arrow-down" id="arrow-down"><span class="rainbow">▽</span></div>
         </div>
-        <script defer src="../js/scroll-arrow-min.js"></script>
+        <div class="footer-main antialiased">
+            <div class="footer-content">
+                <ul id="breadcrumb" class="breadcrumb ssb-font" style="padding: 0.2em;">
+                    <li><a data-swup-transition="right" href="/index.html">Home</a></li>
+                    <li><a data-swup-transition="right" href="/authorlist.php">Author List</a></li>
+                    <li><a><?= $author['name'] ?></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script defer src="js/scroll-arrow-min.js"></script>
 </body>
 
 </html>

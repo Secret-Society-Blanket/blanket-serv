@@ -19,13 +19,13 @@
     <link rel="icon" type="image/png" sizes="512x512" href="img/favicon-android-splash.png" />
 
     <style>
-        html,
-        body,
-        div#swup {
-            overflow: hidden;
-            position: relative;
-            height: 100%;
-        }
+    html,
+    body,
+    div#swup {
+        overflow: hidden;
+        position: relative;
+        height: 100%;
+    }
     </style>
     <title>Author List</title>
     <link rel="stylesheet" type="text/css" href="/style/main.css" />
@@ -38,15 +38,24 @@
                 <div class="card-list">
                     <div class="fc b-r card glass">
                         <a href="[Link to author page]"><img class="card-image author-card-image" style="background: white;" src="[Author image]"></img></a>
-                        <a style="font-size: 30px; line-height: 0.8em; margin-bottom: 5px;" href="[Link to author page]">[Author name]<a/>
-                        <a style="font-size: 15px; line-height: 1em; margin-bottom: 5px; font-family: 'JF Dot K14'" href="[Link to author page]">[Author name in JP]<a/>
+                        <a style="font-size: 30px; line-height: 0.8em; margin-bottom: 5px;" href="[Link to author page]">[Author name]<a />
+                            <a style="font-size: 15px; line-height: 1em; margin-bottom: 5px; font-family: 'JF Dot K14'" href="[Link to author page]">[Author name in JP]<a />
                     </div>
                 </div>
             </div>
             <div class="arrow arrow-up" id="arrow-up"><span class="rainbow">△</span></div>
             <div class="arrow arrow-down" id="arrow-down"><span class="rainbow">▽</span></div>
         </div>
-        <script defer src="../js/scroll-arrow-min.js"></script>
+        <div class="footer-main antialiased">
+            <div class="footer-content">
+                <ul id="breadcrumb" class="breadcrumb ssb-font" style="padding: 0.2em;">
+                    <li><a data-swup-transition="right" href="/index.html">Home</a></li>
+                    <li><a>Author List</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script defer src="js/scroll-arrow-min.js"></script>
 </body>
 
 </html>
