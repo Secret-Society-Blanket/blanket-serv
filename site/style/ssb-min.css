@@ -202,27 +202,27 @@ FONTS and COLOR VARIABLES -----------------------------------------------------
 .ssb-blk {
   color: rgb(0, 0, 0);
   background-color: rgb(0, 0, 0);
-  --hover-color: rgba(0, 0, 0, 0.25);
+  --hover-color: rgba(0, 0, 0, 0.5);
 }
 
 .ssb-md {
   color: rgb(255, 103, 64);
   background-color: rgb(255, 103, 64);
-  --hover-color: rgba(255, 103, 64, 0.25);
+  --hover-color: rgba(255, 103, 64, 0.5);
   --outline: rgb(255, 103, 64);
 }
 
 .ssb-dy {
   color: rgb(0, 41, 81);
   background-color: rgb(0, 41, 82);
-  --hover-color: rgba(0, 41, 82, 0.25);
+  --hover-color: rgba(0, 41, 82, 0.5);
   --outline: rgb(0, 41, 81);
 }
 
 .ssb-tw {
   color: rgb(29, 155, 240);
   background-color: rgb(29, 155, 240);
-  --hover-color: rgba(29, 155, 240, 0.25);
+  --hover-color: rgba(29, 155, 240, 0.5);
   --outline: rgb(29, 155, 240);
 }
 
@@ -231,6 +231,13 @@ FONTS and COLOR VARIABLES -----------------------------------------------------
   background-color: var(--ssb-p);
   --hover-color: rgba(216, 64, 128, 0.5);
   --outline: var(--ssb-p);
+}
+
+.ssb-px{
+  color: rgb(1, 150, 251);
+  background-color: rgb(1, 150, 251);
+  --hover-color: rgba(1, 150, 251, 0.5);
+  --outline: rgb(1, 150, 251);
 }
 
 /* 
@@ -825,7 +832,7 @@ FROSTED GLASS effect ----------------------------------------------------------
 
 @supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
   .glass {
-    /*Safari and Chrome(?) get the blur*/
+    /*Safari (and Chrome technically, but it's bugged so it doesn't show) gets the blur*/
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
   }
@@ -885,6 +892,8 @@ MANGA page --------------------------------------------------------------------
 @media screen and (max-width: 500px) {
   .manga-main {
     flex-wrap: wrap;
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   .card-width {
@@ -1111,13 +1120,14 @@ CHAPTER tables ----------------------------------------------------------------
 }
 
 /*
-LISTS -------------------------------------------------------------------------
+CARD LISTS --------------------------------------------------------------------
 */
 
 .card-list{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .card{
@@ -1162,3 +1172,38 @@ LISTS -------------------------------------------------------------------------
   -o-object-fit: revert;
   object-fit: revert;
 }
+
+/*
+AUTHOR PAGE -------------------------------------------------------------------
+*/
+
+.author-image{
+  width: 100%;
+  background: white;
+  margin: 5px;
+  border-radius: 7px;
+  -o-object-fit: contain;
+  object-fit: contain;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+}
+
+.warning-sfw{
+  text-align: center;
+  background: rgba(37, 231, 39, 0.5);
+}
+
+.warning-nsfw{
+  text-align: center;
+  background: rgba(255, 0, 0, 0.5);
+}
+
+.ssb-px:hover {
+  box-shadow: 0 0 0 2px var(--hover-color);
+}
+
+.mini-logo{
+  -o-object-fit: contain;
+  object-fit: contain;
+  width: 16px;  
+}
+
