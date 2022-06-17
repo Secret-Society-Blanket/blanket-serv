@@ -39,6 +39,7 @@
                     <div class="fc b-r card glass">
                         <a href="[Link to author page]"><img class="card-image author-card-image" style="background: white;" src="[Author image]"></img></a>
                         <a style="font-size: 30px; line-height: 0.8em; margin-bottom: 5px;" href="[Link to author page]">[Author name]<a/>
+                        <a style="font-size: 15px; line-height: 1em; margin-bottom: 5px; font-family: 'JF Dot K14'" href="[Link to author page]">[Author name in JP]<a/>
                     </div>
                 </div>
             </div>
