@@ -4,20 +4,21 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="style/normalize.css">
   <link rel="stylesheet" href="style/tw-snippets-min.css">
   <link rel="stylesheet" href="style/ssb-min.css">
   <script src="https://unpkg.com/swup@latest/dist/swup.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
   <script defer src="js/swup.js"></script>
   <script src="js/rainbowify.js"></script>
+
   <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="img/favicon-ios.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="180x180" href="img/favicon-ios.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="img/favicon-android.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="img/favicon-android-splash.png" />
-  <title>Secret Society Blanket</title>
 
   <style>
   html,
@@ -28,44 +29,54 @@
     height: 100%;
   }
   </style>
-
+  <title>Secret Society Blanket</title>
+  <link rel="stylesheet" type="text/css" href="/style/main.css" />
 </head>
 
 <body class="ssb-bg">
   <div id="swup" class="transition-slide">
     <div class="main-cont antialiased">
-      <div class="center-cont gap-3">
-        <div>
-          <img style="padding-bottom: 1rem;" src="img/logo.png" alt="SSB Logo" />
-          <p class="ssb-font" style="font-size: 30px; padding-bottom: 1em;">
-            Your premier source of comfy,<br /><span class="rainbow">author-approved</span>
-            scanlations!
-          </p>
-        </div>
-        <a class="ssb-butt ssb-dp transition" href="https://discord.com/invite/Bdn4pmP9CQ" target="_blank">Join our Discord!</a>
-        <a class="ssb-butt ssb-lp transition tooltip" data-tip="Coming soon!">Read our releases!</a>
-        <p class="ssb-font" style="font-size: 24px; padding-top: 1rem;">
-          Something else?
-        </p>
-        <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
-          <a class="ssb-butt ssb-g transition" data-swup-transition="left" href="/findinfo.html">Author information</a>
-          <div style="display: flex; gap: 0.5rem;">
-            <a class="ssb-butt ssb-butt-sm ssb-tq transition" href="https://ko-fi.com/ssb" target="_blank">Support our team</a>
-            <a class="ssb-butt ssb-butt-sm ssb-lb transition" href="https://twitter.com/SocietyBlanket" target="_blank">Twitter</a>
+      <div id="fade-enabled" class="center-cont ssb-font fade">
+        <div class="fc" style="align-items: center;">
+          <div class="fc" style="align-items: center;">
+            <img style="padding-bottom: 10px; max-width: 100%;" src="img/logo.png" alt="SSB Logo" />
+            <p class="ssb-font" style="font-size: 30px; padding-bottom: 1em; text-align: center;">
+              Your premier source of comfy,<br/><span class="rainbow">author-approved</span>
+              scanlations!
+            </p>
           </div>
-          <a class="ssb-butt ssb-butt-sm ssb-p transition tooltip" data-swup-transition="right" data-tip="nomnomnomnom">Contact
-            <span style="font-family: 'JF Dot K14'; font-size: 0.75rem">|お問い合わせ</span></a>
+          <div class="fc" style="align-items: center;">
+            <a style="margin: 5px; margin-top: 0px;" class="ssb-butt ssb-dp transition" href="https://discord.com/invite/Bdn4pmP9CQ" target="_blank">Join our Discord!</a>
+            <a style="margin: 5px;" class="ssb-butt ssb-lp" data-swup-transition="left" href="/mangalist.php">Read our releases!</a>
+          </div>
+          <div class="fc main-butt" style="align-items: center;">
+            <p class="ssb-font" style="font-size: 24px; margin-top: 12px; margin-bottom: 6px;">
+              Something else?
+            </p>
+            <div class="fr" style="align-items: center;">
+              <a class="ssb-butt ssb-butt-sm ssb-o transition" data-swup-transition="left" href="about.html">About us</a>
+              <a class="ssb-butt ssb-butt-sm ssb-g transition" data-swup-transition="left" href="thanks.html">Special thanks</a>
+            </div>
+            <div class="fr" style="align-items: center;">
+              <a class="ssb-butt ssb-butt-sm ssb-tq transition" href="https://ko-fi.com/ssb" target="_blank">Support our team</a>
+              <a class="ssb-butt ssb-butt-sm ssb-lb transition" href="https://twitter.com/SocietyBlanket" target="_blank">Twitter</a>
+            </div>
+            <a class="ssb-butt ssb-butt-sm ssb-p transition" data-swup-transition="right" href="contact.html">Contact
+              <span style="font-family: 'JF Dot K14'; font-size: 0.75rem">|お問い合わせ</span></a>
+          </div>
         </div>
       </div>
+      <div class="arrow arrow-up" id="arrow-up"><span class="rainbow">△</span></div>
+      <div class="arrow arrow-down" id="arrow-down"><span class="rainbow">▽</span></div>
     </div>
     <div class="footer-main antialiased">
-      <div class="footer-content content-center">
-        <ul class="breadcrumb ssb-font" style="padding: 0.2em;">
-          <li><a data-swup-transition="left" href="/credits.html">Credits</a></li>
+      <div class="footer-content">
+        <ul id="breadcrumb" class="breadcrumb ssb-font" style="padding: 0.2em;">
         </ul>
       </div>
     </div>
   </div>
+  <script defer src="../js/scroll-arrow-min.js"></script>
 </body>
 
 </html>

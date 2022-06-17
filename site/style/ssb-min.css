@@ -44,7 +44,7 @@ TOP LEVEL STYLES
   --fade-height: 15px;
   padding-bottom: calc(var(--fade-height) + 10px);
   padding-top: calc(var(--fade-height) + 10px);
-  --mask-img-content: linear-gradient(to bottom, transparent, black var(--fade-height), black calc(100% - var(--fade-height)), transparent);
+  --mask-img-content: linear-gradient(to bottom, transparent, black var(--fade-height), black calc(100% - calc(var(--fade-height)) + 5px), transparent);
 
   -webkit-mask-image: var(--mask-img-content);
 
@@ -64,7 +64,7 @@ TOP LEVEL STYLES
   width: 50vw;
   min-width: 615px;
   max-width: 800px;
-  max-height: 90vh;
+  max-height: 85vh;
   -ms-overflow-style: none;
   scrollbar-width: none;
   padding-top: 10px;
@@ -507,8 +507,8 @@ BUTTONS -----------------------------------------------------------------------
   width: -moz-fit-content;
   width: fit-content;
   display: inline-block;
-  padding: 0.5em 1em;
-  padding-bottom: 0.6em;
+  padding: 0.9em;
+  padding-bottom: 1em;
   vertical-align: center;
   text-align: center;
   transition-timing-function: cubic-bezier(0.5, 0.1, 0.5, 0.9);
@@ -556,6 +556,15 @@ BUTTONS -----------------------------------------------------------------------
   box-shadow: 0 0 0 3px var(--hover-color);
 }
 
+.main-butt > *{
+  margin: 3px;
+}
+
+.main-butt > div > .ssb-butt{
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
 /*
 FOOTER ------------------------------------------------------------------------
 */
@@ -583,6 +592,9 @@ ul.breadcrumb {
   padding: 0.1em;
   list-style: none;
   white-space: nowrap;
+  transition-timing-function: cubic-bezier(0.5, 0.1, 0.5, 0.9);
+  transition-property: opacity;
+  transition-duration: 0.25s;
 }
 
 ul.breadcrumb li {
