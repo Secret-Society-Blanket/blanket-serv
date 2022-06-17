@@ -38,7 +38,7 @@
     <div id="swup" class="transition-slide">
         <div class="main-cont antialiased">
             <div id="fade-enabled" class="center-cont ssb-font fade">
-                <div class="mangalist">
+                <div class="card-list">
                     <?php
 
                     $mangas = mysqli_fetch_all(getSqlRows($db, $MANGA_TABLE), MYSQLI_BOTH);
@@ -55,8 +55,8 @@
                         $date = end(get_order_chapters($manga['id']))['release_date'];
 
                     ?>
-                    <div class="fc b-r manga-card glass">
-                        <img class="manga-image" style="background: white;" src=content/<?= $manga['image_link'] ?>></img>
+                    <div class="fc b-r card glass">
+                        <a href="manga.php?manga_id=<?= $manga['id'] ?>"><img class="card-image" style="background: white;" src=content/<?= $manga['image_link'] ?>></img></a>
                         <a style="font-size: 30px; line-height: 0.8em; margin-bottom: 5px;" href="manga.php?manga_id=<?= $manga['id'] ?>"> <?= $manga['title'] ?><a />
                             <a style="font-size: 20px; text-decoration: underline; margin-bottom: 5px;" href="author.php?author_id=<?= $author['id'] ?>"> By&nbsp;<?= $author['name'] ?></a>
                             <p>Last updated <?=$date?></p>
