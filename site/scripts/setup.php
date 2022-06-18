@@ -23,8 +23,8 @@
 require_once __DIR__ . '/utils.php';
 
 
-const CHAPTER_TABLE_SCHEMA = "CREATE TABLE chapters (
-id MEDIUMINT NOT NULL AUTO_INCREMENT," .
+const CHAPTER_TABLE_SCHEMA = "CREATE TABLE " . CHAPTER_TABLE . " (" .
+    " id MEDIUMINT NOT NULL AUTO_INCREMENT," .
     " manga_id INT," .
     " title TEXT," .
     " path TEXT," .
@@ -36,15 +36,18 @@ id MEDIUMINT NOT NULL AUTO_INCREMENT," .
     " mangadex TEXT," .
     " credits TEXT," .
     " PRIMARY KEY (id))";
-const AUTHOR_TABLE_SCHEMA =
-"CREATE TABLE authors (" .
+const AUTHOR_TABLE_SCHEMA = "CREATE TABLE . " . AUTHOR_TABLE . " (" .
     " id MEDIUMINT AUTO_INCREMENT," .
     " name TEXT," .
-    " links TEXT," .
+    " japanese_name TEXT," .
+    " twitter TEXT," .
+    " pixiv TEXT," .
+    " description TEXT," .
+    " is_nsfw BOOLEAN," .
     " avatar_link TEXT," .
     " PRIMARY KEY (id))";
-const MANGA_TABLE_SCHEMA = "CREATE TABLE manga (" .
-    "id MEDIUMINT AUTO_INCREMENT," .
+const MANGA_TABLE_SCHEMA = "CREATE TABLE " . MANGA_TABLE . " (" .
+    " id MEDIUMINT AUTO_INCREMENT," .
     " title TEXT," .
     " original_title TEXT," .
     " author_id INT," .
@@ -160,7 +163,7 @@ function matchTableToTemplate($db, $templatedb, $tablename)
 
             $position = "FIRST";
             if ($num != 0) {
-                $position = "AFTER " . $ttemplate[$num-1][0];
+                $position = "AFTER " . $ttemplate[$num - 1][0];
             }
 
             $res = mysqli_query($db, "ALTER TABLE $tablename ADD $name $type $cannull $primary $default $extra $position");

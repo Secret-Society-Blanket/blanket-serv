@@ -51,12 +51,12 @@
                         if ($manga['is_oneshot']) {
                             $num = "Oneshot";
                         }
-                        
+
                         $date = end(get_order_chapters($manga['id']))['release_date'];
 
                     ?>
                     <div class="fc b-r card glass">
-                        <a href="/manga.php?manga_id=<?= $manga['id'] ?>"><img class="card-image transition" data-swup-transition="left" style="background: white;" src=content/<?= $manga['image_link'] ?>></img></a>
+                        <a href="/manga.php?manga_id=<?= $manga['id'] ?>" class="transition" data-swup-transition="left" ><img class="card-image"  style="background: white;" src=content/<?= $manga['image_link'] ?>></img></a>
                         <a style="font-size: 30px; line-height: 0.8em; margin-bottom: 5px;" href="/manga.php?manga_id=<?= $manga['id'] ?>" data-swup-transition="left" class="transition"> <?= $manga['title'] ?><a />
                             <a style="font-size: 20px; text-decoration: underline; margin-bottom: 5px;" href="/author.php?author_id=<?= $author['id'] ?>" data-swup-transition="left" class="transition"> By&nbsp;<?= $author['name'] ?></a>
                             <p>Last updated <?=$date?></p>

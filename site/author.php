@@ -23,13 +23,13 @@ include __DIR__ . '/scripts/show_author.php';
     <link rel="icon" type="image/png" sizes="512x512" href="img/favicon-android-splash.png" />
 
     <style>
-    html,
-    body,
-    div#swup {
-        overflow: hidden;
-        position: relative;
-        height: 100%;
-    }
+        html,
+        body,
+        div#swup {
+            overflow: hidden;
+            position: relative;
+            height: 100%;
+        }
     </style>
     <title><?= $author['name'] ?></title>
     <link rel="stylesheet" type="text/css" href="/style/main.css" />
@@ -44,25 +44,39 @@ include __DIR__ . '/scripts/show_author.php';
                         <img class="author-image card-width" src="content/<?= $author['avatar_link'] ?>"></img>
                         <div class="glass b-r fc card-width" style="padding: 5px 7px 7px 7px;">
                             <p style="font-size: 45px;"><span class="title-en" style="display: inline-block;"><?= $author['name'] ?></span></p>
-                            <p style="padding-top: 5px;" class="title-og">[Author name JP]</p>
+                            <p style="padding-top: 5px;" class="title-og"><?=$author['japanese_name']?></p>
                         </div>
                     </div>
                     <div class="fc info-align" style="flex-basis: 1;">
                         <div class="glass b-r fc card-width" style="padding: 5px; align-items: center;">
+                            <?php
+                            if (!$author['is_nsfw']) {
+                            ?>
                             <p class="glass b-r warning-sfw" style="padding: 5px; padding-bottom: 8px;">This author is SFW or has<br>a separate NSFW account.</p>
+                            <?php
+                            }
+                            else { ?>
                             <p class="glass b-r warning-nsfw" style="padding: 5px; padding-bottom: 8px;margin-bottom: 10px;">This author posts NSFW things.<br>Click at your own risk!</p>
+                            <?php } ?>
                             <div class="fr latest-butt">
-                                <a href="[Twitter link]" class="ssb-butt ssb-butt-sm ssb-tw" style="border-radius: 4px; padding: 8px;"><span class="fr" style="align-items: center;"><img class="mini-logo" src="img/twitter.png"></img><span style="padding-bottom: 1px;">&nbsp;&nbsp;Twitter</span></span></a>
-                                <a href="[Pixiv link]" class="ssb-butt ssb-butt-sm ssb-px" style="border-radius: 4px; padding: 8px;"><span class="fr" style="align-items: center;"><img class="mini-logo" src="img/pixiv.png"></img><span style="padding-bottom: 1px;">&nbsp;&nbsp;Pixiv</span></span></a>
+                                <?php if ($author['twitter'] != "") { ?>
+                                <a href="<?=$author['twitter']?>" class="ssb-butt ssb-butt-sm ssb-tw" style="border-radius: 4px; padding: 8px;"><span class="fr" style="align-items: center;"><img class="mini-logo" src="img/twitter.png"></img><span style="padding-bottom: 1px;">&nbsp;&nbsp;Twitter</span></span></a>
+                                <?php
+                                }
+                                if ($author['pixiv'] != "") { ?>
+                                <a href="<?=$author['pixiv']?>" class="ssb-butt ssb-butt-sm ssb-px" style="border-radius: 4px; padding: 8px;"><span class="fr" style="align-items: center;"><img class="mini-logo" src="img/pixiv.png"></img><span style="padding-bottom: 1px;">&nbsp;&nbsp;Pixiv</span></span></a>
+                                <?php } ?>
                             </div>
                         </div>
-                        <p class="manga-disc glass b-r">[Author description] blam blam sham plam damn now that is a description uwu owo yeah baby vine boom blam blam sham plam damn now that is a description uwu owo yeah baby vine boom</p>
+                        <p class="manga-disc glass b-r"><?=$author['description']?></p>
                     </div>
                 </div>
                 <div class="card-list">
                     <?php
         while ($manga = mysqli_fetch_array($mangas)) {
             $author = getSqlRowFromId($db, $AUTHOR_TABLE, $manga['author_id']);
+
+            $date = end(get_order_chapters($manga['id']))['release_date'];
             // This should link to the author
         ?>
                     <div class="fc b-r card glass">
