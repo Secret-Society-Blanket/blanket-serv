@@ -43,7 +43,7 @@ const AUTHOR_TABLE_SCHEMA = "CREATE TABLE . " . AUTHOR_TABLE . " (" .
     " twitter TEXT," .
     " pixiv TEXT," .
     " description TEXT," .
-    " is_nsfw BOOLEAN," .
+    "is_nsfw BOOLEAN," .
     " avatar_link TEXT," .
     " PRIMARY KEY (id))";
 const MANGA_TABLE_SCHEMA = "CREATE TABLE " . MANGA_TABLE . " (" .
@@ -84,6 +84,9 @@ function initDatabase($reset)
         mysqli_query($db, 'CREATE DATABASE ' . $config['database']['name']);
         mysqli_select_db($db, $config['database']['name']);
         $out .= ("Created database " . $config['database']['name'] . "<br>");
+    } else {
+        checkAdmin();
+
     }
 
     $out .= ("Loaded database " . $config['database']['name'] . "<br>");
