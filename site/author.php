@@ -76,6 +76,11 @@ include __DIR__ . '/scripts/show_author.php';
         while ($manga = mysqli_fetch_array($mangas)) {
             $author = getSqlRowFromId($db, $AUTHOR_TABLE, $manga['author_id']);
 
+            $num = $manga['num_chapters'] . " chapters";
+            if ($manga['is_oneshot']) {
+                $num = "Oneshot";
+            }
+
             $date = end(get_order_chapters($manga['id']))['release_date'];
             // This should link to the author
         ?>
