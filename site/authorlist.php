@@ -72,7 +72,6 @@ include __DIR__ . '/scripts/list_authors.php';
                 </div>
             </div>
         </div>
-        <script defer src="js/scroll-arrow-min.js"></script>
     </body>
 
 </html>

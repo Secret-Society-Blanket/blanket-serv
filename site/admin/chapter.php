@@ -85,7 +85,6 @@
         <div class="arrow arrow-up" id="arrow-up"><span class="rainbow">△</span></div>
         <div class="arrow arrow-down" id="arrow-down"><span class="rainbow">▽</span></div>
     </div>
-    <script defer src="../js/scroll-arrow-min.js"></script>
 </body>
 
 </html>

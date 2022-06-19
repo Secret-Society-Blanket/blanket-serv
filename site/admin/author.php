@@ -57,7 +57,6 @@ include __DIR__ . '/../scripts/new_author.php';
         </div>
         <div class="arrow arrow-up" id="arrow-up"><span class="rainbow">△</span></div>
         <div class="arrow arrow-down" id="arrow-down"><span class="rainbow">▽</span></div>
-        <script defer src="../js/scroll-arrow-min.js"></script>
     </div>
 </body>
 
