@@ -106,7 +106,7 @@ include __DIR__ . '/scripts/show_manga.php';
                             <a class="ssb-butt ssb-butt-sm ssb-md" style="position: relative; <?= $md ?>" href="<?= $chapter['mangadex'] ?>"><span class="tip read-hint">Read on MangaDex</span></a>
                             <a class="ssb-butt ssb-butt-sm ssb-dy" style="position: relative; <?= $dy ?>" href="<?= $chapter['dynasty'] ?>"><span class="tip read-hint">Read on Dynasty Scans</span></a>
                         </td>
-                        <td class="heart" style="font-family: 'JF Dot K14';">♥<span class="tip credits"><pre><?= $chapter['credits'] ?></pre></span></td>
+                        <td class="heart" style="font-family: 'JF Dot K14';">♥<span class="tip credits"><span style="white-space: pre;"><?= $chapter['credits'] ?></span></span></td>
                         <td class="date"><?= $chapter['release_date'] ?></td>
 
                     </tr>
