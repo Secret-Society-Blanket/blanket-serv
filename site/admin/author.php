@@ -45,7 +45,7 @@ include __DIR__ . '/../scripts/new_author.php';
                 <input type="file" id="image" name="image" class="file" />
                 <label for="image" class="file">Author image</label><br>
                 <input type="text" id="author-name" name="author-name" placeholder="Author name" class="input" /><br>
-                <input type="text" id="japanese_name" name="japanese_name" placeholder="Japanese name" class="input" /><br>
+                <input type="text" id="japanese_name" name="japanese_name" placeholder="Japanese name" class="input" style="font-family: 'JF Dot K14'"/><br>
                 <input type="text" id="twitter" name="twitter" placeholder="Twitter" class="input" /><br>
                 <input type="text" id="pixiv" name="pixiv"  placeholder="Pixiv" class="input" /><br>
                 <textarea id="description" name="description" style="margin: 0.2rem" placeholder="Enter a description..."></textarea><br>
