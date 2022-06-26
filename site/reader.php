@@ -41,7 +41,7 @@ include __DIR__ . '/scripts/reader.php';
 <body class="ssb-bg">
     <div id="swup" class="transition-slide">
         <div class="main-cont antialiased">
-            <div id="fade-enabled" class="center-cont reader ssb-font fade-reader">
+            <div id="fade-enabled" class="center-cont reader ssb-font fade-reader" style="padding-bottom: 0px;">
                 <div id="page-holder">
                     <a data-swup-transition="left" href=/<?= $next_page_link ?>>
                         <img id="page" class="reader-image-width" src='<?= $image_link ?>'></img>
@@ -52,13 +52,7 @@ include __DIR__ . '/scripts/reader.php';
                     <input type="checkbox" id="fit-page" name="fit-page" class="checkbox-fit-page ssb-font">
                     <a data-swup-transition="left" class="ssb-butt ssb-butt-sm ssb-g flip" href=/<?= $next_page_link ?>><?=$next_page_text?> &gt;</a>
                 </div>
-            </div>
-            <div class="arrow arrow-up" id="arrow-up">△</div>
-            <div class="arrow arrow-down" id="arrow-down">▽</div>
-        </div>
-        <div class="footer-main antialiased">
-            <div class="footer-content">
-                <ul id="breadcrumb" class="breadcrumb ssb-font" style="padding: 0.2em;">
+                <ul id="breadcrumb" class="breadcrumb ssb-font" style="padding: 0.2em; opacity: 100%;">
                     <li><a data-swup-transition="right" href="/index.html">Home</a></li>
                     <li><a data-swup-transition="right" href="/mangalist.php">Manga List</a></li>
                     <li><a data-swup-transition="right" href="/manga.php?manga_id=<?= $manga['id'] ?>"><?= $manga['title'] ?></a></li>

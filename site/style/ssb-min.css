@@ -511,6 +511,17 @@ Default BACKGROUND, FONT, and CONTENT settings --------------------------------
   background-position: bottom;
 }
 
+.reader-bg:before {
+    content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-image: linear-gradient(to bottom right,black,black);
+        opacity: .8; 
+  }
+
 .ssb-font {
   font-family: "Orange Kid";
   color: rgb(255, 255, 255);
