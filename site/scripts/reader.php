@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/utils.php';
 
-const RETURN = "Return to Manga Page";
+const RET = "Return to Manga Page";
 const NEXTCHAP = "Next Chapter";
 const NEXT = "Next";
 const PREV = "Prev";
@@ -50,7 +50,7 @@ if ($_GET) {
       // If the next chapter doesn't exist
       if ($next_chapter == array_key_last($chapters)) {
         $done_manga = true;
-        $next_page_text = RETURN;
+        $next_page_text = RET;
       } else {
         $next_chapter++;
         $next_page = 0;
@@ -72,20 +72,20 @@ if ($_GET) {
     if ($prev_page < 0) {
       if ($prev_chapter == array_key_first($chapters)) {
         $done_manga = true;
-        $prev_page_text = RETURN;
+        $prev_page_text = RET;
       } else {
         $prev_chapter--;
         $prev_pages = get_pages($chapters[$prev_chapter]['id']);
         $prev_page = count($prev_pages) - 1;
+        $prev_page_text = "Previous Chapter";
       }
     }
 
     if ($done_manga) {
-      $prev_page_link = "reader.php?manga_id={$manga['id']}&num_chapter={$prev_chapter}&page={$prev_page}";
-      $prev_page_text = "Previous Chapter";
+    $prev_page_link = "manga.php?manga_id={$manga['id']}";
+    $prev_page_text = RET;
     } else {
-      $prev_page_link = "manga.php?manga_id={$manga['id']}";
-      $prev_page_text = RETURN;
+        $prev_page_link = "reader.php?manga_id={$manga['id']}&num_chapter={$prev_chapter}&page={$prev_page}";
     }
   }
 }
