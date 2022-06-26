@@ -81,6 +81,13 @@ function init() {
         }
         document.getElementById('fit-page').addEventListener('change', toggleFit);
     }
+    
+    if (document.getElementById('page') != null){
+        document.head.appendChild(document.createElement("style")).innerHTML = "#bg:before {opacity: 0.8}";
+    }
+    else{
+        document.head.appendChild(document.createElement("style")).innerHTML = "#bg:before {opacity: 0}";
+    }
 }
 
 function unload() {

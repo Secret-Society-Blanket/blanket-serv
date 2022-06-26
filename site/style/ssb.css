@@ -431,7 +431,10 @@ Default BACKGROUND, FONT, and CONTENT settings --------------------------------
   background-position: bottom;
 }
 
-.reader-bg:before {
+#bg:before {
+  transition-timing-function: cubic-bezier(0.5, 0.1, 0.5, 0.9);
+  transition-property: opacity;
+  transition-duration: 0.25s;
     content: '';
         position: absolute;
         top: 0;
@@ -439,7 +442,7 @@ Default BACKGROUND, FONT, and CONTENT settings --------------------------------
         bottom: 0;
         left: 0;
         background-image: linear-gradient(to bottom right,black,black);
-        opacity: .8; 
+        opacity: 0; 
   }
 
 .ssb-font {
