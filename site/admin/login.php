@@ -31,7 +31,7 @@
     <title>Admin Login Page</title>
 </head>
 
-<body class="ssb-bg">
+<body id="bg" class="ssb-bg">
     <div id="swup" class="transition-slide">
     <div class="main-cont antialiased">
         <div class="center-cont ssb-font">

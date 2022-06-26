@@ -36,7 +36,7 @@ include __DIR__ . '/../scripts/new_author.php';
     </title>
 </head>
 
-<body class="ssb-bg">
+<body id="bg" class="ssb-bg">
     <div class="main-cont antialiased">
         <div id="fade-enabled" class="center-cont ssb-font fade">
             <p style="font-size: 30px; padding-bottom: 1em;" class="ssb-font"><span class="rainbow">Create an author</span></p>

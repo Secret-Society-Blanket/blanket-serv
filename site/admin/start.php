@@ -31,7 +31,7 @@
     <title>Setup Page</title>
 </head>
 
-<body class="ssb-bg">
+<body id="bg" class="ssb-bg">
     <div class="main-cont antialiased">
         <div class="center-cont ssb-font">
             <p style="font-size: 30px; padding-bottom: 1em;" class="ssb-font"> Create an <span class="rainbow">admin account!</span></p>

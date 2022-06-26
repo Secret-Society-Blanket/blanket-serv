@@ -38,7 +38,7 @@ include __DIR__ . '/scripts/reader.php';
     <link rel="stylesheet" type="text/css" href="/style/reader.css" />
 </head>
 
-<body class="ssb-bg">
+<body id="bg" class="ssb-bg">
     <div id="swup" class="transition-slide">
         <div class="main-cont antialiased">
             <div id="fade-enabled" class="center-cont reader ssb-font fade-reader" style="padding-bottom: 0px;">

@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="/style/main.css" />
 </head>
 
-<body class="ssb-bg">
+<body id="bg" class="ssb-bg">
     <div id="swup" class="transition-slide">
         <div class="main-cont antialiased">
             <div id="fade-enabled" class="center-cont ssb-font fade">

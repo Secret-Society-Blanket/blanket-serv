@@ -34,7 +34,7 @@ checkAdmin();
     <title>Admin Index</title>
 </head>
 
-<body class="ssb-bg">
+<body id="bg" class="ssb-bg">
     <div id="swup" class="transition-slide">
         <div class="main-cont antialiased">
             <div class="center-cont">
