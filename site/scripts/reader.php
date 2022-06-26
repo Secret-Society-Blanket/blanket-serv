@@ -78,7 +78,7 @@ if ($_GET) {
       } else {
         $prev_chapter--;
         $prev_pages = get_pages($chapters[$prev_chapter]['id']);
-        $prev_page = count($prev_pages) - 1;
+        $prev_page = 0;
         $prev_page_text = "Previous Chapter";
       }
     }
