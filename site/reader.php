@@ -48,13 +48,13 @@ include __DIR__ . '/scripts/reader.php';
                     </a>
                 </div>
                 <div class="reader-settings fr">
-                    <a data-swup-transition="right" class="ssb-butt ssb-butt-sm ssb-o flip" style="<?=$prev_page_style?>" href=/<?= $prev_page_link ?>>&lt;<?=$prev_page_text?></a>
+                    <a data-swup-transition="right" class="ssb-butt ssb-butt-sm ssb-o flip" style="<?=$prev_page_style?>" href=/<?= $prev_page_link ?>>&lt; <?=$prev_page_text?></a>
                     <input type="checkbox" id="fit-page" name="fit-page" class="checkbox-fit-page ssb-font">
-                    <a data-swup-transition="left" class="ssb-butt ssb-butt-sm ssb-g flip" href=/<?= $next_page_link ?>><?=$next_page_text?>&gt;</a>
+                    <a data-swup-transition="left" class="ssb-butt ssb-butt-sm ssb-g flip" href=/<?= $next_page_link ?>><?=$next_page_text?> &gt;</a>
                 </div>
             </div>
-            <div class="arrow arrow-up" id="arrow-up"><span class="rainbow">△</span></div>
-            <div class="arrow arrow-down" id="arrow-down"><span class="rainbow">▽</span></div>
+            <div class="arrow arrow-up" id="arrow-up">△</div>
+            <div class="arrow arrow-down" id="arrow-down">▽</div>
         </div>
         <div class="footer-main antialiased">
             <div class="footer-content">
@@ -62,7 +62,7 @@ include __DIR__ . '/scripts/reader.php';
                     <li><a data-swup-transition="right" href="/index.html">Home</a></li>
                     <li><a data-swup-transition="right" href="/mangalist.php">Manga List</a></li>
                     <li><a data-swup-transition="right" href="/manga.php?manga_id=<?= $manga['id'] ?>"><?= $manga['title'] ?></a></li>
-                    <li><a>1 - Nom the bomb chrom shlom eat the pant</a></li>
+                    <li><a>[ch num] - [ch title]</a></li>
                 </ul>
             </div>
         </div>
