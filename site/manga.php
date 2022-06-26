@@ -11,7 +11,7 @@ include __DIR__ . '/scripts/show_manga.php';
     <link rel="stylesheet" href="style/ssb-min.css">
     <script src="https://unpkg.com/swup@latest/dist/swup.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <script defer src="js/swup.js"></script>
+    <script defer src="js/main.js"></script>
     <script src="js/rainbowify.js"></script>
 
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="img/favicon-ios.png" />
@@ -101,7 +101,7 @@ include __DIR__ . '/scripts/show_manga.php';
                     <tr class="glass" style="align-items: center;">
                         <td class="ch-title"><?= $chapnum ?><?= $chapter['title'] ?></td>
                         <td class="read-buttons">
-                            <a class="ssb-butt ssb-butt-sm ssb-hm" style="position: relative; <?= $lc ?>" href="<?= buildMangaUrl($manga['id'], $chapter['number']) ?>"><span class="tip read-hint">Read here</span></a>
+                            <a data-swup-transition="left" class="ssb-butt ssb-butt-sm ssb-hm" style="position: relative; <?= $lc ?>" href="/<?= buildMangaUrl($manga['id'], $chapter['number']) ?>"><span class="tip read-hint">Read here</span></a>
                             <a class="ssb-butt ssb-butt-sm ssb-tw" style="position: relative; <?= $tw ?>" href="<?= $chapter['twitter'] ?>"><span class="tip read-hint">Read on Twitter</span></a>
                             <a class="ssb-butt ssb-butt-sm ssb-md" style="position: relative; <?= $md ?>" href="<?= $chapter['mangadex'] ?>"><span class="tip read-hint">Read on MangaDex</span></a>
                             <a class="ssb-butt ssb-butt-sm ssb-dy" style="position: relative; <?= $dy ?>" href="<?= $chapter['dynasty'] ?>"><span class="tip read-hint">Read on Dynasty Scans</span></a>

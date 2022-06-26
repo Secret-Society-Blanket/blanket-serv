@@ -1302,9 +1302,15 @@ READER ------------------------------------------------------------------------
 .reader-image-width{
   -o-object-fit: contain;
   object-fit: contain;
-  width: 100%;
+  width: 98vw;
   min-width: initial;
   max-width: initial;
+}
+
+@media screen and (max-width: 625px) {
+  .reader-image-width{
+    width: 95vw;
+  }
 }
 
 .reader-image-height{

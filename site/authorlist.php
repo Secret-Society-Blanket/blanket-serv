@@ -11,7 +11,7 @@ include __DIR__ . '/scripts/list_authors.php';
         <link rel="stylesheet" href="style/tw-snippets-min.css">
         <link rel="stylesheet" href="style/ssb-min.css">
         <script src="https://unpkg.com/swup@latest/dist/swup.min.js"></script>
-        <script defer src="js/swup.js"></script>
+        <script defer src="js/main.js"></script>
         <script src="js/rainbowify.js"></script>
         <script defer src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="img/favicon-ios.png" />

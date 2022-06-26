@@ -12,7 +12,7 @@ include __DIR__ . '/scripts/show_author.php';
     <link rel="stylesheet" href="style/ssb-min.css">
     <script src="https://unpkg.com/swup@latest/dist/swup.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <script defer src="js/swup.js"></script>
+    <script defer src="js/main.js"></script>
     <script src="js/rainbowify.js"></script>
 
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="img/favicon-ios.png" />
@@ -85,8 +85,8 @@ include __DIR__ . '/scripts/show_author.php';
             // This should link to the author
         ?>
                     <div class="fc b-r card glass">
-                        <a href="manga.php?manga_id=<?= $manga['id'] ?>"><img class="card-image" style="background: white;" src=content/<?= $manga['image_link'] ?>></img></a>
-                        <a style="font-size: 30px; line-height: 0.8em; margin-bottom: 5px;" href="manga.php?manga_id=<?= $manga['id'] ?>"> <?= $manga['title'] ?></a>
+                        <a href="/manga.php?manga_id=<?= $manga['id'] ?>" data-swup-transition="left"><img class="card-image" style="background: white;" src=content/<?= $manga['image_link'] ?>></img></a>
+                        <a style="font-size: 30px; line-height: 0.8em; margin-bottom: 5px;" data-swup-transition="left" href="/manga.php?manga_id=<?= $manga['id'] ?>"> <?= $manga['title'] ?></a>
                         <p>Last updated <?=$date?></p>
                         <p><?= $num ?></p>
                         <p class="mini-disc"><?= $manga['description'] ?></p>

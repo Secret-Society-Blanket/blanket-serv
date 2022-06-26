@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../style/tw-snippets-min.css">
     <link rel="stylesheet" href="../style/ssb-min.css">
     <script src="https://unpkg.com/swup@latest/dist/swup.min.js"></script>
-    <script defer src="../js/swup.js"></script>
+    <script defer src="../js/main.js"></script>
     <script src="../js/rainbowify.js"></script>
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../img/favicon-ios.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16.png" />
