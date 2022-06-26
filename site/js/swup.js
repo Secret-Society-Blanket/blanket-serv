@@ -28,6 +28,7 @@ function init() {
       document.getElementById('fade-enabled').addEventListener('scroll', arrows, false)
       window.addEventListener("resize", arrows, false)
       window.addEventListener("DOMContentLoaded", arrows, false)
+	  window.addEventListener("load", arrows, false)
     }
 }
 
