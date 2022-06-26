@@ -48,7 +48,9 @@ include __DIR__ . '/scripts/reader.php';
                     </a>
                 </div>
                 <div class="reader-settings fr">
-                    <input type="checkbox" id="fit-page" name="fit-page" class="checkbox-fit-page ssb-font"><br>
+                    <a data-swup-transition="right" class="ssb-butt ssb-butt-sm ssb-o flip" href=/<?= $prev_page_link ?>>&lt; Prev.</a>
+                    <input type="checkbox" id="fit-page" name="fit-page" class="checkbox-fit-page ssb-font">
+                    <a data-swup-transition="left" class="ssb-butt ssb-butt-sm ssb-g flip" href=/<?= $next_page_link ?>>Next &gt;</a>
                 </div>
             </div>
             <div class="arrow arrow-up" id="arrow-up"><span class="rainbow">△</span></div>

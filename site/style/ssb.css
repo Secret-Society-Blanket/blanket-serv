@@ -2,7 +2,7 @@
 TOP LEVEL STYLES
 */
 
-.arrow{
+.arrow {
   font-family: "JF Dot K14";
   line-height: 1em;
   font-size: 18px;
@@ -82,14 +82,16 @@ TOP LEVEL STYLES
 }
 
 @media screen and (max-width: 625px) {
-  .center-cont, .center-cont.reader {
+
+  .center-cont,
+  .center-cont.reader {
     width: calc(100vw - 10px);
     max-width: initial;
     min-width: initial;
   }
 }
 
-.center-cont.reader{
+.center-cont.reader {
   width: calc(100% - 20px);
   height: calc(100% - 6px);
   max-height: initial;
@@ -248,7 +250,7 @@ FONTS and COLOR VARIABLES -----------------------------------------------------
   --outline: var(--ssb-p);
 }
 
-.ssb-px{
+.ssb-px {
   color: rgb(1, 150, 251);
   background-color: rgb(1, 150, 251);
   --hover-color: rgba(1, 150, 251, 0.5);
@@ -437,7 +439,7 @@ Default BACKGROUND, FONT, and CONTENT settings --------------------------------
   text-align: center;
 }
 
-.ssb-font-shadow{
+.ssb-font-shadow {
   text-shadow: 0.2ch 0.2ch 0em rgba(0, 0, 0, 0.5), 0px 0px 25px rgba(100, 100, 100, 1);
 }
 
@@ -500,11 +502,11 @@ BUTTONS -----------------------------------------------------------------------
   box-shadow: 0 0 0 3px var(--hover-color);
 }
 
-.main-butt > *{
+.main-butt>* {
   margin: 3px;
 }
 
-.main-butt > div > .ssb-butt{
+.main-butt>div>.ssb-butt {
   margin-left: 3px;
   margin-right: 3px;
 }
@@ -850,7 +852,7 @@ MANGA page --------------------------------------------------------------------
   justify-content: center;
 }
 
-.no-permissions{
+.no-permissions {
   position: absolute;
   text-align: center;
   width: fit-content;
@@ -878,7 +880,7 @@ MANGA page --------------------------------------------------------------------
   padding-bottom: 0.6em;
 }
 
-.read-buttons > .ssb-butt {
+.read-buttons>.ssb-butt {
   padding: 0.5em;
   padding-left: 1em;
   padding-right: 1em;
@@ -968,7 +970,7 @@ CHAPTER tables ----------------------------------------------------------------
   width: 100%;
 }
 
-.manga-ch tbody{
+.manga-ch tbody {
   /*I have no idea why I have to put this again, since it should be inherited*/
   width: 50vw;
   min-width: 480px;
@@ -991,7 +993,7 @@ CHAPTER tables ----------------------------------------------------------------
   display: flex;
   flex-wrap: nowrap;
 
-  
+
 
   padding: 10px;
   margin: 1px;
@@ -1012,8 +1014,8 @@ CHAPTER tables ----------------------------------------------------------------
     flex-wrap: wrap !important;
     align-content: center
   }
-  
-  .ch-title{
+
+  .ch-title {
     width: 100%;
     flex-basis: 1;
     flex: initial;
@@ -1042,7 +1044,7 @@ CHAPTER tables ----------------------------------------------------------------
 }
 
 @media (max-width: 500px) {
-  .read-buttons > .ssb-butt:first-child > .tip {
+  .read-buttons>.ssb-butt:first-child>.tip {
     left: 100%;
   }
 }
@@ -1113,39 +1115,39 @@ CHAPTER tables ----------------------------------------------------------------
 CARD LISTS --------------------------------------------------------------------
 */
 
-.card-list{
+.card-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.card{
+.card {
   margin: 5px;
   width: calc(25% - 10px);
   max-height: 450px;
 }
 
-@media screen and (max-width: 625px){
-  .card{
+@media screen and (max-width: 625px) {
+  .card {
     width: calc(33.333333% - 10px)
   }
 }
 
-@media screen and (max-width: 450px){
-  .card{
+@media screen and (max-width: 450px) {
+  .card {
     width: calc(50% - 10px)
   }
 }
 
-.card-image{
+.card-image {
   width: 100%;
   object-fit: contain;
   border-radius: 7px 7px 0px 0px;
   margin-bottom: 5px;
 }
 
-.mini-disc{
+.mini-disc {
   text-align: justify;
   overflow: scroll;
   padding: 5px;
@@ -1156,7 +1158,7 @@ CARD LISTS --------------------------------------------------------------------
   height: 100%;
 }
 
-.author-card-image{
+.author-card-image {
   width: 400px;
   object-fit: revert;
 }
@@ -1165,7 +1167,7 @@ CARD LISTS --------------------------------------------------------------------
 AUTHOR PAGE -------------------------------------------------------------------
 */
 
-.author-image{
+.author-image {
   width: 100%;
   background: white;
   margin: 5px;
@@ -1174,12 +1176,12 @@ AUTHOR PAGE -------------------------------------------------------------------
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
 }
 
-.warning-sfw{
+.warning-sfw {
   text-align: center;
   background: rgba(37, 231, 39, 0.5);
 }
 
-.warning-nsfw{
+.warning-nsfw {
   text-align: center;
   background: rgba(255, 0, 0, 0.5);
 }
@@ -1188,16 +1190,22 @@ AUTHOR PAGE -------------------------------------------------------------------
   box-shadow: 0 0 0 2px var(--hover-color);
 }
 
-.mini-logo{
+.mini-logo {
   object-fit: contain;
-  width: 16px;  
+  width: 16px;
 }
 
 /*
 READER ------------------------------------------------------------------------
 */
 
-.reader-image-width{
+.animate-page{
+  transition-timing-function: cubic-bezier(0.5, 0.1, 0.5, 0.9);
+  transition-property: all;
+  transition-duration: 0.25s;
+}
+
+.reader-image-width {
   object-fit: contain;
   width: 98vw;
   min-width: initial;
@@ -1205,23 +1213,22 @@ READER ------------------------------------------------------------------------
 }
 
 @media screen and (max-width: 625px) {
-  .reader-image-width{
-    width: 95vw;
+  .reader-image-width {
+    width: calc(100vw - 20px);
   }
 }
 
-.reader-image-height{
-  height: 100%;
+.reader-image-height {
+  max-height: calc(100vh - 35px);
   min-height: initial;
-  max-height: initial;
   object-fit: contain;
 }
 
-.reader-settings{
-  padding-top: 10px;
+.reader-settings {
+  padding-top: 7px;
 }
 
-.reader-butt{
+.reader-butt {
   font-family: 'JF Dot K14';
   padding: 5px;
 }
@@ -1232,16 +1239,23 @@ input.checkbox-fit-page {
   border-radius: 0.5em;
   display: inline-block;
   padding: 0.5em 0.7em;
+  padding-top: 0.4em;
   vertical-align: center;
   transition-timing-function: cubic-bezier(0.5, 0.1, 0.5, 0.9);
   transition-property: box-shadow;
   transition-duration: 0.15s;
   outline: none;
+  width: fit-content;
+  height: fit-content;
 }
 
-.checkbox-fit-page:hover,
+.checkbox-fit-page:hover {
+  box-shadow: 0 0 0 0.2rem rgba(0, 191, 243, 0.5);
+  cursor: pointer;
+}
+
 .checkbox-fit-page:checked:hover {
-  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(68, 140, 203, 0.5);
   cursor: pointer;
 }
 
@@ -1259,4 +1273,11 @@ input.checkbox-fit-page {
   content: 'Fit width';
   font-size: 14px;
   position: relative;
+}
+
+.flip{
+  padding: 0.5em 0.7em;
+  padding-top: 0.4em;
+  margin: 0.2em;
+  line-height: 0.9em;
 }

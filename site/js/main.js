@@ -32,7 +32,7 @@ function toggleFit(){
 		document.getElementById('page').classList.add('reader-image-width');
 		document.getElementById('page-holder').style.width = 100 + "%";
 	}
-	
+	arrows();
 }
 
 
