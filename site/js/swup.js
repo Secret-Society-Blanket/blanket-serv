@@ -7,9 +7,11 @@ function arrows() {
 	{
 		document.getElementById("arrow-down").style.opacity = 0 + "%";
 		document.getElementById("breadcrumb").style.opacity = 100 + "%";
+		document.getElementById("breadcrumb").style.pointerEvents = "initial";
 	} else {
 		document.getElementById("arrow-down").style.opacity = 100 + "%";
 		document.getElementById("breadcrumb").style.opacity = 0 + "%";
+		document.getElementById("breadcrumb").style.pointerEvents = "none";
 	}
 
 	if (0 >= scrollTop) {
