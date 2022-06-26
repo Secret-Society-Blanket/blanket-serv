@@ -19,6 +19,7 @@ $next_page_link;
 $prev_page_link;
 $next_page_text;
 $prev_page_text;
+$prev_chapter_style = "";
 
 if ($_GET) {
   if (isset($_GET['manga_id'])) {
@@ -72,7 +73,8 @@ if ($_GET) {
     if ($prev_page < 0) {
       if ($prev_chapter == array_key_first($chapters)) {
         $done_manga = true;
-        $prev_page_text = RET;
+        $prev_page_text = PREV;
+        $prev_page_style = "pointer-events: None; visibility: hidden;";
       } else {
         $prev_chapter--;
         $prev_pages = get_pages($chapters[$prev_chapter]['id']);
@@ -83,7 +85,6 @@ if ($_GET) {
 
     if ($done_manga) {
     $prev_page_link = "manga.php?manga_id={$manga['id']}";
-    $prev_page_text = RET;
     } else {
         $prev_page_link = "reader.php?manga_id={$manga['id']}&num_chapter={$prev_chapter}&page={$prev_page}";
     }
