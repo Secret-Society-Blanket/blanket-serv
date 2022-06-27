@@ -25,7 +25,6 @@ if ($_GET) {
 
     $next_page_text = NEXT;
     $prev_page_text = PREV;
-    $prev_page_style = "pointer-events: None; visibility: hidden;";
 
     $manga = getSqlRowFromId($db, $MANGA_TABLE, $_GET['manga_id']);
     $chapters = get_order_chapters($manga['id']);
