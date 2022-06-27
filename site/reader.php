@@ -56,7 +56,7 @@ include __DIR__ . '/scripts/reader.php';
                     <li><a data-swup-transition="right" href="/index.html">Home</a></li>
                     <li><a data-swup-transition="right" href="/mangalist.php">Manga List</a></li>
                     <li><a data-swup-transition="right" href="/manga.php?manga_id=<?= $manga['id'] ?>"><?= $manga['title'] ?></a></li>
-                    <li><a>[ch num] - [ch title]</a></li>
+                    <li><a><?=$chapter['number']?> - <?=$chapter['title']?></a></li>
                 </ul>
             </div>
         </div>
