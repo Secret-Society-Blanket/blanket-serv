@@ -41,7 +41,8 @@ include __DIR__ . '/scripts/reader.php';
         <div class="main-cont antialiased">
             <div id="fade-enabled" class="center-cont reader ssb-font fade-reader" style="padding-bottom: 0px;">
                 <div id="page-holder">
-                    <a data-swup-transition="left" href=/<?= $next_page_link ?>>
+                    <p id="loading" class="loading ssb-font" style="font-size: 40px"><span class="rainbow">Loading...</span></p>
+                    <a id="page-link" data-swup-transition="left" href=/<?= $next_page_link ?>>
                         <img id="page" class="reader-image-width" src='<?= $image_link ?>'></img>
                     </a>
                 </div>

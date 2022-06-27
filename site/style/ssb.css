@@ -1295,3 +1295,29 @@ input.checkbox-fit-page {
   margin: 0.2em;
   line-height: 0.9em;
 }
+
+.loading{
+  pointer-events: none;
+  text-align: center;
+  width: fit-content;
+  position: absolute;
+  transition-timing-function: cubic-bezier(0.5, 0.1, 0.5, 0.9);
+  transition-property: opacity;
+  transition-duration: 0.25s;
+  opacity: 1;
+  
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#page{
+  transition-timing-function: cubic-bezier(0.5, 0.1, 0.5, 0.9);
+  transition-property: opacity;
+  transition-duration: 0.25s;
+  opacity: 0;
+}
+
+#page-link{
+  pointer-events: none;
+}

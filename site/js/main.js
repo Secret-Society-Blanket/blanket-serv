@@ -60,6 +60,17 @@ function toggleFit(){
     arrows();
 }
 
+function loading(){
+    if (document.getElementById('page') != null && (document.getElementById('page').complete != 0 && document.getElementById('page').naturalHeight != 0)){
+        document.getElementById('loading').style.opacity = 0;
+        document.getElementById('page').style.opacity = 1;
+        document.getElementById('page-link').style.pointerEvents = "initial";
+    }
+    else if (document.getElementById('page') != null){
+        document.getElementById('page').addEventListener('load', loading, false);
+    }
+}
+
 
 
 function init() {
@@ -88,6 +99,7 @@ function init() {
     else{
         document.head.appendChild(document.createElement("style")).innerHTML = "#bg:before {opacity: 0}";
     }
+    loading();
 }
 
 function unload() {
