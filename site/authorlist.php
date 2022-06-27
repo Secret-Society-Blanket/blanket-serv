@@ -38,6 +38,7 @@ include __DIR__ . '/scripts/list_authors.php';
         <div id="swup" class="transition-slide">
             <div class="main-cont antialiased">
                 <div id="fade-enabled" class="center-cont ssb-font fade">
+                    <a data-swup-transition="right" style="padding: 0.7em; margin-top: 0.3em;" class="ssb-butt ssb-butt-sm ssb-tq" href="/mangalist.php">&lt; Manga list</a>
                     <div class="card-list">
                         <?php
                         usort($authors,

@@ -38,6 +38,7 @@
     <div id="swup" class="transition-slide">
         <div class="main-cont antialiased">
             <div id="fade-enabled" class="center-cont ssb-font fade">
+                <a data-swup-transition="left" style="padding: 0.7em; margin-top: 0.3em;" class="ssb-butt ssb-butt-sm ssb-g" href="/authorlist.php">Author list &gt;</a>
                 <div class="card-list">
                     <?php
 
