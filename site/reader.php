@@ -1,8 +1,6 @@
 <?php
 include __DIR__ . '/scripts/reader.php';
-?>
-
-<html>
+?> <html>
 
 <head>
     <meta charset="utf-8">
