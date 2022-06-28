@@ -177,6 +177,7 @@ function get_pages($chapter_id)
             array_push($pages, $content_directory . $chapter['path'] . '/' . $file);
         }
     }
+    sort($pages);
     return $pages;
 }
 
