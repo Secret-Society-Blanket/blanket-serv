@@ -39,23 +39,37 @@
         <div id="fade-enabled" class="center-cont ssb-font fade">
             <p style="font-size: 30px; padding-bottom: 1em;" class="ssb-font"><span class="rainbow">Upload chapter</span></p>
 
+            <form action="<?php $_PHP_SELF ?>" method="GET" style="margin: 0px">
+                <select id="chapter_id" name="chapter_id" class="selecter">
+                    <option value="" disabled selected >Select an chapter</option>
+                    <?= $chapteroption ?>
+                </select><br>
+                <p class="ssb-font" style="padding-bottom: 0.3em">then</p>
+                <input type="submit" value="Load chapter to edit" class="submit">
+            </form><br>
+            <p class="ssb-font" style="padding-bottom: 0.3em">Or click</p>
+            <form action="<?php $_PHP_SELF ?>" method="GET" style="margin: 0px;">
+                <input type="submit" value="Make new chapter" class="submit">
+            </form>
+            <p class="ssb-font" style="padding-bottom: 0.3em">and fill out</p>
             <form action="<?php $_PHP_SELF ?>" method="POST" enctype="multipart/form-data" autocomplete="off">
+                <?= $hidden ?>
                 <select id="manga-id" name="manga-id" />
-                <option value="" disabled selected>Select a manga</option>
+                <option value="" disabled <?= $defSelectManga ?>>Select a manga</option>
                 <?= $mangas ?>
                 </select><br>
 
-                <input type="number" id="number" name="number" step="any" placeholder="Chapter number" /><br>
-                <input type="text" id="chapter-title" name="chapter-title" placeholder="Chapter title" class="input" /><br>
-                <input type="text" id="twitter-link" name="twitter-link" placeholder="Twitter Link" class="input" /><br>
-                <input type="text" id="dynasty-link" name="dynasty-link" placeholder="Dynasty Link" class="input" /><br>
-                <input type="text" id="mangadex-link" name="mangadex-link" placeholder="Mangadex Link" class="input" /><br>
+                <input type="number" id="number" name="number" step="any" placeholder="Chapter number" value="<?= $getNumber ?>" /><br>
+                <input type="text" id="chapter-title" name="chapter-title" placeholder="Chapter title" class="input" value="<?= $getTitle ?>" /><br>
+                <input type="text" id="twitter-link" name="twitter-link" placeholder="Twitter Link" class="input" value="<?= $getTwitter?>" /><br>
+                <input type="text" id="dynasty-link" name="dynasty-link" placeholder="Dynasty Link" class="input" value="<?= $getDynasty ?>" /><br>
+                <input type="text" id="mangadex-link" name="mangadex-link" placeholder="Mangadex Link" class="input" value="<?= $getMangadex ?>"/><br>
                 <input type="file" id="file" name="file" class="file" />
                 <label for="file" class="file">Chapter ZIP</label><br>
-                <input type="checkbox" id="external-only" name="external-only" class="checkbox-ex ssb-font" value="Yes"><br>
-                <input type="date" id="release-date" name="release-date" style="margin: 0.2em" /><br>
-                <textarea id="credits" name="credits" placeholder="Add credits..." style="margin: 0.2rem"></textarea><br>
-                <input type="submit" id="submit" value="Submit" class="submit"/><br>
+                <input type="checkbox" id="external-only" name="external-only" class="checkbox-ex ssb-font" value="Yes" <?= $localonlychecked ?>><br>
+                <input type="date" id="release-date" name="release-date" style="margin: 0.2em" value="<?= $getReleaseDate ?>"/><br>
+                <textarea id="credits" name="credits" placeholder="Add credits..." style="margin: 0.2rem"><?= $getCredits ?></textarea><br>
+                <input type="submit" id="submit" value="Submit" class="submit" /><br>
             </form>
             <a class="ssb-butt ssb-butt-sm ssb-blk" href="index.php">Back</a>
             <p style="margin: 0.2rem"><?= $command_result ?> </p>

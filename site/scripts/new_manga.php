@@ -14,9 +14,7 @@
 // GNU General Public License for more details.
 
 // You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-// See LICENSE in root of repository
+// along with this program.  If not, see <https://www.gnu.org/licenses/>. // See LICENSE in root of repository
 require_once __DIR__ . '/utils.php';
 
 session_start();
@@ -52,16 +50,23 @@ if ($_POST) {
         $ogtitle = $_POST["manga-original-title"];
         $authorid = $_POST["authors"];
         $description = $_POST["description"];
-        if (isset($_FILES['image'])) {
+        $fileExists = ( $_FILES['image']['error'] == 0 );
+        if ($fileExists) {
             $imageLink = saveFile($_FILES['image']);
         }
         else {
             $imageLink = $manga['image_link'];
         }
         $oneShot = (int) isset($_POST["is-oneshot"]);
-        $mangaid = $_POST["manga-id"];
+        $mangaid = (int) $_POST["manga-id"];
 
-        mysqli_stmt_execute($prep);
+        $res = mysqli_stmt_execute($prep);
+        if ($res) {
+            $command_result = "Complete!";
+        }
+        else {
+            $command_result = "There was an error... </br>". mysqli_error($db);
+        }
     } else {
         $insert_q = "INSERT INTO {$MANGA_TABLE} (title, original_title, author_id, description, image_link, num_chapters, is_oneshot) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $prep = mysqli_prepare(
@@ -73,7 +78,8 @@ if ($_POST) {
         $ogtitle = $_POST["manga-original-title"];
         $authorid = $_POST["authors"];
         $description = $_POST["description"];
-        if (isset($_FILES['image'])) {
+        $fileExists = ( $_FILES['image']['error'] == 0 );
+        if ($fileExists) {
             $imageLink = saveFile($_FILES['image']);
         } else {
             $imageLink = "";
@@ -81,17 +87,28 @@ if ($_POST) {
 
         $isOneshot = (int) isset($_POST["is-oneshot"]);
         $chaps = 0;
-        mysqli_stmt_execute($prep);
+        $res = mysqli_stmt_execute($prep);
+        if (res) {
+            $command_result = "Complete!";
+        }
+        else {
+            $command_result = "There was an error... </br>". mysqli_error($db);
+        }
     }
-    $command_result = "Complete!";
 }
 $hidden = "";
+$getAuthor;
+$getTitle;
+$getOriginalTitle;
+$getImageLink;
+$isOneshot;
+$getDescription;
 if (isset($_GET["manga-id"])) {
     $manga = getSqlRowFromId($db, $MANGA_TABLE, $_GET["manga-id"]);
     $id = $manga['id'];
     $hidden = '<input type="hidden" id="manga-id" name="manga-id" value='.$id.'>';
     $getTitle = $manga["title"];
-    $getAuthor = $manga["author_id"];
+    $getAuthor = (int) $manga["author_id"];
     $getOriginalTitle = $manga["original_title"];
     $getDescription = $manga["description"];
     $getImageLink = $manga["image_link"];
@@ -109,14 +126,20 @@ if (isset($_GET["manga-id"])) {
 
 $results = getSqlRows($db, "authors");
 $authors = "";
+$select = NULL;
 while ($author = mysqli_fetch_array($results)) {
-    $select = NULL;
     if ($author['id'] == $getAuthor) {
         $select = "selected";
     }
     $authors = $authors . "<option value='{$author['id']}' selected='{$select}'>";
     $authors = $authors . $author['name'];
     $authors = $authors . "</option>";
+}
+if (!$select) {
+    $select = "selected='selected'";
+}
+else {
+    $select = "";
 }
 
 $mangas = "";

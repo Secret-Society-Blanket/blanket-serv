@@ -59,7 +59,7 @@ require __DIR__ . '/../scripts/new_manga.php';
                 <label for="image" class="file">Choose a cover image</label><br>
                 <select id="authors" name="authors" class="selecter">
                     <?= $authors ?>
-                    <option value="" disabled selected>Select an author</option>
+                    <option value="" disabled <?=$select?>>Select an author</option>
                 </select><br>
                 <input type="checkbox" id="is-oneshot" name="is-oneshot" class="checkbox-as ssb-font" value="<?= $isOneshot ?>"><br>
                 <textarea id="description" name="description" style="margin: 0.2rem" placeholder="Enter a description..."><?= $getDescription ?></textarea><br>

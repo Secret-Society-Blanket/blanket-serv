@@ -15,7 +15,6 @@
 
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
 // See LICENSE in root of repository
 require_once __DIR__ . '/utils.php';
 
@@ -24,16 +23,6 @@ $db = getSqli();
 checkAdmin();
 
 $mangas = "";
-$results = mysqli_query($db, "SELECT * FROM manga");
-while ($manga = mysqli_fetch_array($results)) {
-    $mangas = $mangas . "<option value='{$manga['id']}' ";
-    if ((isset($_['manga-id'])) && $_GET['manga-id'] == $manga['id']) {
-        echo ("selected='selected'");
-    }
-    $mangas = $mangas . '>';
-    $mangas = $mangas . $manga['title'];
-    $mangas = $mangas . "</option>";
-}
 
 function newChapter($req)
 {
@@ -44,14 +33,25 @@ function newChapter($req)
     $CHAPTER_TABLE = CHAPTER_TABLE;
 
     $command_result = "Something went wrong...";
-    $manga = getSqlRowFromId($db, MANGA_TABLE, $req['manga-id']);
-    $insert_c_q = "INSERT INTO {$CHAPTER_TABLE} (manga_id, path, number, title, release_date , credits, local, twitter, dynasty, mangadex) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $prep = mysqli_prepare(
-        $db,
-        $insert_c_q
-    );
+    $manga = NULL;
+    if ($edit) 
+    $edit = NULL;
+    // If this is set, we're editting a chapter
+    if ($req['chapter_id']) {
+        $edit = (int) $_POST["chapter_id"];
+        $query = "UPDATE {$CHAPTER_TABLE} SET manga_id= ?, path= ?, number= ?, title= ?, release_date = ?, credits= ?, local= ?, twitter= ?, dynasty= ?, mangadex = ? WHERE id = {$edit}";
+    } else {
+        $query = "INSERT INTO {$CHAPTER_TABLE} (manga_id, path, number, title, release_date , credits, local, twitter, dynasty, mangadex) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    }
+    if ($req['manga-id']) {
+        $manga = getSqlRowFromId($db, MANGA_TABLE, $req['manga-id']);
+    } 
+    else if ($edit) {$chapdb = getSqlRowFromId($db, CHAPTER_TABLE, $req['chapter_id']);
+        $manga = getSqlRowFromId($db, MANGA_TABLE, $chapdb['manga_id']);
+    }
+    $prep = mysqli_prepare($db, $query);
     if (!$prep) {
-        return "Couldn't create request $insert_c_q";
+        return "Couldn't create request $query";
     }
     mysqli_stmt_bind_param($prep, 'isdsssisss', $mangaid, $path, $number, $title, $releasedate, $credits, $local, $twitter, $dynasty, $mangadex);
     if ($manga == NULL) {
@@ -60,14 +60,20 @@ function newChapter($req)
     }
     $mangaid = $req['manga-id'];
     $mangaid = $req['manga-id'];
-    $path = saveChapter($_FILES['file']);
+    $fileExists = ( $_FILES['file']['error'] == 0) ;
+    if ($fileExists) {
+        $path = saveChapter($_FILES['file']);
+    }
+    else if ($edit) {
+        $chapdb = getSqlRowFromId($db, CHAPTER_TABLE, $req['chapter_id']);
+        $path = $chapdb["path"];
+    }
     $local = false;
-    if ($path == NULL && !$req['external-only']) {
+    if (!$edit && $path == NULL && !$req['external-only']) {
         $command_result = "Please upload a zip file!";
         return $command_result;
     }
     else if ($req['external-only']) {
-        $path = "!!external-only!!";
         $local = true;
     }
     if ($req["release-date"]) {
@@ -86,7 +92,7 @@ function newChapter($req)
         $title = $manga['title'] . "-" . $number;
     }
 
-    if (!$manga['is_oneshot']) {
+    if (!$manga['is_oneshot'] && !$edit) {
         $insert_m_q = "UPDATE {$MANGA_TABLE} SET num_chapters = ? WHERE id = ?";
         $prepm = mysqli_prepare(
             $db,
@@ -106,6 +112,64 @@ function newChapter($req)
 }
 
 $command_result = "";
+$getId = NULL;
+$getManga_id = NULL;
+$getTitle = NULL;
+$getPath = NULL;
+$getNumber = NULL;
+$getRelease_date = NULL;
+$getLocal = NULL;
+$getTwitter = NULL;
+$getDynasty = NULL;
+$getMangadex = NULL;
+$getCredits = NULL;
+$defSelectChap = "selected";
+$defSelectManga = "selected";
+$hidden = "";
+$localonlychecked = "";
 if ($_POST) {
     $command_result = newChapter($_POST);
+} else if (isset($_GET['chapter_id'])) {
+    $chapdb = getSqlRowFromId($db, CHAPTER_TABLE, $_GET['chapter_id']);
+    $defSelectChap = "";
+    $getId = $chapdb['id'];
+    $getManga_id = $chapdb['manga_id'];
+    $getTitle = $chapdb['title'];
+    $getPath = $chapdb['path'];
+    $getNumber = $chapdb['number'];
+    $getReleaseDate = $chapdb['release_date'];
+    $getLocal = $chapdb['local'];
+    if ($getLocal) {
+        $localonlychecked = "checked";
+    }
+    $getTwitter = $chapdb['twitter'];
+    $getDynasty = $chapdb['dynasty'];
+    $getMangadex = $chapdb['mangadex'];
+    $getCredits = $chapdb['credits'];
+    $defSelectManga = "";
+    $hidden = '<input type="hidden" id="chapter_id" name="chapter_id" value='.$getId.'>';
+}
+
+$chapteroption = "";
+$results = mysqli_query($db, "SELECT * FROM chapters");
+while ($chapter = mysqli_fetch_array($results)) {
+    $chapteroption = $chapteroption . "<option value='{$chapter['id']}' ";
+    if ((isset($_GET['chapter_id'])) && $_GET['chapter_id'] == $chapter['id']) {
+        $chapteroption .= "selected";
+    }
+    $chapteroption = $chapteroption . '>';
+    $chapteroption = $chapteroption . $chapter['title'];
+    $chapteroption = $chapteroption . "</option>";
+}
+
+
+$results = mysqli_query($db, "SELECT * FROM manga");
+while ($manga = mysqli_fetch_array($results)) {
+    $mangas = $mangas . "<option value='{$manga['id']}' ";
+    if ($getManga_id == $manga['id']) {
+        $mangas .= "selected";
+    }
+    $mangas = $mangas . '>';
+    $mangas = $mangas . $manga['title'];
+    $mangas = $mangas . "</option>";
 }

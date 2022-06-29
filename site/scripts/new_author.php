@@ -20,24 +20,81 @@
 require_once __DIR__ . '/utils.php';
 checkAdmin();
 $command_result = "";
+$db = getSqli();
 if ($_POST) {
+    $edit = NULL;
+    $authordb = NULL;
+    if (isset($_POST["author_id"])) {
+        $edit = (int) $_POST["author_id"];
+        $authordb = getSqlRowFromId($db, AUTHOR_TABLE, $_POST["author_id"]);
+    }
     $command_result = "Error, something went wrong.";
     $db = getSqli();
-    $prep = mysqli_prepare(
+    $prep; if ($edit) {$prep = mysqli_prepare(
         $db,
-        "INSERT INTO {$AUTHOR_TABLE} (name, japanese_name, twitter, pixiv, is_nsfw, description, avatar_link)
-                            VALUES (?, ?, ?, ?, ?, ?, ?)"
-    );
+        "UPDATE {$AUTHOR_TABLE} SET name = ?, japanese_name = ?, twitter = ?, pixiv = ?, is_nsfw = ?, description = ?, avatar_link = ? WHERE id = {$edit}");
+    } else {
+        $prep = mysqli_prepare(
+            $db,
+            "INSERT INTO {$AUTHOR_TABLE} (name, japanese_name, twitter, pixiv, is_nsfw, description, avatar_link)
+                                VALUES (?, ?, ?, ?, ?, ?, ?)"
+        );
+    }
     mysqli_stmt_bind_param($prep, 'ssssiss', $author, $j_name, $twitter, $pixiv, $nsfw, $desc, $alink);
     $author = $_POST["author-name"];
     $j_name = $_POST["japanese_name"];
     $twitter = $_POST["twitter"];
     $pixiv = $_POST["pixiv"];
-    $nsfw = ($_POST["is-nsfw"] == "nsfw");
+    $nsfw = (int) isset($_POST["is-nsfw"]);
     $desc = $_POST["description"];
-    $alink = saveFile($_FILES['image']);
+    $fileExists = ( $_FILES['image']['error'] == 0 );
+    if ($authordb && !$fileExists) {
+        $alink = $authordb['avatar_link'];
+    } else if ($fileExists) {
+        $alink = saveFile($_FILES['image']);
+    }
     $res = mysqli_stmt_execute($prep);
     if ($res) {
         $command_result = "Complete!";
     }
+}
+
+$author = NULL;
+$getId = NULL;
+$hidden = NULL;
+$getAuthorName = NULL;
+$getAuthorJapaneseName = NULL;
+$getTwitter = NULL;
+$getPixiv = NULL;
+$getDesc = NULL;
+$getNsfw = NULL;
+$getNsfwString = NULL;
+if ($_GET) {
+    $hidden = "";
+    if (isset($_GET["author_id"])) {
+        $author = getSqlRowFromId($db, AUTHOR_TABLE, $_GET["author_id"]);
+        $getId = $author['id'];
+        $hidden = "<input type='hidden' id='author_id' name='author_id' value='$getId'>";
+        $getAuthorName = $author["name"];
+        $getAuthorJapaneseName = $author["japanese_name"];
+        $getTwitter = $author["twitter"];
+        $getPixiv = $author["pixiv"];
+        $getDesc = $author["description"];
+        $getNsfw = $author["is_nsfw"];
+        if ($getNsfw) {
+            $getNsfwString = "checked";
+        }
+    }
+}
+
+$authoroption = "";
+$results = mysqli_query($db, "SELECT * FROM $AUTHOR_TABLE");
+while ($author = mysqli_fetch_array($results)) {
+    $authoroption = $authoroption . "<option value='{$author['id']}' ";
+    if ((isset($_['author_id'])) && $_GET['author_id'] == $author['id']) {
+        echo ("selected='selected'");
+    }
+    $authoroption = $authoroption . '>';
+    $authoroption = $authoroption . $author['name'];
+    $authoroption = $authoroption . "</option>";
 }
