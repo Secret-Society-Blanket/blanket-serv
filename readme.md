@@ -3,7 +3,7 @@
 This is a simple php site built to list and display manga. This was specifically built for Secret Society Blanket (hence the name), however it could adapted for any manga creator or translator.
 
 
-## Dependencies 
+## Dependencies
 
 This site is built around using docker, so its immediate dependencies are limited.
 
@@ -12,9 +12,9 @@ This site is built around using docker, so its immediate dependencies are limite
 
 ## Setup
 
-To use this site, you will need to generate the docker image yourself. Luckily, you can do this with the inbuilt docker-compose file, also listed here. 
+To use this site, you will need to generate the docker image yourself. Luckily, you can do this with the inbuilt docker-compose file, also listed here.
 
-### docker-compose 
+### docker-compose
 Please remember to change ``MARIADB_ROOT_PASSWORD`` to something secure!
 ```yml
 # Use root/example as user/password credentials
@@ -31,8 +31,8 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: example
 
-  # Feel free to uncomment this if you want an easy way to access and edit the 
-  # database, it's recommended you don't activate this if your users can access 
+  # Feel free to uncomment this if you want an easy way to access and edit the
+  # database, it's recommended you don't activate this if your users can access
   # it, though.
 
   # adminer:
@@ -53,12 +53,12 @@ services:
 Before you run this file, you will also have to change the password entry in
 ``conf.toml`` to whatever you set ``MARIA_DB_ROOT_PASSWORD`` to.
 
-### Command 
+### Command
 
 To start the site simply run the following:
 
 ```bash
-docker-compose up -d --build 
+docker-compose up -d --build
 ```
 
 This will build the site as well as start it in the background.
@@ -73,7 +73,7 @@ Personally I find it helpful to use a reverse proxy such as linuxserver.io's
 
 For this section, we will assume your site is at ``example.site``.
 
-Before you do anything else you need to go to ``example.site/admin/start.php``. 
+Before you do anything else you need to go to ``example.site/admin/start.php``.
 This will ask you to create an admin username and password. Please make sure these are secure!
 
 From there you can add authors at ``example.site/admin/author.php``, manga at
