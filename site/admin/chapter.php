@@ -4,29 +4,54 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../style/normalize.css">
+    <link rel="stylesheet" href="../style/tw-snippets.css">
+    <link rel="stylesheet" href="../style/ssb.css">
+    <script src="https://unpkg.com/swup@latest/dist/swup.min.js"></script>
+    <script defer src="../js/swup.js"></script>
+    <script src="../js/rainbowify.js"></script>
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../img/favicon-ios.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="180x180" href="../img/favicon-ios.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="../img/favicon-android.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="../img/favicon-android-splash.png" />
+
+    <style>
+    html,
+    body,
+    div#swup {
+        overflow: hidden;
+        position: relative;
+        height: 100%;
+    }
+    </style>
     <title>
-        Create Chapter </title>
+        Add/Edit Chapters </title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
-<body>
-    <form action="<?php $_PHP_SELF ?>" method="POST" enctype="multipart/form-data" autocomplete="off">
-            <label for="manga-id"> Manga: </label>
-            <select id="manga-id" name="manga-id" />
-            <option value='-1'> Choose a Manga </option>
-            <?= $mangas ?>
-            </select><br>
-            <label for="number"> Chapter Number: </label>
-            <input type="number" id="number" name="number" /><br>
-            <label for="file"> Upload Files: </label>
-            <input type="file" id="file" name="file" /><br>
-            <label for="release-date"> Release Date: </label>
-            <input type="date" id="release-date" name="release-date" /><br>
-            <label for="credits"> Scanlation Credits: </label><br>
-            <textarea id="credits" name="credits" /></textarea><br>
-            <input type="submit" id="submit" value="Submit" /><br>
-        </form>
-        <script>
+<body class="ssb-bg">
+    <div class="main-cont antialiased">
+        <div class="center-cont ssb-font">
+            <p style="font-size: 30px; padding-bottom: 1em;" class="ssb-font"><span class="rainbow">Upload chapter</span></p>
+            <form action="/scripts/addChapter.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+                <select id="manga-id" name="manga-id" />
+                <option value="" disabled selected>Select a manga</option>
+                <?= $mangas ?>
+                </select><br>
+                <input type="number" id="number" name="number" placeholder="Chapter number"/><br>
+                <input type="file" id="file" name="file" class="file" />
+                <label for="file" class="file">Upload files</label><br>
+                <input type="date" id="release-date" name="release-date" style="margin: 0.2em"/><br>
+                <textarea id="credits" name="credits" placeholder="Add credits..." style="margin: 0.2rem"></textarea><br>
+                <input type="submit" id="submit" value="Submit" class="submit"/><br>
+            </form>
+            <a class="ssb-butt ssb-butt-sm ssb-blk" href="index.php">Back</a>
+            <script>
             $('#manga-id').change(function() {
                 if ($('#manga-id').val() != -1) {
                     $.get("/scripts/getId.php", {
@@ -47,9 +72,7 @@
                     }, 'json').done();
                 }
             });
-        </script>
-        <p><?= $command_result ?> </p>
-
+            </script>
 </body>
 
 </html>

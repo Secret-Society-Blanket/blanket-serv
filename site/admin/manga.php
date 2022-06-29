@@ -31,7 +31,7 @@ require __DIR__ . '/../scripts/new_manga.php';
     }
     </style>
     <title>
-        Edit Manga
+        Add/Edit Manga
     </title>
 </head>
 

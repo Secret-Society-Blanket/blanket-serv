@@ -32,7 +32,7 @@ include __DIR__ . '/../scripts/new_author.php';
     }
     </style>
     <title>
-        Create Author
+        Add/Edit Authors
     </title>
 </head>
 
