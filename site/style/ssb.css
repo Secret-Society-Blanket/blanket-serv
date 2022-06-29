@@ -15,7 +15,9 @@ TOP LEVEL STYLES
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 25rem;
+  width: 50vw;
+  min-width: 512px;
+  max-width: 960px;
   max-height: 90vh;
 }
 
@@ -133,6 +135,30 @@ FONTS and COLOR VARIABLES -----------------------------------------------------
   color: rgb(0, 0, 0);
   background-color: rgb(0, 0, 0);
   --hover-color: rgba(0, 0, 0, 0.25);
+}
+
+.ssb-md {
+  color: rgb(255, 103, 64);
+  background-color: rgb(255, 103, 64);
+  --hover-color: rgba(255, 103, 64, 0.25);
+}
+
+.ssb-dy {
+  color: rgb(0, 41, 81);
+  background-color: rgb(0, 41, 82);
+  --hover-color: rgba(0, 41, 82, 0.25);
+}
+
+.ssb-tw {
+  color: rgb(29, 155, 240);
+  background-color: rgb(29, 155, 240);
+  --hover-color: rgba(29, 155, 240, 0.25);
+}
+
+.ssb-hm {
+  color: var(--ssb-p);
+  background-color: var(--ssb-p);
+  --hover-color: rgba(216, 64, 128, 0.5);
 }
 
 /* 
@@ -634,6 +660,263 @@ textarea::-webkit-scrollbar {
   display: none;
 }
 
-textarea:focus{
+textarea:focus {
   box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
 }
+
+/*
+FROSTED GLASS effect ----------------------------------------------------------
+*/
+
+.glass {
+  backdrop-filter: blur(10px);
+}
+
+@supports not (backdrop-filter: blur(10px)) {
+  .glass {
+    /*Firefox fallback*/
+    background: rgba(41, 89, 105, 0.5);
+  }
+}
+
+/*
+MANGA page --------------------------------------------------------------------
+*/
+
+.manga-main {
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5) inset;
+  border-radius: 8px;
+  padding: 1px;
+  max-height: 300px;
+}
+
+.manga-sub {
+  display: flex;
+  flex-direction: column;
+  font-size: 40px;
+}
+
+.manga-cover {
+  min-height: 100px;
+  max-height: 300px;
+  background: white;
+  margin-right: 5px;
+  border-radius: 7px 0px 0px 7px;
+  object-fit: contain;
+}
+
+.manga-disc {
+  text-align: justify;
+  margin-top: 5px;
+  padding: 0px 10px 5px 5px;
+  font-size: 20px;
+  line-height: 1em;
+  border-radius: 8px;
+  height: fit-content;
+}
+
+.manga-author {
+  font-size: 20px;
+  text-align: left;
+  white-space: nowrap;
+  padding-left: 7px;
+  text-decoration: underline;
+}
+
+.manga-title {
+  display: flex;
+  flex-direction: row;
+}
+
+.title-en {
+  text-align: left;
+  display: flex;
+  align-items: center;
+  line-height: 1em;
+  border-radius: 8px;
+  padding: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  position: relative;
+  text-decoration: underline dotted;
+  text-underline-position: from-font;
+}
+
+.title-en .title-og {
+  position: absolute;
+  white-space: nowrap;
+  width: fit-content;
+  top: -30px;
+  transition: all .2s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  backdrop-filter: blur(10px);
+
+  transform: translateX(-50%);
+  left: 50%;
+  text-align: center;
+
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 0.5em;
+  padding-inline: 0.5em;
+
+  font-family: "JF Dot K14";
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  text-shadow: 0.2ch 0.2ch 0px rgba(0, 0, 0, 0.5);
+}
+
+.title-en:hover .title-og {
+  opacity: 1;
+  top: -40px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 1);
+  visibility: visible;
+}
+
+/*
+CHAPTER tables ----------------------------------------------------------------
+*/
+
+.manga-ch {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.manga-ch tr {
+  /*For some reason, this is required for Safari to show the table correctly*/
+  display: flex;
+
+  /*I have no idea why I have to put this again, since it should be inherited*/
+  width: 50vw;
+  min-width: 512px;
+  max-width: 960px;
+
+  padding: 10px;
+  margin: 1px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+
+  transition: background .2s ease-in-out;
+
+}
+
+.manga-ch tr:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.manga-ch tr:first-child {
+  border-radius: 8px 8px 0px 0px;
+}
+
+.manga-ch tr:last-child {
+  border-radius: 0px 0px 8px 8px;
+}
+
+.ch-title {
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 1.15em;
+  flex: 1;
+  padding-right: 8px;
+}
+
+.read-buttons {
+  align-self: flex-end;
+}
+
+.ssb-hm:hover,
+.ssb-md:hover,
+.ssb-tw:hover,
+.ssb-dy:hover {
+  box-shadow: 0 0 0 2px var(--hover-color);
+}
+
+.ssb-hm .wtr,
+.ssb-md .wtr,
+.ssb-tw .wtr,
+.ssb-dy .wtr {
+  position: absolute;
+  white-space: nowrap;
+  vertical-align: center;
+
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 0.5em;
+  padding-inline: 0.5em;
+
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  font-family: "Orange Kid";
+  text-shadow: 0.2ch 0.2ch 0px rgba(0, 0, 0, 0.5);
+  text-align: center;
+
+  transition: all .2s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  bottom: 105%;
+  transform: translateX(-50%);
+  left: 50%;
+}
+
+.ssb-hm:hover .wtr,
+.ssb-md:hover .wtr,
+.ssb-tw:hover .wtr,
+.ssb-dy:hover .wtr {
+  opacity: 1;
+  visibility: visible;
+  bottom: 125%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 1);
+}
+
+.date {
+  text-align: right;
+  padding-left: 8px;
+  width: 4.1em;
+}
+
+.heart {
+  width: fit-content;
+  text-align: right;
+  top: 1px;
+  position: relative;
+  padding-left: 8px;
+}
+
+.heart .credits {
+  position: absolute;
+  white-space: nowrap;
+  vertical-align: center;
+
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 0.5em;
+  padding-inline: 0.5em;
+
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  font-family: "Orange Kid";
+  text-shadow: 0.2ch 0.2ch 0px rgba(0, 0, 0, 0.5);
+  text-align: center;
+
+  transition: all .2s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  bottom: 90%;
+  transform: translateX(-50%);
+  left: 50%;
+}
+
+.heart:hover .credits {
+  opacity: 1;
+  visibility: visible;
+  bottom: 110%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 1);
+}
+
+
+
+/*<td> <a href=author.php?author_id=<?= $author['id'] ?>><?= $author['name'] ?></a> </td>*/
+/*content/<?= $manga['image_link'] ?>*/
