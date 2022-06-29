@@ -21,13 +21,13 @@
     <link rel="icon" type="image/png" sizes="512x512" href="../img/favicon-android-splash.png" />
 
     <style>
-    html,
-    body,
-    div#swup {
-        overflow: hidden;
-        position: relative;
-        height: 100%;
-    }
+        html,
+        body,
+        div#swup {
+            overflow: hidden;
+            position: relative;
+            height: 100%;
+        }
     </style>
     <title>
         Add/Edit Chapters </title>
@@ -38,41 +38,45 @@
     <div class="main-cont antialiased">
         <div class="center-cont ssb-font">
             <p style="font-size: 30px; padding-bottom: 1em;" class="ssb-font"><span class="rainbow">Upload chapter</span></p>
-            <form action="/scripts/addChapter.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+
+            <form action="<?= $_PHP_SELF ?>" method="POST" enctype="multipart/form-data" autocomplete="off">
                 <select id="manga-id" name="manga-id" />
                 <option value="" disabled selected>Select a manga</option>
                 <?= $mangas ?>
                 </select><br>
-                <input type="number" id="number" name="number" placeholder="Chapter number"/><br>
+                <input type="number" id="number" name="number" placeholder="Chapter number" /><br>
                 <input type="file" id="file" name="file" class="file" />
-                <label for="file" class="file">Upload files</label><br>
-                <input type="date" id="release-date" name="release-date" style="margin: 0.2em"/><br>
+                <label for="file" class="file">Chapter ZIP</label><br>
+                <input type="date" id="release-date" name="release-date" style="margin: 0.2em" /><br>
                 <textarea id="credits" name="credits" placeholder="Add credits..." style="margin: 0.2rem"></textarea><br>
                 <input type="submit" id="submit" value="Submit" class="submit"/><br>
             </form>
             <a class="ssb-butt ssb-butt-sm ssb-blk" href="index.php">Back</a>
+            <p style="margin: 0.2rem"><?= $command_result ?> </p>
             <script>
-            $('#manga-id').change(function() {
-                if ($('#manga-id').val() != -1) {
-                    $.get("/scripts/getId.php", {
-                        'manga-id': $("#manga-id").val()
-                    }, function(data) {
-                        let row = data;
-                        let maxNum;
-                        let minNum = 0;
-                        if (!row.isOneshot) {
-                            maxNum = row.num_chapters + 1;
-                        } else {
-                            maxNum = 1;
-                            minNum = 1;
-                        }
-                        $("#number").val(maxNum);
-                        $("#number").attr('max', maxNum);
-                        $("#number").attr('min', minNum);
-                    }, 'json').done();
-                }
-            });
+                $('#manga-id').change(function() {
+                    if ($('#manga-id').val() != -1) {
+                        $.get("/scripts/getId.php", {
+                            'manga-id': $("#manga-id").val()
+                        }, function(data) {
+                            let row = data;
+                            let maxNum;
+                            let minNum = 0;
+                            if (!row.isOneshot) {
+                                maxNum = row.num_chapters + 1;
+                            } else {
+                                maxNum = 1;
+                                minNum = 1;
+                            }
+                            $("#number").val(maxNum);
+                            $("#number").attr('max', maxNum);
+                            $("#number").attr('min', minNum);
+                        }, 'json').done();
+                    }
+                });
             </script>
+        </div>
+    </div>
 </body>
 
 </html>

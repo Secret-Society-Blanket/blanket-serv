@@ -55,7 +55,7 @@ require __DIR__ . '/../scripts/new_manga.php';
             <form action="<?php $_PHP_SELF ?>" method="POST" enctype="multipart/form-data">
                 <?= $hidden ?>
                 <input type="text" id="manga-title" name="manga-title" placeholder="Title" class="input" value="<?= $getTitle ?>"><br>
-                <input type="text" id="manga-original-title" name="manga-original-title" placeholder="JP Title" class="input" value="<?= $getOriginalTitle ?>"><br>
+                <input type="text" id="manga-original-title" name="manga-original-title" placeholder="JP Title" class="input" style="font-family: 'JF Dot K14'" value="<?= $getOriginalTitle ?>"><br>
                 <input type="file" id="image" name="image" class="file" />
                 <label for="image" class="file">Choose a cover image</label><br>
                 <select id="authors" name="authors" class="selecter">
