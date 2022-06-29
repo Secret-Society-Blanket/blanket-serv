@@ -32,9 +32,9 @@
 </head>
 
 <body class="ssb-bg">
+    <div id="swup" class="transition-slide">
     <div class="main-cont antialiased">
         <div class="center-cont ssb-font">
-            <div id="swup" class="transition-slide">
                 <p style="font-size: 30px; padding-bottom: 0.5em;" class="ssb-font"><span class="rainbow">Admin Login</span></p>
                 <p style="margin: 0.2em"><?=$logged_in ?></p>
                 <p style="margin: 0.2em"><?= $result ?></p>
