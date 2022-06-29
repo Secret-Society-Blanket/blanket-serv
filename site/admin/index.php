@@ -40,9 +40,9 @@ checkAdmin();
             <div class="center-cont">
                 <p style="font-size: 30px; padding-bottom: 1em;" class="ssb-font"><span class="rainbow">Admin panel</span></p>
                 <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
-                <a class="ssb-butt ssb-butt-sm ssb-g transition" href="author.php" data-swup-transition="left">Add/Edit an Author</a>
-                <a class="ssb-butt ssb-butt-sm ssb-tq transition" href="manga.php" data-swup-transition="left">Add/Edit Manga</a>
-                <a class="ssb-butt ssb-butt-sm ssb-lb transition" href="chapter.php" data-swup-transition="left">Add/Edit Chapters</a>
+                    <a class="ssb-butt ssb-butt-sm ssb-g transition" href="author.php" data-swup-transition="left">Add/Edit an Author</a>
+                    <a class="ssb-butt ssb-butt-sm ssb-tq transition" href="manga.php" data-swup-transition="left">Add/Edit Manga</a>
+                    <a class="ssb-butt ssb-butt-sm ssb-lb transition" href="chapter.php" data-swup-transition="left">Add/Edit Chapters</a>
                 </div>
             </div>
         </div>
